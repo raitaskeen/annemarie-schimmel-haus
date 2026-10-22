@@ -1,7 +1,8 @@
 # Weekly dependency updates as pull requests (CI must pass before merging).
 version: 2
 updates:
-  - package-ecosystem: npm
+  # The project is managed by Bun (bun.lock); the npm ecosystem cannot update it.
+  - package-ecosystem: bun
     directory: /
     schedule:
       interval: weekly
