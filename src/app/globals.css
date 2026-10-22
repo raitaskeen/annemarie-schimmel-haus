@@ -604,3 +604,25 @@
 .dark [class~="hover:bg-lime"].text-forest:hover {
   color: #10241c;
 }
+
+/* Framed photographs: a fine inner border that warms to lime on hover/focus. */
+.photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0.5rem;
+  border-radius: calc(1.5rem - 0.5rem);
+  border: 1px solid rgb(255 255 255 / 0.35);
+  pointer-events: none;
+  transition: border-color 0.4s ease, inset 0.4s ease;
+}
+.photo-frame:hover::after,
+.photo-frame:focus-visible::after {
+  inset: 0.75rem;
+  border-color: rgb(146 200 62 / 0.9);
+}
+@media (prefers-reduced-motion: reduce) {
+  .photo-frame,
+  .photo-frame::after {
+    transition: none;
+  }
+}

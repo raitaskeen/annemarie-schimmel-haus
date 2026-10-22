@@ -26,6 +26,17 @@ import {
   getUpcomingOfferings,
 } from "@/server/public/queries";
 
+/** Homepage mosaic, in slot order: wide hero tile, then a mix that shows courses, culture and campus life. */
+const HOME_GALLERY = [
+  { file: "ash-dslr-1358.webp", position: "50% 55%" }, // the Haus and its garden
+  { file: "ash-fb-0121.webp", position: "50% 50%" }, // Lahore Literary Festival panel
+  { file: "ash-fb-0130.webp", position: "50% 30%" }, // workshop certificates (portrait slot)
+  { file: "ash-fb-0001.webp", position: "50% 40%" }, // teacher-training seminar
+  { file: "ash-fb-0035.webp", position: "50% 55%" }, // European Classical Concert in the garden
+  { file: "ash-fb-0142.webp", position: "50% 45%" }, // exhibition hall
+  { file: "ash-fb-0045.webp", position: "50% 35%" }, // visiting students
+];
+
 async function locale(): Promise<Locale> {
   const v = await lang();
   return hasLocale(v) ? v : "en";
@@ -56,7 +67,13 @@ export default async function HomePage() {
   const nextEvent = events.find((e) => !e.cancelled);
   const nextPlacement = placement.find((p) => p.state === "open") ?? placement[0];
   const nextExam = exams.upcoming[0];
-  const mosaic = [...gallery.filter((g) => g.featured), ...gallery.filter((g) => !g.featured && g.width > g.height)].slice(0, 7);
+  // Hand-picked photographs for the homepage (captions and alt texts still come from the
+  // gallery in the admin). Each slot of the mosaic gets a picture whose shape suits it.
+  const curated = HOME_GALLERY.map((c) => ({ ...c, item: gallery.find((g) => g.imagePath === `/images/gallery/${c.file}`) })).filter((c) => c.item);
+  const mosaic =
+    curated.length >= 7
+      ? curated.slice(0, 7).map((c) => ({ ...c.item!, position: c.position }))
+      : [...gallery.filter((g) => g.featured), ...gallery.filter((g) => !g.featured && g.width > g.height)].slice(0, 7).map((g) => ({ ...g, position: "50% 50%" }));
   const heroAlt =
     l === "de"
       ? "Gespräch im Annemarie-Schimmel-Haus vor der deutschen und der pakistanischen Flagge"
@@ -372,10 +389,21 @@ export default async function HomePage() {
                   key={g.id}
                   className={["col-span-2 row-span-2", "", "row-span-2", "", "", "col-span-2", "col-span-2 lg:col-span-1"][i] ?? ""}
                 >
-                  <Link href={href(l, "/gallery")} className="group relative block size-full overflow-hidden rounded-3xl bg-mint">
-                    <Image src={g.imagePath} alt={pick(g, "alt", l)} fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
-                    <span className="absolute inset-x-0 bottom-0 translate-y-2 bg-gradient-to-t from-forest/85 to-transparent p-4 pt-12 text-sm font-medium text-white opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                      {pick(g, "caption", l)}
+                  <Link
+                    href={href(l, "/gallery")}
+                    className="group photo-frame relative block size-full overflow-hidden rounded-3xl bg-mint ring-1 ring-ink/10 transition-[transform,box-shadow] duration-500 hover:-translate-y-1 hover:shadow-[0_30px_60px_-30px_rgb(16_36_28/0.55)] focus-visible:-translate-y-1"
+                  >
+                    <Image
+                      src={g.imagePath}
+                      alt={pick(g, "alt", l)}
+                      fill
+                      sizes={i === 0 ? "(min-width: 1024px) 50vw, 100vw" : "(min-width: 1024px) 25vw, 50vw"}
+                      style={{ objectPosition: g.position }}
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04] group-focus-visible:scale-[1.04]"
+                    />
+                    {/* Caption: always readable on touch screens, revealed on hover where there is a pointer */}
+                    <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-forest/90 via-forest/40 to-transparent p-4 pt-14 text-sm font-medium text-white transition-all duration-300 [@media(hover:hover)]:translate-y-2 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:translate-y-0 [@media(hover:hover)]:group-hover:opacity-100 [@media(hover:hover)]:group-focus-visible:translate-y-0 [@media(hover:hover)]:group-focus-visible:opacity-100">
+                      <span className="line-clamp-2">{pick(g, "caption", l)}</span>
                     </span>
                   </Link>
                 </StaggerItem>
@@ -391,7 +419,13 @@ export default async function HomePage() {
         <div className="container-site relative grid items-center gap-14 lg:grid-cols-[1fr_1.1fr]">
           <Reveal className="relative mx-auto w-full max-w-md">
             <div className="arch relative aspect-[4/5] overflow-hidden bg-forest-2">
-              <Image src="/images/gallery/ash-campus-learning-space-02.webp" alt={l === "de" ? "Das Lehrerzimmer im ASH" : "The teachers' room at ASH"} fill sizes="(min-width: 1024px) 35vw, 90vw" className="object-cover" />
+              <Image
+                src="/images/gallery/ash-dslr-1358.webp"
+                alt={l === "de" ? "Das Gebäude des Annemarie-Schimmel-Hauses mit Garten an der Upper Mall, Lahore" : "The Annemarie-Schimmel-Haus building and garden on Upper Mall, Lahore"}
+                fill
+                sizes="(min-width: 1024px) 35vw, 90vw"
+                className="object-cover object-[45%_50%]"
+              />
             </div>
             <div className="absolute -right-4 -bottom-6 rounded-2xl bg-lime p-5 text-forest shadow-xl sm:-right-10">
               <p className="font-display text-5xl leading-none">2003</p>
@@ -418,6 +452,56 @@ export default async function HomePage() {
               {t.legacyCta}
               <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
             </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ---------------------------------------------------- CONTRIBUTION */}
+      <section className="relative overflow-hidden py-24 lg:py-32" aria-labelledby="contribution-title">
+        <div className="container-site grid gap-14">
+          <Reveal className="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end">
+            <div>
+              <p className="eyebrow inline-flex items-center gap-2 text-ash">
+                <Star8 className="size-3" />
+                {t.contribEyebrow}
+              </p>
+              <h2 id="contribution-title" className="mt-4 font-display text-4xl leading-[1.05] text-forest sm:text-5xl">
+                {t.contribTitle}
+              </h2>
+            </div>
+            <p className="text-lg leading-relaxed text-stone lg:pb-2">{t.contribLead}</p>
+          </Reveal>
+          <Stagger className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {t.contribPillars.map((p, i) => (
+              <StaggerItem key={p.title}>
+                <article className="group flex h-full flex-col overflow-hidden rounded-3xl bg-cream ring-1 ring-ink/10 transition-[transform,box-shadow] duration-500 hover:-translate-y-1.5 hover:shadow-[0_30px_60px_-34px_rgb(16_36_28/0.55)] hover:ring-ash/40">
+                  <div className="photo-frame relative aspect-[4/3] overflow-hidden bg-mint">
+                    <Image
+                      src={p.image}
+                      alt={p.alt}
+                      fill
+                      sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                      style={{ objectPosition: p.position }}
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                    />
+                    <span className="absolute top-4 left-4 grid size-9 place-items-center rounded-full bg-forest/85 font-display text-sm text-lime backdrop-blur">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                  </div>
+                  <div className="flex flex-1 flex-col gap-3 p-6">
+                    <h3 className="font-display text-xl leading-snug text-forest">{p.title}</h3>
+                    <p className="text-sm leading-relaxed text-stone">{p.text}</p>
+                    <span className="mt-auto h-0.5 w-10 rounded-full bg-lime transition-all duration-500 group-hover:w-20" aria-hidden />
+                  </div>
+                </article>
+              </StaggerItem>
+            ))}
+          </Stagger>
+          <Reveal>
+            <figure className="mx-auto max-w-3xl text-center">
+              <blockquote className="font-display text-2xl leading-snug text-forest italic sm:text-3xl">“{t.contribQuote}”</blockquote>
+              <figcaption className="mt-3 text-sm tracking-wide text-stone">{t.contribQuoteBy}</figcaption>
+            </figure>
           </Reveal>
         </div>
       </section>
