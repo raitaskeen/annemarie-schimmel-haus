@@ -51,7 +51,7 @@ export function formatTimeOfDay(time: string, locale: Locale) {
 }
 
 export function formatTimeRange(start: string, end: string, locale: Locale) {
-  return `${formatTimeOfDay(start, locale)} – ${formatTimeOfDay(end, locale)}${locale === "de" ? " Uhr" : ""}`;
+  return `${formatTimeOfDay(start, locale)}${locale === "de" ? " bis " : " to "}${formatTimeOfDay(end, locale)}${locale === "de" ? " Uhr" : ""}`;
 }
 
 export function formatPKR(amount: number, locale: Locale) {
@@ -68,13 +68,13 @@ const DAY_NAMES: Record<Locale, string[]> = {
   de: ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"],
 };
 
-/** [1,2,3,4,5] → "Mon – Fri"; [6,7] → "Sat, Sun". */
+/** [1,2,3,4,5] → "Mon to Fri"; [6,7] → "Sat, Sun". */
 export function formatWeekdays(days: number[], locale: Locale) {
   const sorted = [...new Set(days)].sort((a, b) => a - b);
   if (!sorted.length) return "";
   const contiguous = sorted.every((d, i) => i === 0 || d === sorted[i - 1] + 1);
   const names = DAY_NAMES[locale];
-  if (contiguous && sorted.length > 2) return `${names[sorted[0] - 1]} – ${names[sorted.at(-1)! - 1]}`;
+  if (contiguous && sorted.length > 2) return `${names[sorted[0] - 1]}${locale === "de" ? " bis " : " to "}${names[sorted.at(-1)! - 1]}`;
   return sorted.map((d) => names[d - 1]).join(", ");
 }
 

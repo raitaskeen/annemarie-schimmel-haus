@@ -10,7 +10,7 @@ import { navCounts } from "@/server/admin/stats";
 /**
  * Admin shell. The frame renders immediately; the session-dependent sidebar
  * streams in. Authorization is still enforced by every page and action via the
- * Data Access Layer — this layout only decides what to show.
+ * Data Access Layer, this layout only decides what to show.
  */
 export default function PanelLayout({ children }: LayoutProps<"/admin">) {
   return (

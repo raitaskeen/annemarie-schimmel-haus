@@ -8,14 +8,14 @@ import { RotateCcw } from "lucide-react";
 const COPY = {
   en: {
     title: "Something went wrong",
-    text: "Sorry — this page could not be loaded. Your data is safe. Please try again in a moment.",
+    text: "Sorry, this page could not be loaded. Your data is safe. Please try again in a moment.",
     retry: "Try again",
     home: "Back to the homepage",
     ref: "Reference for our team",
   },
   de: {
     title: "Etwas ist schiefgelaufen",
-    text: "Entschuldigung — diese Seite konnte nicht geladen werden. Ihre Daten sind sicher. Bitte versuchen Sie es gleich noch einmal.",
+    text: "Entschuldigung, diese Seite konnte nicht geladen werden. Ihre Daten sind sicher. Bitte versuchen Sie es gleich noch einmal.",
     retry: "Erneut versuchen",
     home: "Zur Startseite",
     ref: "Referenz für unser Team",

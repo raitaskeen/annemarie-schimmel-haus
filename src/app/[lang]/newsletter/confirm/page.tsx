@@ -11,8 +11,8 @@ async function locale(): Promise<Locale> {
 }
 
 const COPY = {
-  en: { title: "Confirm your subscription", lead: "One click and you'll receive news about courses, events and scholarships.", button: "Yes, subscribe me", done: "You're subscribed — welcome!", doneLead: "Thank you for confirming. You can unsubscribe at any time.", failed: "This confirmation link is invalid or has already been used.", home: "Back to the homepage" },
-  de: { title: "Abonnement bestätigen", lead: "Ein Klick — und Sie erhalten Neuigkeiten zu Kursen, Veranstaltungen und Stipendien.", button: "Ja, abonnieren", done: "Sie sind angemeldet — willkommen!", doneLead: "Danke für Ihre Bestätigung. Sie können sich jederzeit abmelden.", failed: "Dieser Bestätigungslink ist ungültig oder wurde bereits verwendet.", home: "Zur Startseite" },
+  en: { title: "Confirm your subscription", lead: "One click and you'll receive news about courses, events and scholarships.", button: "Yes, subscribe me", done: "You're subscribed, welcome!", doneLead: "Thank you for confirming. You can unsubscribe at any time.", failed: "This confirmation link is invalid or has already been used.", home: "Back to the homepage" },
+  de: { title: "Abonnement bestätigen", lead: "Ein Klick, und Sie erhalten Neuigkeiten zu Kursen, Veranstaltungen und Stipendien.", button: "Ja, abonnieren", done: "Sie sind angemeldet, willkommen!", doneLead: "Danke für Ihre Bestätigung. Sie können sich jederzeit abmelden.", failed: "Dieser Bestätigungslink ist ungültig oder wurde bereits verwendet.", home: "Zur Startseite" },
 };
 
 export async function generateMetadata(): Promise<Metadata> {

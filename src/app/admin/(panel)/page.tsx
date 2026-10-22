@@ -30,7 +30,7 @@ export default async function DashboardPage() {
       <PageHeader
         eyebrow="Overview"
         title={`${greeting}, ${user.name.split(" ")[0]}`}
-        description="Here's what is happening at the Haus — applications waiting for you, batches filling up and upcoming events."
+        description="Here's what is happening at the Haus, applications waiting for you, batches filling up and upcoming events."
         actions={
           can(user.role, "content:write") && (
             <>
@@ -54,7 +54,7 @@ export default async function DashboardPage() {
         <StatCard
           label="Awaiting payment"
           value={kpi.awaitingPayment}
-          hint={kpi.reported ? `${kpi.reported} reported a payment — confirm now` : `${kpi.waitlisted} on waitlists`}
+          hint={kpi.reported ? `${kpi.reported} reported a payment, confirm now` : `${kpi.waitlisted} on waitlists`}
           tone={kpi.reported ? "warning" : "default"}
           icon={<Hourglass className="size-4" />}
           href={kpi.reported ? "/admin/enrollments?status=reported" : "/admin/enrollments?status=payment_pending"}

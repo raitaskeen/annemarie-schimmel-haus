@@ -57,7 +57,7 @@ export default async function SubscribersPage(props: PageProps<"/admin/subscribe
                   <td className="font-medium">{s.email}</td>
                   <td className="text-xs uppercase">{s.locale}</td>
                   <td className="text-xs whitespace-nowrap text-muted-foreground">{formatDateTime(s.createdAt, "en")}</td>
-                  <td className="text-xs whitespace-nowrap text-muted-foreground">{s.confirmedAt ? formatDateTime(s.confirmedAt, "en") : "—"}</td>
+                  <td className="text-xs whitespace-nowrap text-muted-foreground">{s.confirmedAt ? formatDateTime(s.confirmedAt, "en") : "·"}</td>
                   <td>
                     <StatusBadge status={s.status === "pending" ? "queued" : s.status === "unsubscribed" ? "closed" : s.status} label={s.status} />
                   </td>

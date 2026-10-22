@@ -15,9 +15,9 @@ import { Label } from "@/components/ui/label";
 type Action = (s: ActionState, f: FormData) => Promise<ActionState>;
 
 const ROLE_OPTIONS = [
-  { value: "support", label: "Course office — processes applications and messages" },
-  { value: "editor", label: "Editor — also edits courses, events and website content" },
-  { value: "admin", label: "Administrator — full access incl. users and settings" },
+  { value: "support", label: "Course office, processes applications and messages" },
+  { value: "editor", label: "Editor, also edits courses, events and website content" },
+  { value: "admin", label: "Administrator, full access incl. users and settings" },
 ];
 
 /** Shows a one-time invite link with a copy button. */
@@ -25,7 +25,7 @@ export function InviteLink({ url }: { url: string }) {
   const [copied, setCopied] = useState(false);
   return (
     <div className="grid gap-2 rounded-xl border bg-muted/40 p-3">
-      <p className="text-xs text-muted-foreground">Invitation link (valid 72 hours, works once). It was also emailed — share it yourself if email is not connected yet.</p>
+      <p className="text-xs text-muted-foreground">Invitation link (valid 72 hours, works once). It was also emailed, share it yourself if email is not connected yet.</p>
       <div className="flex gap-2">
         <Input readOnly value={url} className="font-mono text-xs" onFocus={(e) => e.currentTarget.select()} aria-label="Invitation link" />
         <Button
@@ -63,7 +63,7 @@ export function InviteUserDialog({ action }: { action: Action }) {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Invite a staff member</DialogTitle>
-          <DialogDescription>They receive a link to set their own password. Nobody — not even administrators — ever sees it.</DialogDescription>
+          <DialogDescription>They receive a link to set their own password. Nobody, not even administrators, ever sees it.</DialogDescription>
         </DialogHeader>
         {link ? (
           <>

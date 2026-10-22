@@ -62,7 +62,7 @@ export function EventForm({ action, event, images, defaults }: { action: Action;
                 state={state}
                 required
               />
-              <TextField label="Title (German)" name="titleDe" defaultValue={event?.titleDe} state={state} hint="Optional — English is shown if empty." />
+              <TextField label="Title (German)" name="titleDe" defaultValue={event?.titleDe} state={state} hint="Optional: English is shown if empty." />
             </div>
             <TextField label="URL slug" name="slug" value={slug} onChange={(e) => setSlug(e.target.value)} state={state} required hint={`Page address: /en/events/${slug || "…"}`} />
             <div className="grid gap-4 sm:grid-cols-2">
@@ -99,7 +99,7 @@ export function EventForm({ action, event, images, defaults }: { action: Action;
             <ImagePicker name="imagePath" defaultValue={event?.imagePath} images={images} label="Poster / image" />
             <TextField label="Image description (alt text)" name="imageAlt" defaultValue={event?.imageAlt} state={state} hint="Describe the image for screen-reader users." />
             <TextAreaField
-              label="Programme — one item per line: time | English title | German title | location"
+              label="Programme, one item per line: time | English title | German title | location"
               name="agenda"
               rows={6}
               defaultValue={(event?.agenda ?? []).map((a) => [a.time, a.titleEn, a.titleDe ?? "", a.location ?? ""].join(" | ").replace(/( \| )+$/, "")).join("\n")}
@@ -119,7 +119,7 @@ export function EventForm({ action, event, images, defaults }: { action: Action;
               options={[
                 { value: "internal", label: "On this website (tickets & check-in)" },
                 { value: "external", label: "External link" },
-                { value: "none", label: "No registration — just come" },
+                { value: "none", label: "No registration, just come" },
               ]}
             />
             {/* Mirror the select so dependent fields react without a controlled select */}
@@ -360,7 +360,7 @@ export function PlacementResultDialog({ action, application }: { action: Action;
                 <div className="grid gap-1.5">
                   <Label htmlFor="pa-level">Recommended level</Label>
                   <select id="pa-level" name="resultLevel" value={level} onChange={(e) => setLevel(e.target.value)} className="h-9 rounded-lg border bg-background px-3 text-sm">
-                    <option value="">—</option>
+                    <option value="">·</option>
                     {["A1", "A2", "B1", "B2", "C1"].map((l) => (
                       <option key={l} value={l}>
                         {l}

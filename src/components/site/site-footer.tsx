@@ -3,7 +3,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Clock, Mail, MapPin, Phone } from "lucide-react";
 import { commonDictionary } from "@/i18n/common";
 import { href, type Locale } from "@/i18n/config";
-import { formatTimeOfDay } from "@/lib/format";
+import { formatTimeOfDay, formatWeekdays } from "@/lib/format";
 import { getCurrentYear, getSettings } from "@/server/public/queries";
 import { InstallButton } from "@/components/pwa/install-ui";
 import { Girih } from "./girih";
@@ -25,7 +25,13 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
   const f = dict.footer;
   const [settings, year] = await Promise.all([getSettings(), getCurrentYear()]);
   const c = settings.contact;
-  const hours = `${formatTimeOfDay(settings.hours.opens, locale)} – ${formatTimeOfDay(settings.hours.closes, locale)}${locale === "de" ? " Uhr" : ""}`;
+  const hours = `${formatTimeOfDay(settings.hours.opens, locale)}${locale === "de" ? " bis " : " to "}${formatTimeOfDay(settings.hours.closes, locale)}${locale === "de" ? " Uhr" : ""}`;
+
+  // Opening days come from Admin → Settings, so the footer never contradicts the office.
+  const days = [...new Set(settings.hours.days)].sort((a, b) => a - b);
+  const openDays = formatWeekdays(days, locale);
+  const closed = [1, 2, 3, 4, 5, 6, 7].filter((d) => !days.includes(d));
+  const closedDays = closed.length ? formatWeekdays(closed, locale) : "";
 
   const learn = [
     [dict.nav.courses, "/courses"],
@@ -51,10 +57,10 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
 
       <div className="container-site relative">
         {/* Call to action band */}
-        <div className="flex flex-col items-start justify-between gap-8 border-b border-white/10 py-14 md:flex-row md:items-end lg:py-20">
+        <div className="flex flex-col items-start justify-between gap-6 border-b border-white/10 py-10 md:flex-row md:items-end lg:py-14">
           <div className="max-w-2xl">
             <p className="eyebrow text-lime">{dict.brand.tagline}</p>
-            <p className="mt-4 font-display text-4xl leading-[1.05] text-balance sm:text-5xl lg:text-6xl">
+            <p className="mt-3 font-display text-4xl leading-[1.05] text-balance sm:text-5xl">
               {locale === "de" ? (
                 <>
                   Ihre Reise ins Deutsche <em className="text-lime not-italic">beginnt hier.</em>
@@ -83,13 +89,12 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        {/* Phones: the two link lists sit side by side to keep the footer short. */}
-        <div className="grid grid-cols-2 gap-x-6 gap-y-12 py-14 lg:grid-cols-[1.4fr_0.8fr_0.8fr_1.2fr] lg:gap-10">
+        {/* Four balanced columns; two link lists share a row on phones to keep the footer short. */}
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 py-12 lg:grid-cols-[1.3fr_0.8fr_0.8fr_1.3fr] lg:gap-x-10">
           <div className="col-span-2 max-w-sm lg:col-span-1">
             <Wordmark inverse className="h-11" />
-            <p className="mt-5 text-sm leading-relaxed text-white/70">{f.lead}</p>
-            <p className="eyebrow mt-8 mb-3 text-white/50">{f.follow}</p>
-            <ul className="flex flex-wrap gap-2">
+            <p className="mt-4 text-sm leading-relaxed text-white/70">{f.lead}</p>
+            <ul className="mt-6 flex flex-wrap gap-2" aria-label={f.follow}>
               {SOCIAL.filter((s) => settings.social[s.key]).map((s) => (
                 <li key={s.key}>
                   <a
@@ -104,11 +109,6 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
                 </li>
               ))}
             </ul>
-            <div className="mt-8 rounded-2xl bg-white/[0.06] p-4 ring-1 ring-white/10">
-              <p className="font-display text-lg">{dict.app.title}</p>
-              <p className="mt-1 mb-3 text-xs leading-relaxed text-white/60">{dict.app.text}</p>
-              <InstallButton labels={dict.app} tone="dark" className="h-10 px-4 text-sm" />
-            </div>
           </div>
 
           <FooterList title={f.learn} items={learn.map(([l, p]) => [l, href(locale, p)])} />
@@ -126,7 +126,7 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
               <li className="flex gap-3">
                 <Phone className="mt-0.5 size-4 shrink-0 text-lime" />
                 <span>
-                  <a href={`tel:${c.phone.replace(/\s/g, "")}`} className="link-underline">
+                  <a href={`tel:${c.phone.replace(/s/g, "")}`} className="link-underline">
                     {c.phone}
                   </a>
                   {c.emergencyPhone && (
@@ -150,41 +150,55 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
               <li className="flex gap-3">
                 <Clock className="mt-0.5 size-4 shrink-0 text-lime" />
                 <span>
-                  {f.weekdays}: <span className="tabular text-white">{hours}</span>
-                  <span className="block text-xs text-white/50">
-                    {f.weekend}: {f.closed}
-                  </span>
+                  {openDays}: <span className="tabular text-white">{hours}</span>
+                  {closedDays && (
+                    <span className="block text-xs text-white/50">
+                      {closedDays}: {f.closed}
+                    </span>
+                  )}
                 </span>
               </li>
             </ul>
-
-            <div className="mt-8">
-              <p className="font-display text-xl">{f.newsletterTitle}</p>
-              <p className="mt-1 mb-4 text-sm text-white/60">{f.newsletterText}</p>
-              <NewsletterForm
-                locale={locale}
-                copy={{
-                  placeholder: f.newsletterPlaceholder,
-                  button: f.newsletterButton,
-                  consent: f.newsletterConsent,
-                  success: f.newsletterSuccess,
-                  already: f.newsletterAlready,
-                  error: dict.form.errors.generic,
-                  invalid: `${dict.form.errors.email} ${dict.form.errors.consent}`,
-                }}
-              />
-            </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 border-t border-white/10 py-8 text-xs text-white/50 md:flex-row md:items-center md:justify-between">
+        {/* Newsletter and app side by side in one slim band */}
+        <div className="grid gap-6 border-t border-white/10 py-8 lg:grid-cols-[1.3fr_1fr] lg:items-end lg:gap-12">
+          <div className="grid max-w-xl gap-4">
+            <div>
+              <p className="font-display text-xl">{f.newsletterTitle}</p>
+              <p className="mt-1 text-sm text-white/60">{f.newsletterText}</p>
+            </div>
+            <NewsletterForm
+              locale={locale}
+              copy={{
+                placeholder: f.newsletterPlaceholder,
+                button: f.newsletterButton,
+                consent: f.newsletterConsent,
+                success: f.newsletterSuccess,
+                already: f.newsletterAlready,
+                error: dict.form.errors.generic,
+                invalid: `${dict.form.errors.email} ${dict.form.errors.consent}`,
+              }}
+            />
+          </div>
+          <div className="flex items-center justify-between gap-4 rounded-2xl bg-white/[0.06] p-4 ring-1 ring-white/10">
+            <div className="min-w-0">
+              <p className="font-display text-lg leading-tight">{dict.app.title}</p>
+              <p className="mt-0.5 line-clamp-2 text-xs text-white/60">{dict.app.text}</p>
+            </div>
+            <InstallButton labels={dict.app} tone="dark" className="h-10 shrink-0 px-4 text-sm" />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-5 border-t border-white/10 py-6 text-xs text-white/50 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center gap-4">
             <Image src="/brand/partners/goethe.png" alt="Goethe-Institut" width={1169} height={568} sizes="120px" className="h-9 w-auto" />
             <span className="max-w-48 leading-snug">{dict.brand.goethe}</span>
           </div>
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <span>
-              © 2003–{year} Annemarie-Schimmel-Haus. {f.rights}
+              © {year} Annemarie-Schimmel-Haus · {locale === "de" ? "seit 2003" : "since 2003"}. {f.rights}
             </span>
             <Link href={href(locale, "/privacy")} className="hover:text-white">
               {f.privacy}

@@ -340,7 +340,7 @@
     text-transform: uppercase;
   }
 
-  /* Mughal arch — the signature frame of the ASH visual language. */
+  /* Mughal arch, the signature frame of the ASH visual language. */
   .arch {
     border-radius: 999px 999px 1.5rem 1.5rem / 40% 40% 1.5rem 1.5rem;
   }
@@ -505,7 +505,7 @@
   }
 }
 
-/* Scroll reveal (progressive enhancement — see components/motion.tsx). */
+/* Scroll reveal (progressive enhancement, see components/motion.tsx). */
 .reveal,
 .reveal-group > .reveal-item {
   transition:
@@ -603,4 +603,26 @@
 .dark .bg-lime .text-forest,
 .dark [class~="hover:bg-lime"].text-forest:hover {
   color: #10241c;
+}
+
+/* Framed photographs: a fine inner border that warms to lime on hover/focus. */
+.photo-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0.5rem;
+  border-radius: calc(1.5rem - 0.5rem);
+  border: 1px solid rgb(255 255 255 / 0.35);
+  pointer-events: none;
+  transition: border-color 0.4s ease, inset 0.4s ease;
+}
+.photo-frame:hover::after,
+.photo-frame:focus-visible::after {
+  inset: 0.75rem;
+  border-color: rgb(146 200 62 / 0.9);
+}
+@media (prefers-reduced-motion: reduce) {
+  .photo-frame,
+  .photo-frame::after {
+    transition: none;
+  }
 }

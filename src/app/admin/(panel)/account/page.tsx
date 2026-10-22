@@ -19,7 +19,7 @@ import {
 
 export const metadata: Metadata = { title: "My account" };
 
-/** Very small UA summary — enough to recognise a device, nothing more. */
+/** Very small UA summary, enough to recognise a device, nothing more. */
 function device(ua: string | null) {
   if (!ua) return { label: "Unknown device", mobile: false };
   const mobile = /Mobile|Android|iPhone|iPad/i.test(ua);

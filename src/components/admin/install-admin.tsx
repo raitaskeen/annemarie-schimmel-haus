@@ -8,7 +8,7 @@ import { SidebarMenuButton, SidebarMenuItem } from "@/components/ui/sidebar";
 
 const LABELS: InstallLabels = {
   install: "Install ASH Admin",
-  installed: "ASH Admin is installed — open it from your desktop, dock or home screen.",
+  installed: "ASH Admin is installed, open it from your desktop, dock or home screen.",
   open: "You are using the ASH Admin app",
   howTitle: "Install ASH Admin",
   ios: "On iPhone or iPad (Safari): tap Share, then “Add to Home Screen”.",
@@ -16,7 +16,7 @@ const LABELS: InstallLabels = {
   mac: "On a Mac in Safari: File → “Add to Dock”.",
   android: "In Chrome: open the ⋮ menu and choose “Install app”.",
   desktop: "In Chrome or Edge: click the install icon at the right of the address bar, or ⋮ → “Install ASH Admin”.",
-  firefox: "Firefox cannot install web apps on computers — use Chrome, Edge or Safari for the installed admin.",
+  firefox: "Firefox cannot install web apps on computers, use Chrome, Edge or Safari for the installed admin.",
   close: "Close",
 };
 

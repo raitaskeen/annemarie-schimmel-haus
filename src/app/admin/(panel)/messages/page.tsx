@@ -20,7 +20,7 @@ export default async function MessagesPage(props: PageProps<"/admin/messages">) 
 
   return (
     <>
-      <PageHeader eyebrow="Applications" title="Messages" description="Questions from the contact form. Reply from here — the answer is sent by email with the reference number, and the conversation is kept." />
+      <PageHeader eyebrow="Applications" title="Messages" description="Questions from the contact form. Reply from here, the answer is sent by email with the reference number, and the conversation is kept." />
       <div className="mb-4 flex flex-wrap gap-2">
         {[{ key: undefined, label: "Open" }, ...MESSAGE_STATUSES.map((s) => ({ key: s, label: s.replace("_", " ") }))].map((s) => (
           <Link

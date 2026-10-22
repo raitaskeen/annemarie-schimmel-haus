@@ -11,7 +11,7 @@ import { autoCloseAndComplete, purgeOldDocuments, releaseUnpaidSeats, sendPaymen
 const WHATSAPP_RETENTION_DAYS = 180;
 
 /**
- * Periodic housekeeping (run every 5–15 minutes by a scheduler). Each step is
+ * Periodic housekeeping (run every 5 to 15 minutes by a scheduler). Each step is
  * idempotent and isolated, so one failing step never blocks the others.
  */
 export async function runMaintenance() {

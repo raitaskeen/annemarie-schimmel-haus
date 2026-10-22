@@ -24,7 +24,7 @@ function randomCode(length: number): string {
   return out;
 }
 
-/** e.g. ASH-E-7K3M9Q — 31^6 ≈ 887M combinations; uniqueness is enforced by the database. */
+/** e.g. ASH-E-7K3M9Q, 31^6 ≈ 887M combinations; uniqueness is enforced by the database. */
 export function newReference(kind: ReferenceKind): string {
   return `${PREFIX[kind]}-${randomCode(6)}`;
 }

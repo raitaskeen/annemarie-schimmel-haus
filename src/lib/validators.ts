@@ -1,6 +1,6 @@
 /**
  * Normalisers shared by forms, server validation, the seed and tests.
- * Pure functions — safe to import on the client and the server.
+ * Pure functions, safe to import on the client and the server.
  */
 
 /** Application numbers, e.g. ASH-E-7K3M9Q (E = enrollment, V = event, P = placement, M = message). */

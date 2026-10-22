@@ -19,7 +19,7 @@ export async function updateEnrollmentStatusAction(id: string, _prev: ActionStat
     const updated = await changeEnrollmentStatus(user, id, input.status, { note: input.note || null, paymentRef: input.paymentRef || null, notify: input.notify === "true" });
     updateTag(TAGS.offerings);
     updateTag(`offering:${updated.offeringId}`);
-    return { ok: true, message: `Status changed to “${updated.status.replace("_", " ")}”${input.notify === "true" ? " — applicant notified" : ""}.` };
+    return { ok: true, message: `Status changed to “${updated.status.replace("_", " ")}”${input.notify === "true" ? ", applicant notified" : ""}.` };
   });
 }
 

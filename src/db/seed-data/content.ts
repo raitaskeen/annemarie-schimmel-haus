@@ -44,26 +44,26 @@ export const seedEvents: SeedEvent[] = [
     titleEn: "Open Day 2026: Your Roadmap to Germany",
     titleDe: "Open Day 2026: Ihr Weg nach Deutschland",
     summaryEn:
-      "Interactive sessions on studying and working in Germany, safe migration pathways, a trial German class and live music — in collaboration with DAAD Pakistan, the German Embassy Islamabad and GIZ Pakistan.",
+      "Interactive sessions on studying and working in Germany, safe migration pathways, a trial German class and live music, in collaboration with DAAD Pakistan, the German Embassy Islamabad and GIZ Pakistan.",
     summaryDe:
-      "Interaktive Sessions zu Studium und Arbeit in Deutschland, sicheren Migrationswegen, eine Schnupperstunde Deutsch und Live-Musik — gemeinsam mit DAAD Pakistan, der Deutschen Botschaft Islamabad und GIZ Pakistan.",
+      "Interaktive Sessions zu Studium und Arbeit in Deutschland, sicheren Migrationswegen, eine Schnupperstunde Deutsch und Live-Musik, gemeinsam mit DAAD Pakistan, der Deutschen Botschaft Islamabad und GIZ Pakistan.",
     bodyEn: `Join us for an informative afternoon packed with guidance on studying and working in Germany, migration pathways, trial classes and live cultural entertainment.
 
 **Important information**
 - Entry is open for all, but prior free registration is mandatory.
-- Please bring your original CNIC — no entry without it.
+- Please bring your original CNIC, no entry without it.
 - Seats are limited and allocated on a first-come, first-served basis.`,
     bodyDe: `Ein informativer Nachmittag rund um Studium und Arbeit in Deutschland, Migrationswege, Schnupperunterricht und kulturelles Programm.
 
 **Wichtige Hinweise**
 - Der Eintritt ist frei, eine vorherige kostenlose Anmeldung ist jedoch erforderlich.
-- Bitte bringen Sie Ihre Original-CNIC mit — ohne sie ist kein Einlass möglich.
+- Bitte bringen Sie Ihre Original-CNIC mit, ohne sie ist kein Einlass möglich.
 - Die Plätze sind begrenzt und werden nach Eingang vergeben.`,
     category: "info_session",
     startsAt: "2026-10-10T12:00:00+05:00",
     endsAt: "2026-10-10T16:15:00+05:00",
     venue: "Garden, Annemarie-Schimmel-Haus",
-    imagePath: "/images/gallery/ash-fb-0038.webp",
+    imagePath: "/images/polished/ash-fb-0038.webp",
     imageAlt: "Higher Studies in Germany presentation for prospective applicants.",
     capacity: 250,
     requiresCnic: true,
@@ -76,7 +76,7 @@ export const seedEvents: SeedEvent[] = [
       { time: "14:00", titleEn: "Break", titleDe: "Pause" },
       { time: "14:20", titleEn: "How to write an impressive motivation letter", titleDe: "So schreiben Sie ein überzeugendes Motivationsschreiben", location: "Garden" },
       { time: "14:50", titleEn: "How to survive on a budget in Germany", titleDe: "Mit kleinem Budget in Deutschland leben", location: "Garden" },
-      { time: "15:10", titleEn: "Schnupperkurs — trial German class for beginners", titleDe: "Schnupperkurs — Deutsch für Anfänger", location: "Garden" },
+      { time: "15:10", titleEn: "Schnupperkurs: trial German class for beginners", titleDe: "Schnupperkurs: Deutsch für Anfänger", location: "Garden" },
       { time: "15:30", titleEn: "Kahoot quiz on Europe & Germany", titleDe: "Kahoot-Quiz zu Europa und Deutschland", location: "Garden" },
       { time: "15:50", titleEn: "Musical entertainment", titleDe: "Musikalisches Programm", location: "Garden" },
     ],
@@ -84,8 +84,8 @@ export const seedEvents: SeedEvent[] = [
   },
   {
     slug: "european-day-of-languages-2026",
-    titleEn: "European Day of Languages 2026 — Languages Unite!",
-    titleDe: "Europäischer Tag der Sprachen 2026 — Sprachen verbinden!",
+    titleEn: "European Day of Languages 2026: Languages Unite!",
+    titleDe: "Europäischer Tag der Sprachen 2026: Sprachen verbinden!",
     summaryEn:
       "An afternoon of language games, mini-lessons and culture, co-hosted with Alliance Française de Lahore at our shared campus on Scotch Corner.",
     summaryDe:
@@ -113,13 +113,13 @@ export const seedEvents: SeedEvent[] = [
     summaryDe:
       "Ein aktueller deutscher Spielfilm mit englischen Untertiteln, danach ein offenes Gespräch bei Chai im Garten.",
     bodyEn:
-      "Our KinoTag series brings award-winning German cinema to Lahore. Doors open 30 minutes before the screening. Free entry — registration helps us plan seating.",
+      "Our KinoTag series brings award-winning German cinema to Lahore. Doors open 30 minutes before the screening. Free entry, registration helps us plan seating.",
     bodyDe:
-      "Unsere KinoTag-Reihe bringt preisgekröntes deutsches Kino nach Lahore. Einlass 30 Minuten vor Beginn. Eintritt frei — die Anmeldung hilft uns bei der Platzplanung.",
+      "Unsere KinoTag-Reihe bringt preisgekröntes deutsches Kino nach Lahore. Einlass 30 Minuten vor Beginn. Eintritt frei, die Anmeldung hilft uns bei der Platzplanung.",
     category: "film",
     startsAt: "2026-11-06T17:00:00+05:00",
     endsAt: "2026-11-06T19:30:00+05:00",
-    imagePath: "/images/gallery/ash-fb-0013.webp",
+    imagePath: "/images/polished/ash-fb-0032.webp",
     imageAlt: "KinoTag im Schimmel-Haus: contemporary German cinema series.",
     capacity: 80,
     maxGuests: 1,
@@ -131,9 +131,9 @@ export const seedEvents: SeedEvent[] = [
     titleEn: "St. Martin's Lantern Evening",
     titleDe: "Sankt-Martins-Laternenabend",
     summaryEn:
-      "Make lanterns, sing traditional songs and walk through the garden — a beloved German autumn tradition for families and learners.",
+      "Make lanterns, sing traditional songs and walk through the garden, a beloved German autumn tradition for families and learners.",
     summaryDe:
-      "Laternen basteln, traditionelle Lieder singen und durch den Garten ziehen — eine beliebte deutsche Herbsttradition für Familien und Lernende.",
+      "Laternen basteln, traditionelle Lieder singen und durch den Garten ziehen, eine beliebte deutsche Herbsttradition für Familien und Lernende.",
     bodyEn:
       "Bring the whole family. Lantern-making starts at 5:30 pm; the lantern walk begins at dusk. You may register up to three accompanying guests.",
     bodyDe:
@@ -142,7 +142,7 @@ export const seedEvents: SeedEvent[] = [
     startsAt: "2026-11-11T17:30:00+05:00",
     endsAt: "2026-11-11T19:30:00+05:00",
     venue: "Garden, Annemarie-Schimmel-Haus",
-    imagePath: "/images/gallery/ash-fb-0078.webp",
+    imagePath: "/images/polished/ash-fb-0078.webp",
     imageAlt: "Sankt Martinstag evening lantern celebration on campus.",
     capacity: 120,
     maxGuests: 3,
@@ -153,9 +153,9 @@ export const seedEvents: SeedEvent[] = [
     titleEn: "Creative Writing Workshop: Contemporary German Prose",
     titleDe: "Schreibwerkstatt: Deutsche Gegenwartsprosa",
     summaryEn:
-      "Read, discuss and write short prose with fellow writers from Lahore — in English and German, for B1 learners and above.",
+      "Read, discuss and write short prose with fellow writers from Lahore, in English and German, for B1 learners and above.",
     summaryDe:
-      "Kurzprosa lesen, diskutieren und schreiben mit Autorinnen und Autoren aus Lahore — auf Englisch und Deutsch, ab Niveau B1.",
+      "Kurzprosa lesen, diskutieren und schreiben mit Autorinnen und Autoren aus Lahore, auf Englisch und Deutsch, ab Niveau B1.",
     bodyEn:
       "Building on our authors' workshop series, this hands-on session explores narrative voice and translation. Places are limited to keep the group small.",
     bodyDe:
@@ -164,7 +164,7 @@ export const seedEvents: SeedEvent[] = [
     startsAt: "2026-11-20T15:00:00+05:00",
     endsAt: "2026-11-20T18:00:00+05:00",
     venue: "Seminar room, Annemarie-Schimmel-Haus",
-    imagePath: "/images/gallery/ash-fb-0123.webp",
+    imagePath: "/images/polished/ash-fb-0123.webp",
     imageAlt: "Creative writing workshop at ASH led by visiting German author David Wagner.",
     capacity: 24,
     sampleRegistrations: 19,
@@ -174,9 +174,9 @@ export const seedEvents: SeedEvent[] = [
     titleEn: "Study in Germany: Information Session",
     titleDe: "Studieren in Deutschland: Infoveranstaltung",
     summaryEn:
-      "Admission requirements, scholarships, language certificates and visa steps — explained clearly, with time for your questions.",
+      "Admission requirements, scholarships, language certificates and visa steps, explained clearly, with time for your questions.",
     summaryDe:
-      "Zulassung, Stipendien, Sprachnachweise und Visumsschritte — klar erklärt, mit Zeit für Ihre Fragen.",
+      "Zulassung, Stipendien, Sprachnachweise und Visumsschritte, klar erklärt, mit Zeit für Ihre Fragen.",
     bodyEn:
       "Ideal for students and graduates planning a Bachelor's, Master's or PhD in Germany. Please bring your original CNIC for entry.",
     bodyDe:
@@ -184,7 +184,7 @@ export const seedEvents: SeedEvent[] = [
     category: "info_session",
     startsAt: "2026-11-28T12:00:00+05:00",
     endsAt: "2026-11-28T14:00:00+05:00",
-    imagePath: "/images/gallery/ash-fb-0040.webp",
+    imagePath: "/images/polished/ash-fb-0040.webp",
     imageAlt: "Academic guidance on German university admission and research pathways.",
     capacity: 150,
     requiresCnic: true,
@@ -195,16 +195,16 @@ export const seedEvents: SeedEvent[] = [
     titleEn: "Winter Concert: Berlin to Lahore",
     titleDe: "Winterkonzert: Von Berlin nach Lahore",
     summaryEn:
-      "German and Pakistani musicians meet on one stage — classical, jazz and qawwali in a warm winter evening under the lights.",
+      "German and Pakistani musicians meet on one stage, classical, jazz and qawwali in a warm winter evening under the lights.",
     summaryDe:
-      "Deutsche und pakistanische Musikerinnen und Musiker auf einer Bühne — Klassik, Jazz und Qawwali an einem stimmungsvollen Winterabend.",
+      "Deutsche und pakistanische Musikerinnen und Musiker auf einer Bühne: Klassik, Jazz und Qawwali an einem stimmungsvollen Winterabend.",
     bodyEn: "Free entry with registration. Seating opens at 5:30 pm.",
     bodyDe: "Freier Eintritt mit Anmeldung. Einlass ab 17:30 Uhr.",
     category: "music",
     startsAt: "2026-12-12T18:00:00+05:00",
     endsAt: "2026-12-12T20:30:00+05:00",
     venue: "Garden stage, Annemarie-Schimmel-Haus",
-    imagePath: "/images/gallery/ash-fb-0184.webp",
+    imagePath: "/images/polished/ash-fb-0184.webp",
     imageAlt: "German fusion ensemble “Berlin to Lahore” performing live.",
     capacity: 200,
     maxGuests: 1,
@@ -216,16 +216,16 @@ export const seedEvents: SeedEvent[] = [
     titleEn: "Advent Market in the Garden",
     titleDe: "Adventsmarkt im Garten",
     summaryEn:
-      "Handmade crafts, seasonal treats and German Christmas carols — local makers and our students in one festive afternoon.",
+      "Handmade crafts, seasonal treats and German Christmas carols, local makers and our students in one festive afternoon.",
     summaryDe:
-      "Handgemachtes, weihnachtliche Leckereien und deutsche Weihnachtslieder — lokale Kunsthandwerker und unsere Lernenden an einem festlichen Nachmittag.",
+      "Handgemachtes, weihnachtliche Leckereien und deutsche Weihnachtslieder, lokale Kunsthandwerker und unsere Lernenden an einem festlichen Nachmittag.",
     bodyEn: "Open to everyone. No registration required.",
     bodyDe: "Offen für alle. Keine Anmeldung erforderlich.",
     category: "cultural",
     startsAt: "2026-12-19T12:00:00+05:00",
     endsAt: "2026-12-19T17:00:00+05:00",
     venue: "Garden, Annemarie-Schimmel-Haus",
-    imagePath: "/images/gallery/ash-official-2025-018.webp",
+    imagePath: "/images/polished/ash-official-2025-018.webp",
     imageAlt: "Colourful handmade tote bags displayed at an outdoor market.",
     capacity: null,
     sampleRegistrations: 0,
@@ -254,22 +254,22 @@ export const seedPosts: SeedPost[] = [
     category: "announcement",
     titleEn: "Open Day 2026: Your Roadmap to Germany",
     titleDe: "Open Day 2026: Ihr Weg nach Deutschland",
-    excerptEn: "Studying, working and living in Germany — sessions with DAAD Pakistan, the German Embassy Islamabad and GIZ Pakistan.",
-    excerptDe: "Studieren, arbeiten und leben in Deutschland — mit DAAD Pakistan, der Deutschen Botschaft Islamabad und GIZ Pakistan.",
+    excerptEn: "Studying, working and living in Germany, sessions with DAAD Pakistan, the German Embassy Islamabad and GIZ Pakistan.",
+    excerptDe: "Studieren, arbeiten und leben in Deutschland, mit DAAD Pakistan, der Deutschen Botschaft Islamabad und GIZ Pakistan.",
     bodyEn:
       "On Saturday, 10 October 2026, our garden became a roadmap to Germany: presentations by DAAD, practical tips for life and work in Germany, safe migration pathways, a trial German class and music. Thank you to everyone who joined!",
     bodyDe:
       "Am Samstag, 10. Oktober 2026, wurde unser Garten zum Wegweiser nach Deutschland: Vorträge des DAAD, praktische Tipps für Leben und Arbeit, sichere Migrationswege, ein Schnupperkurs und Musik. Danke an alle, die dabei waren!",
-    imagePath: "/images/gallery/ash-fb-0038.webp",
+    imagePath: "/images/polished/ash-fb-0038.webp",
     publishedAt: "2026-09-18T10:00:00+05:00",
   },
   {
     slug: "european-day-of-languages-2026",
     category: "announcement",
-    titleEn: "European Day of Languages 2026 — Languages Unite!",
-    titleDe: "Europäischer Tag der Sprachen 2026 — Sprachen verbinden!",
-    excerptEn: "Saturday, 17 October, from 4 pm at 155 Scotch Corner — together with Alliance Française Lahore.",
-    excerptDe: "Samstag, 17. Oktober, ab 16 Uhr am 155 Scotch Corner — gemeinsam mit der Alliance Française Lahore.",
+    titleEn: "European Day of Languages 2026: Languages Unite!",
+    titleDe: "Europäischer Tag der Sprachen 2026: Sprachen verbinden!",
+    excerptEn: "Saturday, 17 October, from 4 pm at 155 Scotch Corner, together with Alliance Française Lahore.",
+    excerptDe: "Samstag, 17. Oktober, ab 16 Uhr am 155 Scotch Corner, gemeinsam mit der Alliance Française Lahore.",
     bodyEn:
       "Annemarie-Schimmel-Haus and Alliance Française Lahore celebrated the European Day of Languages with taster lessons, games and performances on our shared campus.",
     bodyDe:
@@ -294,8 +294,8 @@ export const seedPosts: SeedPost[] = [
   {
     slug: "job-german-language-instructor-a1-c1",
     category: "job",
-    titleEn: "Job opportunity: German Language Instructor (A1 – C1)",
-    titleDe: "Stellenangebot: Lehrkraft für Deutsch als Fremdsprache (A1 – C1)",
+    titleEn: "Job opportunity: German Language Instructor (A1 to C1)",
+    titleDe: "Stellenangebot: Lehrkraft für Deutsch als Fremdsprache (A1 bis C1)",
     excerptEn: "We are looking for dynamic, qualified instructors to teach adults from A1 to C1.",
     excerptDe: "Wir suchen engagierte, qualifizierte Lehrkräfte für Erwachsene von A1 bis C1.",
     bodyEn: `Annemarie-Schimmel-Haus Lahore is looking for dynamic and qualified German language instructors for A1 to C1 levels.
@@ -328,30 +328,30 @@ Send your CV, cover letter and a recent photograph to **admin@schimmel.com.pk**.
 - Bereitschaft, C2 zu erreichen und das Goethe-Programm „Deutsch Lehren Lernen" (DLL) abzuschließen
 
 Bitte senden Sie Lebenslauf, Anschreiben und ein aktuelles Foto an **admin@schimmel.com.pk**.`,
-    imagePath: "/images/gallery/ash-fb-0001.webp",
+    imagePath: "/images/polished/ash-fb-0001.webp",
     publishedAt: "2026-06-15T10:00:00+05:00",
   },
   {
     slug: "scholarship-programme-2026",
     category: "scholarship",
-    titleEn: "Scholarship Programme 2026 — need-based scholarships for A2 & above",
-    titleDe: "Stipendienprogramm 2026 — bedarfsorientierte Stipendien ab A2",
+    titleEn: "Scholarship Programme 2026, need-based scholarships for A2 & above",
+    titleDe: "Stipendienprogramm 2026, bedarfsorientierte Stipendien ab A2",
     excerptEn: "Support for dedicated learners based on academic performance, attendance and financial need.",
     excerptDe: "Förderung engagierter Lernender nach Leistung, Anwesenheit und finanzieller Situation.",
     bodyEn: `We offer need-based scholarships in our German language courses for learners at A2 and above.
 
 **Scholarships are awarded based on**
-- **Academic performance** — prior grades, test results and achievements
-- **Class attendance** — consistency, punctuality and active participation
-- **Financial situation** — an assessment of the student's and family's need
+- **Academic performance**, prior grades, test results and achievements
+- **Class attendance**, consistency, punctuality and active participation
+- **Financial situation**, an assessment of the student's and family's need
 
 To apply or ask about the process, contact us at info@schimmel.com.pk or +92 42 111 150 111.`,
     bodyDe: `Wir vergeben bedarfsorientierte Stipendien für unsere Deutschkurse ab Niveau A2.
 
 **Vergabekriterien**
-- **Leistung** — Noten, Testergebnisse und Erfolge
-- **Anwesenheit** — Regelmäßigkeit, Pünktlichkeit und aktive Mitarbeit
-- **Finanzielle Situation** — Bedarf der Lernenden und ihrer Familie
+- **Leistung**: Noten, Testergebnisse und Erfolge
+- **Anwesenheit**: Regelmäßigkeit, Pünktlichkeit und aktive Mitarbeit
+- **Finanzielle Situation**: Bedarf der Lernenden und ihrer Familie
 
 Für Bewerbung und Fragen: info@schimmel.com.pk oder +92 42 111 150 111.`,
     imagePath: "/images/gallery/ash-fb-0004.webp",
@@ -406,7 +406,7 @@ export const seedPartners = [
   },
   {
     slug: "pasch",
-    name: "PASCH — Schulen: Partner der Zukunft",
+    name: "PASCH, Schulen: Partner der Zukunft",
     categoryEn: "School network",
     categoryDe: "Schulnetzwerk",
     descriptionEn:
@@ -438,9 +438,9 @@ export const seedPartners = [
     categoryEn: "Development cooperation",
     categoryDe: "Entwicklungszusammenarbeit",
     descriptionEn:
-      "Deutsche Gesellschaft für Internationale Zusammenarbeit — collaborator of our Open Day on safe and regular migration to Germany.",
+      "Deutsche Gesellschaft für Internationale Zusammenarbeit, collaborator of our Open Day on safe and regular migration to Germany.",
     descriptionDe:
-      "Deutsche Gesellschaft für Internationale Zusammenarbeit — Partner unseres Open Day zu sicherer und regulärer Migration nach Deutschland.",
+      "Deutsche Gesellschaft für Internationale Zusammenarbeit: Partner unseres Open Day zu sicherer und regulärer Migration nach Deutschland.",
     url: "https://www.giz.de/en/worldwide/360.html",
     logoPath: "/brand/partners/giz.png",
     logoWidth: 1803,
@@ -474,7 +474,7 @@ export const seedPartners = [
 
 /* -------------------------------------------------------------- exam dates */
 
-/** Published Goethe-Institut exam dates in Lahore, April – August 2026. */
+/** Published Goethe-Institut exam dates in Lahore, April to August 2026. */
 export const seedExamDates = [
   { levels: ["B1", "B2"], registrationOn: "2026-04-10", examStartsOn: "2026-04-25", examEndsOn: "2026-04-26" },
   { levels: ["A2", "B1"], registrationOn: "2026-05-08", examStartsOn: "2026-05-23", examEndsOn: "2026-05-24" },

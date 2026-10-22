@@ -33,7 +33,7 @@ export default async function SettingsPage() {
   return (
     <>
       <PageHeader eyebrow="System" title="Settings" description="Institution details used across the website and in every email. Changes go live immediately." />
-      <Panel title="Integrations" description="Credentials live in server environment variables — never in the database or the browser." className="mb-6">
+      <Panel title="Integrations" description="Credentials live in server environment variables, never in the database or the browser." className="mb-6">
         <div id="integrations" className="grid gap-3">
           <Integration name="Gmail API" connected={gmail} detail={gmail ? `Sending as ${e.GMAIL_SENDER_NAME} <${e.GMAIL_SENDER}>` : "Set GMAIL_CLIENT_ID, GMAIL_CLIENT_SECRET, GMAIL_REFRESH_TOKEN and GMAIL_SENDER."}>
             <TestEmailButton send={sendTestEmailAction} disabled={!gmail} />

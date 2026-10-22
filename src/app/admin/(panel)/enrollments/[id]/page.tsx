@@ -26,7 +26,7 @@ const OPTIONS: Record<EnrollmentStatus, Omit<StatusOption, "status">> = {
   cancelled: { label: "Cancel application", description: "Releases the seat, e.g. when the payment window has passed.", tone: "danger" },
 };
 
-const DOC_LABELS: Record<string, string> = { photo: "Photograph", cnicFront: "CNIC — front", cnicBack: "CNIC — back", degree: "Last degree" };
+const DOC_LABELS: Record<string, string> = { photo: "Photograph", cnicFront: "CNIC, front", cnicBack: "CNIC, back", degree: "Last degree" };
 
 export default async function EnrollmentPage(props: PageProps<"/admin/enrollments/[id]">) {
   const user = await requireAdmin("submissions:read");
@@ -56,7 +56,7 @@ export default async function EnrollmentPage(props: PageProps<"/admin/enrollment
         actions={
           <>
             <Button asChild variant="outline" size="sm">
-              <a href={`mailto:${e.email}?subject=${encodeURIComponent(`${e.reference} — Annemarie-Schimmel-Haus`)}`}>
+              <a href={`mailto:${e.email}?subject=${encodeURIComponent(`${e.reference}: Annemarie-Schimmel-Haus`)}`}>
                 <Mail /> Email
               </a>
             </Button>
@@ -135,7 +135,7 @@ export default async function EnrollmentPage(props: PageProps<"/admin/enrollment
               <p className="text-sm text-muted-foreground">No documents uploaded.</p>
             )}
           </Panel>
-          <Panel title="Staff notes">{writable ? <NotesForm action={saveEnrollmentNotesAction.bind(null, e.id)} defaultValue={e.staffNotes ?? ""} /> : <p className="text-sm whitespace-pre-line">{e.staffNotes || "—"}</p>}</Panel>
+          <Panel title="Staff notes">{writable ? <NotesForm action={saveEnrollmentNotesAction.bind(null, e.id)} defaultValue={e.staffNotes ?? ""} /> : <p className="text-sm whitespace-pre-line">{e.staffNotes || "·"}</p>}</Panel>
         </div>
 
         <div className="grid gap-6 xl:sticky xl:top-20">

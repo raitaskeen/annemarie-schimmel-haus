@@ -34,7 +34,7 @@ export function CourseForm({ action, course, images }: { action: Action; course?
                 state={state}
                 required
               />
-              <TextField label="Title (German)" name="titleDe" defaultValue={course?.titleDe} state={state} hint="Optional — English is shown if empty." />
+              <TextField label="Title (German)" name="titleDe" defaultValue={course?.titleDe} state={state} hint="Optional: English is shown if empty." />
             </div>
             <TextField label="URL slug" name="slug" value={slug} onChange={(e) => setSlug(e.target.value)} state={state} hint={`Page address: /en/courses/${slug || "…"}`} required />
             <BilingualField label="Tagline" name="tagline" values={{ en: course?.taglineEn, de: course?.taglineDe }} state={state} />
@@ -44,8 +44,8 @@ export function CourseForm({ action, course, images }: { action: Action; course?
             <BilingualField label="Summary" name="summary" values={{ en: course?.summaryEn, de: course?.summaryDe }} state={state} multiline rows={3} />
             <BilingualField label="Description" name="description" values={{ en: course?.descriptionEn, de: course?.descriptionDe }} state={state} markdown rows={10} />
             <div className="grid gap-4 lg:grid-cols-2">
-              <TextAreaField label="Learning outcomes (English) — one per line" name="outcomesEn" defaultValue={(course?.outcomesEn ?? []).join("\n")} state={state} />
-              <TextAreaField label="Learning outcomes (German) — one per line" name="outcomesDe" defaultValue={(course?.outcomesDe ?? []).join("\n")} state={state} />
+              <TextAreaField label="Learning outcomes (English), one per line" name="outcomesEn" defaultValue={(course?.outcomesEn ?? []).join("\n")} state={state} />
+              <TextAreaField label="Learning outcomes (German), one per line" name="outcomesDe" defaultValue={(course?.outcomesDe ?? []).join("\n")} state={state} />
             </div>
             <ImagePicker name="imagePath" defaultValue={course?.imagePath} images={images} label="Cover image" />
           </FormSection>
@@ -148,7 +148,7 @@ export function OfferingForm({
             </div>
             <WeekdayPicker defaultValue={offering?.weekdays ?? [1, 2, 3, 4, 5]} error={state?.fieldErrors?.weekdays} />
           </FormSection>
-          <FormSection title="Seats & registration" description="Registration closes automatically when the batch is full — further applicants join the waitlist.">
+          <FormSection title="Seats & registration" description="Registration closes automatically when the batch is full, further applicants join the waitlist.">
             <div className="grid gap-4 sm:grid-cols-2">
               <TextField label="Capacity" name="capacity" type="number" defaultValue={offering?.capacity ?? 20} state={state} required hint={offering ? `${offering.seatsTaken} seats already reserved` : undefined} />
               <TextField label="Fee override (PKR)" name="feePkr" type="number" defaultValue={offering?.feePkr ?? ""} state={state} hint="Leave empty to use the course fee." />

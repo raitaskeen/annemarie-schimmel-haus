@@ -62,6 +62,6 @@ docs/                deployment, Gmail and WhatsApp set-up
 
 ## Going live
 
-See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) (Docker Compose, free-tier blueprint with Cloudflare, Cloudflare Workers notes, GitHub, backups, security model), [docs/GMAIL_SETUP.md](docs/GMAIL_SETUP.md) and [docs/WHATSAPP_TEMPLATES.md](docs/WHATSAPP_TEMPLATES.md). CI runs on every push (`.github/workflows/ci.yml`).
+**Step-by-step launch on Cloudflare: [docs/GO_LIVE_CLOUDFLARE.md](docs/GO_LIVE_CLOUDFLARE.md).** Background and alternatives: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) (Docker Compose, free-tier blueprint with Cloudflare, Cloudflare Workers notes, GitHub, backups, security model), [docs/GMAIL_SETUP.md](docs/GMAIL_SETUP.md) and [docs/WHATSAPP_TEMPLATES.md](docs/WHATSAPP_TEMPLATES.md). CI runs on every push (`.github/workflows/ci.yml`).
 
 Before publishing, the institute should review: the privacy notice and terms (`/privacy`, `/terms`), fees and dates of the sample batches and events (marked as samples in the seed), payment instructions (**Admin → Settings**) and partner logos/permissions.

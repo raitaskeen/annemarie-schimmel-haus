@@ -31,7 +31,7 @@ export default async function EditCoursePage(props: PageProps<"/admin/courses/[i
                 <ExternalLink /> View on website
               </a>
             </Button>
-            <ConfirmAction action={deleteCourseAction.bind(null, course.id)} title="Delete this course?" description="This cannot be undone. Courses with batches cannot be deleted — unpublish them instead." confirmLabel="Delete course" destructive>
+            <ConfirmAction action={deleteCourseAction.bind(null, course.id)} title="Delete this course?" description="This cannot be undone. Courses with batches cannot be deleted, unpublish them instead." confirmLabel="Delete course" destructive>
               <Trash /> Delete
             </ConfirmAction>
           </>

@@ -93,8 +93,8 @@ export function SettingsForm({ action, settings }: { action: Action; settings: S
                 defaultChecked={s.automation.autoRequestPayment}
                 hint="Skips the manual review step: the confirmation email already asks for payment. Leave off if you check documents first."
               />
-              <SwitchField label="Payment reminder halfway through the payment window" name="automation.paymentReminders" defaultChecked={s.automation.paymentReminders} hint="Unpaid seats are released when the window ends — applicants who reported a payment are never released automatically." />
-              <SwitchField label="Reminders before events, placement tests and course starts" name="automation.reminders" defaultChecked={s.automation.reminders} hint="The day before events and tests, three days before a course starts — by email and WhatsApp." />
+              <SwitchField label="Payment reminder halfway through the payment window" name="automation.paymentReminders" defaultChecked={s.automation.paymentReminders} hint="Unpaid seats are released when the window ends, applicants who reported a payment are never released automatically." />
+              <SwitchField label="Reminders before events, placement tests and course starts" name="automation.reminders" defaultChecked={s.automation.reminders} hint="The day before events and tests, three days before a course starts, by email and WhatsApp." />
               <SwitchField label="Close and complete batches automatically" name="automation.autoClose" defaultChecked={s.automation.autoClose} hint="Batches close on their start date, test sessions after the deadline; finished batches and their students are marked completed." />
               <SwitchField label="Morning digest to the staff inbox" name="automation.staffDigest" defaultChecked={s.automation.staffDigest} hint="Working days after 08:00: what needs attention today. Sent to STAFF_NOTIFY_EMAIL." />
               <TextField

@@ -244,7 +244,7 @@ export async function promoteCourseWaitlist(offeringId: string, excludeId?: stri
       .limit(1);
     if (!next) break;
     try {
-      await changeEnrollmentStatus(null, next.id, "payment_pending", { notify: true, note: "A seat became free — offered automatically from the waitlist." });
+      await changeEnrollmentStatus(null, next.id, "payment_pending", { notify: true, note: "A seat became free, offered automatically from the waitlist." });
       promoted++;
     } catch (error) {
       if (error instanceof ActionError) break; // batch filled up concurrently

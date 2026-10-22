@@ -37,7 +37,7 @@ export default async function NotificationsPage(props: PageProps<"/admin/notific
       {(!gmail || !whatsapp) && (
         <div className="mb-6 rounded-2xl border border-warning/40 bg-warning/[0.08] p-4 text-sm">
           <p className="font-semibold">Not connected yet: {[!gmail && "Gmail API", !whatsapp && "WhatsApp Business API"].filter(Boolean).join(" and ")}</p>
-          <p className="mt-1 text-muted-foreground">Messages for unconnected channels are recorded as “skipped”. Add the credentials (see README → Notifications) and retry them — nothing is lost.</p>
+          <p className="mt-1 text-muted-foreground">Messages for unconnected channels are recorded as “skipped”. Add the credentials (see README → Notifications) and retry them, nothing is lost.</p>
         </div>
       )}
       <div className="mb-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

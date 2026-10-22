@@ -2,7 +2,7 @@ import { z } from "zod";
 import { cleanText, normalizeCnic, normalizePhone, referencePattern } from "@/lib/validators";
 
 /**
- * Public form schemas — shared by the browser (react-hook-form) and the server
+ * Public form schemas, shared by the browser (react-hook-form) and the server
  * actions, so both validate identically. Error messages are dictionary keys
  * (see i18n/common.ts → form.errors) and are translated in the UI.
  */
@@ -76,7 +76,7 @@ export const guardFields = {
   idempotencyKey: z.string().uuid(),
   humanToken: z.string().min(10).max(400),
   humanAnswer: z.string().max(6),
-  /** Honeypot — invisible to people, must stay empty. */
+  /** Honeypot, invisible to people, must stay empty. */
   website: z.string().max(0).optional().default(""),
 };
 

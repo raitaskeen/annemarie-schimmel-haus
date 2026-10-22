@@ -96,7 +96,7 @@ export function EventCard({ e, locale, variant = "card", className }: { e: Event
   const parts = dateParts(e.startsAt, locale);
   const title = pick(e, "title", locale);
   const summary = pick(e, "summary", locale);
-  const time = `${formatClock(e.startsAt, locale)}${e.endsAt ? ` – ${formatClock(e.endsAt, locale)}` : ""}${locale === "de" ? " Uhr" : ""}`;
+  const time = `${formatClock(e.startsAt, locale)}${e.endsAt ? `${locale === "de" ? " bis " : " to "}${formatClock(e.endsAt, locale)}` : ""}${locale === "de" ? " Uhr" : ""}`;
   const url = href(locale, `/events/${e.slug}`);
   const status =
     e.cancelled

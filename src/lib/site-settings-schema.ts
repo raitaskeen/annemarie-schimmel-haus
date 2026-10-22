@@ -39,7 +39,7 @@ export const siteSettingsSchema = z.object({
     enabled: z.boolean(),
     textEn: z.string().trim().max(160),
     textDe: z.string().trim().max(160),
-    /** A path on this site ("/courses") or an https:// address — never javascript:, data: or protocol-relative. */
+    /** A path on this site ("/courses") or an https:// address, never javascript:, data: or protocol-relative. */
     href: z
       .string()
       .trim()
@@ -102,8 +102,8 @@ export const defaultSiteSettings: SiteSettings = {
   },
   announcement: {
     enabled: true,
-    textEn: "Registration is open for November German courses — reserve your seat online.",
-    textDe: "Die Anmeldung für die Deutschkurse im November ist geöffnet — sichern Sie sich Ihren Platz online.",
+    textEn: "Registration is open for November German courses, reserve your seat online.",
+    textDe: "Die Anmeldung für die Deutschkurse im November ist geöffnet, sichern Sie sich Ihren Platz online.",
     href: "/courses",
   },
   goethe: {

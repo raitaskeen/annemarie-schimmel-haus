@@ -53,7 +53,7 @@ async function EventContent({ params }: { params: Promise<{ slug: string }> }) {
   const d = commonDictionary(l);
   const title = pick(e, "title", l);
   const parts = dateParts(e.startsAt, l);
-  const time = `${formatClock(e.startsAt, l)}${e.endsAt ? ` – ${formatClock(e.endsAt, l)}` : ""}${l === "de" ? " Uhr" : ""}`;
+  const time = `${formatClock(e.startsAt, l)}${e.endsAt ? `${l === "de" ? " bis " : " to "}${formatClock(e.endsAt, l)}` : ""}${l === "de" ? " Uhr" : ""}`;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -108,7 +108,7 @@ async function EventContent({ params }: { params: Promise<{ slug: string }> }) {
                 { icon: CalendarDays, label: t.when, value: formatDate(e.startsAt, l, { weekday: "long" }) },
                 { icon: Clock, label: d.common.time, value: time },
                 { icon: MapPin, label: t.where, value: `${e.venue}, ${e.address}` },
-                { icon: Ticket, label: t.admission, value: e.isFree ? d.common.free : e.feePkr ? formatPKR(e.feePkr, l) : "—" },
+                { icon: Ticket, label: t.admission, value: e.isFree ? d.common.free : e.feePkr ? formatPKR(e.feePkr, l) : "·" },
                 ...(e.seatsLeft !== null && e.state === "open" ? [{ icon: Users, label: t.seats, value: seatsLabel(d, e.seatsLeft) }] : []),
               ].map((f) => (
                 <div key={f.label} className="flex gap-3 rounded-2xl bg-cream p-4 ring-1 ring-ink/10">

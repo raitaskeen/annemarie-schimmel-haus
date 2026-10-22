@@ -24,7 +24,7 @@ export default async function GalleryAdminPage(props: PageProps<"/admin/gallery"
       <PageHeader
         eyebrow="Website"
         title="Gallery"
-        description="Photos are optimised automatically (WebP, max 2400 px). New uploads stay hidden until you add a description — that keeps the gallery accessible."
+        description="Photos are optimised automatically (WebP, max 2400 px). New uploads stay hidden until you add a description, that keeps the gallery accessible."
         actions={<GalleryUpload add={addGalleryItemsAction} defaultCategory={filters.category ?? "events"} />}
       />
       <div className="mb-4 flex flex-wrap gap-2">

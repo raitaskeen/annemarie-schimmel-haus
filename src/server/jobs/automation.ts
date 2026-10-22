@@ -185,7 +185,7 @@ export async function releaseUnpaidSeats() {
     .where(
       and(
         eq(enrollments.status, "payment_pending"),
-        // Someone who already reported a payment is never released automatically — staff check it first.
+        // Someone who already reported a payment is never released automatically, staff check it first.
         sql`${enrollments.paymentRef} is null`,
         lt(enrollments.statusChangedAt, new Date(Date.now() - hours * 3600_000)),
       ),
@@ -194,7 +194,7 @@ export async function releaseUnpaidSeats() {
   let released = 0;
   for (const e of overdue) {
     try {
-      await changeEnrollmentStatus(null, e.id, "cancelled", { notify: true, note: `Payment window of ${hours} h passed — seat released automatically.` });
+      await changeEnrollmentStatus(null, e.id, "cancelled", { notify: true, note: `Payment window of ${hours} h passed, seat released automatically.` });
       released++;
     } catch (error) {
       console.error(`could not release ${e.reference}`, error);
@@ -307,11 +307,11 @@ export async function sendStaffDigest(now = new Date()) {
     .where(and(sql`${placementSessions.status} <> 'cancelled'`, sql`(${placementSessions.startsAt} at time zone 'Asia/Karachi')::date between (now() at time zone 'Asia/Karachi')::date and (now() at time zone 'Asia/Karachi')::date + 1`));
 
   const highlights = [
-    reported && `${reported} applicant(s) reported a payment — please check and confirm their seats.`,
+    reported && `${reported} applicant(s) reported a payment, please check and confirm their seats.`,
     toReview && `${toReview} new course application(s) are waiting for review.`,
     messages && `${messages} new message(s) in the inbox.`,
-    ...todayEvents.map((e) => `Today ${formatClock(e.startsAt, "en")}: ${e.titleEn} — ${e.seatsTaken}${e.capacity ? `/${e.capacity}` : ""} seats booked.`),
-    ...tests.map((t) => `Placement test ${t.code} on ${formatDate(t.startsAt, "en", { weekday: "short" })} ${formatClock(t.startsAt, "en")} — ${t.seatsTaken} candidate(s).`),
+    ...todayEvents.map((e) => `Today ${formatClock(e.startsAt, "en")}: ${e.titleEn}: ${e.seatsTaken}${e.capacity ? `/${e.capacity}` : ""} seats booked.`),
+    ...tests.map((t) => `Placement test ${t.code} on ${formatDate(t.startsAt, "en", { weekday: "short" })} ${formatClock(t.startsAt, "en")}: ${t.seatsTaken} candidate(s).`),
   ].filter(Boolean) as string[];
   const ids = await enqueue({
     template: "staff.digest",
