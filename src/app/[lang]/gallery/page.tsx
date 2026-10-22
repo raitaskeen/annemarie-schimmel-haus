@@ -12,8 +12,8 @@ async function locale(): Promise<Locale> {
 }
 
 const COPY = {
-  en: { title: "Life at the Haus, in pictures.", lead: "Classrooms and garden, concerts and readings, lantern evenings and literary workshops — moments from Annemarie-Schimmel-Haus.", meta: "Gallery" },
-  de: { title: "Das Leben im Haus, in Bildern.", lead: "Klassenräume und Garten, Konzerte und Lesungen, Laternenabende und Schreibwerkstätten — Momente aus dem Annemarie-Schimmel-Haus.", meta: "Galerie" },
+  en: { title: "Life at the Haus, in pictures.", lead: "Classrooms and garden, concerts and readings, lantern evenings and literary workshops, moments from Annemarie-Schimmel-Haus.", meta: "Gallery" },
+  de: { title: "Das Leben im Haus, in Bildern.", lead: "Klassenräume und Garten, Konzerte und Lesungen, Laternenabende und Schreibwerkstätten: Momente aus dem Annemarie-Schimmel-Haus.", meta: "Galerie" },
 };
 
 export async function generateMetadata(): Promise<Metadata> {

@@ -37,7 +37,7 @@ export async function saveSettingsAction(_prev: ActionState, formData: FormData)
       .onConflictDoUpdate({ target: siteSettings.key, set: { value, updatedBy: user.id, updatedAt: new Date() } });
     await audit(user, { action: "settings.update", entityType: "settings", entityId: "site", summary: "Updated website settings", changes: value as unknown as Record<string, unknown> });
     updateTag(TAGS.settings);
-    return { ok: true, message: "Settings saved — the website updates immediately." };
+    return { ok: true, message: "Settings saved, the website updates immediately." };
   });
 }
 

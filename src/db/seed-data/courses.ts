@@ -180,9 +180,9 @@ Der Kurs arbeitet mit *Netzwerk B1 Neu* und bereitet auf das **Goethe-Zertifikat
     taglineEn: "Fluent, spontaneous and precise.",
     taglineDe: "Flüssig, spontan und präzise.",
     summaryEn:
-      "Understand complex texts on concrete and abstract topics and discuss them fluently — the level most German universities and employers look for.",
+      "Understand complex texts on concrete and abstract topics and discuss them fluently, the level most German universities and employers look for.",
     summaryDe:
-      "Verstehen Sie komplexe Texte zu konkreten und abstrakten Themen und diskutieren Sie flüssig darüber — das Niveau, das viele Hochschulen und Arbeitgeber erwarten.",
+      "Verstehen Sie komplexe Texte zu konkreten und abstrakten Themen und diskutieren Sie flüssig darüber, das Niveau, das viele Hochschulen und Arbeitgeber erwarten.",
     descriptionEn: `The B2 level is taught in two consecutive courses. B2.1 builds the foundations for confident, spontaneous communication.
 
 **Course focus**
@@ -274,9 +274,9 @@ Wer B2.1 bei ASH abgeschlossen hat, setzt ohne Einstufungstest fort.`,
     taglineEn: "Effective German for university and career.",
     taglineDe: "Wirkungsvolles Deutsch für Studium und Beruf.",
     summaryEn:
-      "Use German flexibly and effectively in social, academic and professional life — including implicit meanings and well-structured argumentation.",
+      "Use German flexibly and effectively in social, academic and professional life, including implicit meanings and well-structured argumentation.",
     summaryDe:
-      "Verwenden Sie Deutsch flexibel und wirksam im gesellschaftlichen, akademischen und beruflichen Leben — einschließlich impliziter Bedeutungen und klarer Argumentation.",
+      "Verwenden Sie Deutsch flexibel und wirksam im gesellschaftlichen, akademischen und beruflichen Leben, einschließlich impliziter Bedeutungen und klarer Argumentation.",
     descriptionEn: `C1 is the advanced level required by many German universities for study in German-taught programmes.
 
 **Course focus**

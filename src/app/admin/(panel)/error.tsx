@@ -17,7 +17,7 @@ export default function AdminError({ error, reset }: { error: Error & { digest?:
           <TriangleAlert className="size-6" />
         </span>
         <h1 className="mt-4 font-display text-2xl">This page could not be loaded</h1>
-        <p className="mt-2 text-sm text-muted-foreground">Nothing was changed. Try again — if it keeps happening, send the reference below to your administrator (it is in the server log).</p>
+        <p className="mt-2 text-sm text-muted-foreground">Nothing was changed. Try again, if it keeps happening, send the reference below to your administrator (it is in the server log).</p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <Button type="button" onClick={reset} className="bg-forest text-white hover:bg-pine dark:bg-primary dark:text-primary-foreground">
             <RotateCcw /> Try again

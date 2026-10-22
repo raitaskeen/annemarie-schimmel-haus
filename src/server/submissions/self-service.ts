@@ -16,7 +16,7 @@ import { verifyManageToken } from "./manage-token";
 import { refreshTrack, type TrackResult } from "./track";
 
 /**
- * Applicant self-service from the public tracker — no account needed.
+ * Applicant self-service from the public tracker, no account needed.
  * Every action requires the signed manage token (see manage-token.ts).
  */
 export type ManageResult = { ok: true; result: TrackResult } | { ok: false; error: "expired" | "not_allowed" | "rate_limited" | "validation" | "generic" };
@@ -95,7 +95,7 @@ export async function reportPayment(token: unknown, input: unknown, locale: Loca
       .update(enrollments)
       .set({
         paymentRef,
-        staffNotes: [e.e.staffNotes, `[${stamp} applicant] Payment reported: ${paymentRef}${note ? ` — ${note}` : ""}`].filter(Boolean).join("\n"),
+        staffNotes: [e.e.staffNotes, `[${stamp} applicant] Payment reported: ${paymentRef}${note ? `: ${note}` : ""}`].filter(Boolean).join("\n"),
       })
       .where(eq(enrollments.id, e.e.id));
     await audit(null, { action: "self_service.payment_reported", entityType: "enrollment", entityId: e.e.id, summary: `${reference}: applicant reported payment ${paymentRef}` }, tx);

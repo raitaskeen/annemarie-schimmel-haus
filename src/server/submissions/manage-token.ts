@@ -6,7 +6,7 @@ import { referencePattern } from "@/lib/validators";
 /**
  * The tracker only issues a manage token after the application number, the phone
  * number and the bot quiz all matched. It is HMAC-signed, bound to one application
- * number and expires after 20 minutes — enough to cancel or report a payment.
+ * number and expires after 20 minutes, enough to cancel or report a payment.
  */
 const TTL_MS = 20 * 60_000;
 const sign = (body: string) => createHmac("sha256", env().AUTH_SECRET).update(`tracker-manage:${body}`).digest("base64url");

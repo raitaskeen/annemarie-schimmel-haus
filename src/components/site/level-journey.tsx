@@ -104,7 +104,7 @@ export function LevelJourney({ levels, labels }: { levels: JourneyLevel[]; label
                 <Fact icon={Clock} label={labels.weeks} value={current.weeks} />
                 <Fact icon={CalendarClock} label={labels.units} value={current.units} />
                 <Fact icon={Wallet} label={labels.fee} value={current.fee} />
-                <Fact icon={ArrowRight} label={labels.next} value={current.next ?? "—"} />
+                <Fact icon={ArrowRight} label={labels.next} value={current.next ?? "·"} />
               </dl>
               <Link href={current.href} className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-lime px-6 font-semibold text-forest transition-colors hover:bg-white">
                 {labels.cta}

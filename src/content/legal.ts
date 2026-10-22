@@ -18,14 +18,14 @@ const privacy: Record<Locale, LegalPage> = {
         heading: "What we collect and why",
         body: [
           "Course applications: identity details (name, father's/husband's name, CNIC/B-Form, date and place of birth), contact details, emergency contact, education, address, motivation and the documents you upload. We use them to assess your application, place you in a course, issue certificates and contact you.",
-          "Event registrations and placement tests: name, contact details and — where entry requires it — your CNIC, to manage seats, admission and results.",
+          "Event registrations and placement tests: name, contact details and, where entry requires it, your CNIC, to manage seats, admission and results.",
           "Contact messages and newsletter: the details you send us, to answer your enquiry or send the newsletter you confirmed.",
         ],
       },
       {
         heading: "Notifications",
         body: [
-          "We send confirmations and status updates by email (sent through Google Workspace / Gmail) and — only if you opt in — by WhatsApp (sent through the WhatsApp Business Platform by Meta). These providers process your contact details solely to deliver our messages.",
+          "We send confirmations and status updates by email (sent through Google Workspace / Gmail) and, only if you opt in, by WhatsApp (sent through the WhatsApp Business Platform by Meta). These providers process your contact details solely to deliver our messages.",
         ],
       },
       {
@@ -55,11 +55,11 @@ const privacy: Record<Locale, LegalPage> = {
         heading: "Welche Daten wir erheben und warum",
         body: [
           "Kursanmeldungen: Identitätsdaten (Name, Name des Vaters/Ehemanns, CNIC/B-Form, Geburtsdatum und -ort), Kontaktdaten, Notfallkontakt, Bildung, Adresse, Motivation und hochgeladene Dokumente. Wir nutzen sie zur Prüfung Ihrer Anmeldung, zur Einstufung, für Zertifikate und zur Kontaktaufnahme.",
-          "Veranstaltungen und Einstufungstests: Name, Kontaktdaten und — wo der Einlass es erfordert — Ihre CNIC, um Plätze, Einlass und Ergebnisse zu verwalten.",
+          "Veranstaltungen und Einstufungstests: Name, Kontaktdaten und, wo der Einlass es erfordert, Ihre CNIC, um Plätze, Einlass und Ergebnisse zu verwalten.",
           "Kontaktanfragen und Newsletter: die von Ihnen gesendeten Angaben, um Ihre Anfrage zu beantworten oder den bestätigten Newsletter zu senden.",
         ],
       },
-      { heading: "Benachrichtigungen", body: ["Bestätigungen und Statusmeldungen senden wir per E-Mail (über Google Workspace / Gmail) und — nur mit Ihrer Zustimmung — per WhatsApp (über die WhatsApp Business Platform von Meta). Diese Anbieter verarbeiten Ihre Kontaktdaten ausschließlich zur Zustellung unserer Nachrichten."] },
+      { heading: "Benachrichtigungen", body: ["Bestätigungen und Statusmeldungen senden wir per E-Mail (über Google Workspace / Gmail) und, nur mit Ihrer Zustimmung, per WhatsApp (über die WhatsApp Business Platform von Meta). Diese Anbieter verarbeiten Ihre Kontaktdaten ausschließlich zur Zustellung unserer Nachrichten."] },
       {
         heading: "Sicherheit",
         body: [
@@ -108,7 +108,7 @@ const guidelines: Record<Locale, LegalPage> = {
   en: {
     meta: "Student guidelines & policies",
     title: "Student guidelines & policies",
-    lead: "What we expect from each other — on campus and online.",
+    lead: "What we expect from each other, on campus and online.",
     updated: "Applies to all on-campus and online classes",
     sections: [
       {
@@ -133,7 +133,7 @@ const guidelines: Record<Locale, LegalPage> = {
         body: [
           "Security checks apply to everyone; weapons are strictly prohibited. ASH is not responsible for the loss or theft of personal belongings or vehicles.",
           "Students must be collected at the gate; visitors cannot wait inside. Photography or video recording requires permission.",
-          "Bring a reusable water bottle — refilling stations are available on campus.",
+          "Bring a reusable water bottle, refilling stations are available on campus.",
         ],
       },
     ],
@@ -141,7 +141,7 @@ const guidelines: Record<Locale, LegalPage> = {
   de: {
     meta: "Richtlinien für Lernende",
     title: "Richtlinien für Lernende",
-    lead: "Was wir voneinander erwarten — vor Ort und online.",
+    lead: "Was wir voneinander erwarten, vor Ort und online.",
     updated: "Gilt für alle Kurse vor Ort und online",
     sections: [
       {
@@ -166,7 +166,7 @@ const guidelines: Record<Locale, LegalPage> = {
         body: [
           "Sicherheitskontrollen gelten für alle; Waffen sind streng verboten. ASH haftet nicht für Verlust oder Diebstahl persönlicher Gegenstände oder Fahrzeuge.",
           "Lernende werden am Tor abgeholt; Besucher können nicht im Gebäude warten. Foto- und Videoaufnahmen nur mit Erlaubnis.",
-          "Bringen Sie eine wiederverwendbare Trinkflasche mit — auf dem Campus gibt es Nachfüllstationen.",
+          "Bringen Sie eine wiederverwendbare Trinkflasche mit, auf dem Campus gibt es Nachfüllstationen.",
         ],
       },
     ],

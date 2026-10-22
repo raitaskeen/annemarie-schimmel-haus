@@ -6,7 +6,7 @@
 export function GET() {
   const manifest = {
     id: "/admin",
-    name: "ASH Admin — Annemarie-Schimmel-Haus",
+    name: "ASH Admin: Annemarie-Schimmel-Haus",
     short_name: "ASH Admin",
     description: "Applications, courses, events, placement tests and website content for the Annemarie-Schimmel-Haus team.",
     lang: "en",

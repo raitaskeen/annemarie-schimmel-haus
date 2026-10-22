@@ -21,7 +21,7 @@ export default async function PlacementAdminPage() {
       <PageHeader
         eyebrow="Applications"
         title="Placement tests"
-        description="Test sittings for learners who already know some German. Open a session to confirm candidates, mark attendance and publish results — candidates are notified and see the result in the tracker."
+        description="Test sittings for learners who already know some German. Open a session to confirm candidates, mark attendance and publish results, candidates are notified and see the result in the tracker."
         actions={
           editor && (
             <Button asChild className="bg-forest text-white hover:bg-pine dark:bg-primary dark:text-primary-foreground">

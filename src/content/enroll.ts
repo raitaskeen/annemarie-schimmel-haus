@@ -4,7 +4,7 @@ const en = {
   metaTitle: "Apply for a German course",
   eyebrow: "Online application",
   title: "Apply for your course",
-  lead: "Five short steps — about seven minutes. Your answers are saved on this device for 14 days, so you can pause and continue later (ID numbers and documents are never stored).",
+  lead: "Five short steps, about seven minutes. Your answers are saved on this device for 14 days, so you can pause and continue later (ID numbers and documents are never stored).",
   steps: [
     { key: "personal", title: "Personal details", description: "As written on your CNIC or B-Form." },
     { key: "contact", title: "Contact", description: "Where we send your confirmation and updates." },
@@ -19,8 +19,8 @@ const en = {
   placementLink: "See placement test dates",
   docs: {
     photo: { label: "Passport-size photograph", hint: "Plain background, face clearly visible." },
-    cnicFront: { label: "CNIC / B-Form — front", hint: "All four corners visible, no glare." },
-    cnicBack: { label: "CNIC / B-Form — back", hint: "All four corners visible, no glare." },
+    cnicFront: { label: "CNIC / B-Form, front", hint: "All four corners visible, no glare." },
+    cnicBack: { label: "CNIC / B-Form, back", hint: "All four corners visible, no glare." },
     degree: { label: "Last educational degree", hint: "Optional · image or PDF." },
     drop: "Drop a file here or",
     browse: "browse",
@@ -55,7 +55,7 @@ const en = {
   },
   submit: "Submit application",
   waitlistSubmit: "Join the waitlist",
-  full: "This batch is full — you can still apply to join the waitlist.",
+  full: "This batch is full, you can still apply to join the waitlist.",
   charCount: "{n} characters",
 };
 
@@ -65,7 +65,7 @@ const de: EnrollCopy = {
   metaTitle: "Für einen Deutschkurs anmelden",
   eyebrow: "Online-Anmeldung",
   title: "Melden Sie sich an",
-  lead: "Fünf kurze Schritte — etwa sieben Minuten. Ihre Angaben bleiben 14 Tage auf diesem Gerät gespeichert, sodass Sie jederzeit später weitermachen können (Ausweisnummern und Dokumente werden nie gespeichert).",
+  lead: "Fünf kurze Schritte, etwa sieben Minuten. Ihre Angaben bleiben 14 Tage auf diesem Gerät gespeichert, sodass Sie jederzeit später weitermachen können (Ausweisnummern und Dokumente werden nie gespeichert).",
   steps: [
     { key: "personal", title: "Persönliche Daten", description: "Wie auf Ihrer CNIC oder B-Form." },
     { key: "contact", title: "Kontakt", description: "Hierhin senden wir Bestätigung und Updates." },
@@ -80,8 +80,8 @@ const de: EnrollCopy = {
   placementLink: "Termine für den Einstufungstest",
   docs: {
     photo: { label: "Passfoto", hint: "Neutraler Hintergrund, Gesicht gut erkennbar." },
-    cnicFront: { label: "CNIC / B-Form — Vorderseite", hint: "Alle vier Ecken sichtbar, keine Spiegelung." },
-    cnicBack: { label: "CNIC / B-Form — Rückseite", hint: "Alle vier Ecken sichtbar, keine Spiegelung." },
+    cnicFront: { label: "CNIC / B-Form: Vorderseite", hint: "Alle vier Ecken sichtbar, keine Spiegelung." },
+    cnicBack: { label: "CNIC / B-Form: Rückseite", hint: "Alle vier Ecken sichtbar, keine Spiegelung." },
     degree: { label: "Letzter Bildungsabschluss", hint: "Optional · Bild oder PDF." },
     drop: "Datei hierher ziehen oder",
     browse: "auswählen",
@@ -116,7 +116,7 @@ const de: EnrollCopy = {
   },
   submit: "Anmeldung absenden",
   waitlistSubmit: "Auf die Warteliste",
-  full: "Diese Gruppe ist voll — Sie können sich trotzdem für die Warteliste anmelden.",
+  full: "Diese Gruppe ist voll. Sie können sich trotzdem für die Warteliste anmelden.",
   charCount: "{n} Zeichen",
 };
 

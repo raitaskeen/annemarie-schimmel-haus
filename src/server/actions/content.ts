@@ -153,7 +153,7 @@ export async function addGalleryItemsAction(input: { paths: string[]; category: 
     await db().insert(galleryItems).values(values);
     await audit(user, { action: "gallery.add", entityType: "gallery_item", summary: `Added ${values.length} photo(s) to ${category} (hidden until described)` });
     updateTag(TAGS.gallery);
-    return { ok: true, message: `${values.length} photo(s) added as hidden — add a description, then publish.` };
+    return { ok: true, message: `${values.length} photo(s) added as hidden, add a description, then publish.` };
   });
 }
 

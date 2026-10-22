@@ -8,7 +8,7 @@ export function NotesForm({ action, defaultValue }: { action: (s: ActionState, f
     <AdminForm action={action} className="grid gap-3" refresh={false}>
       {() => (
         <>
-          <Textarea name="notes" rows={5} defaultValue={defaultValue} placeholder="Internal notes — never shown to the applicant" aria-label="Staff notes" />
+          <Textarea name="notes" rows={5} defaultValue={defaultValue} placeholder="Internal notes, never shown to the applicant" aria-label="Staff notes" />
           <div className="flex justify-end">
             <SubmitButton size="sm">Save notes</SubmitButton>
           </div>

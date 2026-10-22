@@ -158,7 +158,7 @@ export function DefinitionList({ items, columns = 2 }: { items: { label: string;
       {items.map((i) => (
         <div key={i.label} className={cn("min-w-0", i.wide && "sm:col-span-full")}>
           <dt className="text-xs text-muted-foreground">{i.label}</dt>
-          <dd className="mt-0.5 text-sm font-medium break-words">{i.value ?? "—"}</dd>
+          <dd className="mt-0.5 text-sm font-medium break-words">{i.value ?? "·"}</dd>
         </div>
       ))}
     </dl>

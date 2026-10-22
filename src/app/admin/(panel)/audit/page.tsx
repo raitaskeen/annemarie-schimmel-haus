@@ -44,7 +44,7 @@ export default async function AuditPage(props: PageProps<"/admin/audit">) {
                   <td>
                     <code className="rounded bg-muted px-1.5 py-0.5 text-[11px]">{r.action}</code>
                   </td>
-                  <td className="text-xs text-muted-foreground">{r.ip ?? "—"}</td>
+                  <td className="text-xs text-muted-foreground">{r.ip ?? "·"}</td>
                 </tr>
               ))}
             </tbody>

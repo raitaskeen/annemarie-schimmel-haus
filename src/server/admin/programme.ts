@@ -177,7 +177,7 @@ export async function checkInByReference(user: Actor, eventId: string, reference
   const [r] = await db().select().from(eventRegistrations).where(and(eq(eventRegistrations.eventId, eventId), eq(eventRegistrations.reference, ref))).limit(1);
   if (!r) throw new ActionError(`No registration ${ref} for this event.`);
   if (r.status === "attended") return { already: true, r };
-  if (r.status !== "registered") throw new ActionError(`${ref} is ${r.status} — not admitted.`);
+  if (r.status !== "registered") throw new ActionError(`${ref} is ${r.status}, not admitted.`);
   const updated = await changeRegistrationStatus(user, r.id, "attended", false);
   return { already: false, r: updated };
 }

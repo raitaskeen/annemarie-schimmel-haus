@@ -62,7 +62,7 @@ export default async function NewsAdminPage(props: PageProps<"/admin/news">) {
                       {p.excerptEn && <div className="line-clamp-1 max-w-xl text-xs text-muted-foreground">{p.excerptEn}</div>}
                     </td>
                     <td className="text-xs">{CATEGORY[p.category]}</td>
-                    <td className="text-xs whitespace-nowrap text-muted-foreground">{p.publishedAt ? formatDateTime(p.publishedAt, "en") : "—"}</td>
+                    <td className="text-xs whitespace-nowrap text-muted-foreground">{p.publishedAt ? formatDateTime(p.publishedAt, "en") : "·"}</td>
                     <td>
                       <StatusBadge status={scheduled ? "queued" : p.status} label={scheduled ? "scheduled" : undefined} />
                     </td>

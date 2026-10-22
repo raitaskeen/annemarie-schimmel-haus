@@ -65,7 +65,7 @@ export async function submitPlacement(input: unknown, locale: Locale): Promise<S
         })
         .returning({ id: placementApplications.id });
 
-      const when = `${formatDate(session.startsAt, locale, { weekday: "long" })}, ${formatClock(session.startsAt, locale)} – ${formatClock(session.endsAt, locale)}${locale === "de" ? " Uhr" : ""}`;
+      const when = `${formatDate(session.startsAt, locale, { weekday: "long" })}, ${formatClock(session.startsAt, locale)}${locale === "de" ? " bis " : " to "}${formatClock(session.endsAt, locale)}${locale === "de" ? " Uhr" : ""}`;
       const ids = await enqueue(
         {
           template: "placement.received",
@@ -84,7 +84,7 @@ export async function submitPlacement(input: unknown, locale: Locale): Promise<S
             ics: buildIcs({
               uid: reference,
               title: locale === "de" ? "ASH Einstufungstest" : "ASH placement test",
-              description: `${reference} — ${locale === "de" ? "Original-CNIC mitbringen" : "Bring your original CNIC"}`,
+              description: `${reference}: ${locale === "de" ? "Original-CNIC mitbringen" : "Bring your original CNIC"}`,
               location: session.venue,
               start: session.startsAt,
               end: session.endsAt,

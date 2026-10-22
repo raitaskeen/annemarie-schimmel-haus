@@ -53,7 +53,7 @@ export default async function ExamsAdminPage() {
                   <tr key={x.id} className={past ? "text-muted-foreground" : undefined}>
                     <td className="whitespace-nowrap">
                       <span className="font-medium">{formatDate(x.examStartsOn, "en", { weekday: "short" })}</span>
-                      {x.examEndsOn && x.examEndsOn !== x.examStartsOn && <span className="text-xs"> – {formatDate(x.examEndsOn, "en")}</span>}
+                      {x.examEndsOn && x.examEndsOn !== x.examStartsOn && <span className="text-xs"> to {formatDate(x.examEndsOn, "en")}</span>}
                       {past && <div className="text-xs">Past</div>}
                     </td>
                     <td>
@@ -65,8 +65,8 @@ export default async function ExamsAdminPage() {
                         ))}
                       </div>
                     </td>
-                    <td className="whitespace-nowrap">{x.registrationOn ? formatDate(x.registrationOn, "en") : "—"}</td>
-                    <td className="max-w-72 text-xs text-muted-foreground">{x.noteEn || "—"}</td>
+                    <td className="whitespace-nowrap">{x.registrationOn ? formatDate(x.registrationOn, "en") : "·"}</td>
+                    <td className="max-w-72 text-xs text-muted-foreground">{x.noteEn || "·"}</td>
                     <td>
                       <StatusBadge status={x.published ? "published" : "draft"} label={x.published ? "shown" : "hidden"} />
                     </td>

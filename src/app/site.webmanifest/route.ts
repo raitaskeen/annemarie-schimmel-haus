@@ -7,7 +7,7 @@ export function GET() {
     id: "/",
     name: "Annemarie-Schimmel-Haus Lahore",
     short_name: "ASH Lahore",
-    description: "German courses, events, the placement test and Goethe exams at the German cultural centre in Lahore — with your application status at a glance.",
+    description: "German courses, events, the placement test and Goethe exams at the German cultural centre in Lahore, with your application status at a glance.",
     lang: "en",
     dir: "ltr",
     start_url: "/en?source=app",

@@ -108,7 +108,7 @@ async function CourseContent({ params }: { params: Promise<{ slug: string }> }) 
               { icon: Clock, label: d.common.duration, value: `${course.weeks} ${d.common.weeks}` },
               { icon: CalendarClock, label: d.common.units, value: `${formatNumber(course.units, l)} · ${(course.minutesPerDay / 60).toLocaleString(l === "de" ? "de-DE" : "en-GB")} h/${l === "de" ? "Tag" : "day"}` },
               { icon: Wallet, label: d.common.fee, value: formatPKR(course.feePkr, l) },
-              { icon: BookOpen, label: d.common.book, value: course.bookTitle?.replace(" (continued from B2.1)", "") ?? "—" },
+              { icon: BookOpen, label: d.common.book, value: course.bookTitle?.replace(" (continued from B2.1)", "") ?? "·" },
             ].map((f) => (
               <div key={f.label} className="rounded-3xl bg-white/[0.07] p-5 ring-1 ring-white/10">
                 <dt className="flex items-center gap-1.5 text-xs text-white/60">
@@ -173,7 +173,7 @@ async function CourseContent({ params }: { params: Promise<{ slug: string }> }) 
           ) : (
             <div className="rounded-3xl bg-cream p-10 text-center ring-1 ring-ink/10">
               <p className="font-display text-2xl text-forest">{t.noDates}</p>
-              <p className="mt-2 text-stone">{l === "de" ? "Abonnieren Sie unseren Newsletter oder schreiben Sie uns — wir informieren Sie über neue Termine." : "Subscribe to our newsletter or write to us — we'll let you know about new dates."}</p>
+              <p className="mt-2 text-stone">{l === "de" ? "Abonnieren Sie unseren Newsletter oder schreiben Sie uns, wir informieren Sie über neue Termine." : "Subscribe to our newsletter or write to us, we'll let you know about new dates."}</p>
               <Link href={href(l, "/contact")} className="mt-6 inline-flex h-11 items-center rounded-full bg-forest px-6 text-sm font-semibold text-white hover:bg-pine">
                 {d.nav.contact}
               </Link>

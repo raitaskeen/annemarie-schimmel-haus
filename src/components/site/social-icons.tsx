@@ -1,4 +1,4 @@
-/* Brand marks from Font Awesome Free 6.7.2 (CC BY 4.0) — see public/brand/social/LICENSE.txt. */
+/* Brand marks from Font Awesome Free 6.7.2 (CC BY 4.0), see public/brand/social/LICENSE.txt. */
 import { cn } from "@/lib/utils";
 
 const ICONS = {

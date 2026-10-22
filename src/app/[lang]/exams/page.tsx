@@ -41,7 +41,7 @@ const COPY = {
     metaTitle: "Goethe-Institut exams in Lahore",
     metaDescription: "Goethe-Zertifikat exam dates in Lahore, CEFR levels explained, and how to register through the official Goethe-Institut portal.",
     eyebrow: "Goethe-Institut exams",
-    title: "Certify your German — recognised worldwide.",
+    title: "Certify your German, recognised worldwide.",
     lead: "Goethe-Zertifikat examinations follow the Common European Framework of Reference (CEFR) and are accepted by universities, employers and embassies in Germany and beyond.",
     portal: "Register on goethe.de",
     noticeTitle: "Registration is handled by the Goethe-Institut",
@@ -64,7 +64,7 @@ const COPY = {
       { title: "Exam day", text: "Bring your original ID. Results are published by the Goethe-Institut." },
     ],
     prepareTitle: "Prepare with us",
-    prepareText: "Our courses follow the Goethe-Institut curriculum and train every exam module — reading, listening, writing and speaking.",
+    prepareText: "Our courses follow the Goethe-Institut curriculum and train every exam module, reading, listening, writing and speaking.",
     prepareCta: "Explore courses",
     idNote: "Bring your original identity document on exam day.",
   },
@@ -72,7 +72,7 @@ const COPY = {
     metaTitle: "Goethe-Prüfungen in Lahore",
     metaDescription: "Termine der Goethe-Zertifikat-Prüfungen in Lahore, die GER-Niveaus erklärt und die Anmeldung über das offizielle Portal des Goethe-Instituts.",
     eyebrow: "Goethe-Prüfungen",
-    title: "Zertifizieren Sie Ihr Deutsch — weltweit anerkannt.",
+    title: "Zertifizieren Sie Ihr Deutsch, weltweit anerkannt.",
     lead: "Die Goethe-Zertifikate folgen dem Gemeinsamen Europäischen Referenzrahmen (GER) und werden von Hochschulen, Arbeitgebern und Botschaften in Deutschland und darüber hinaus anerkannt.",
     portal: "Auf goethe.de anmelden",
     noticeTitle: "Die Anmeldung erfolgt über das Goethe-Institut",
@@ -95,7 +95,7 @@ const COPY = {
       { title: "Prüfungstag", text: "Bringen Sie Ihren Original-Ausweis mit. Die Ergebnisse veröffentlicht das Goethe-Institut." },
     ],
     prepareTitle: "Mit uns vorbereiten",
-    prepareText: "Unsere Kurse folgen dem Curriculum des Goethe-Instituts und trainieren alle Prüfungsmodule — Lesen, Hören, Schreiben und Sprechen.",
+    prepareText: "Unsere Kurse folgen dem Curriculum des Goethe-Instituts und trainieren alle Prüfungsmodule: Lesen, Hören, Schreiben und Sprechen.",
     prepareCta: "Kurse entdecken",
     idNote: "Bringen Sie am Prüfungstag Ihren Original-Ausweis mit.",
   },
@@ -164,7 +164,7 @@ export default async function ExamsPage() {
                     </div>
                     <p className="mt-2 font-semibold text-forest">
                       {t.exam}: {formatDate(e.examStartsOn, l, { year: undefined })}
-                      {e.examEndsOn && e.examEndsOn !== e.examStartsOn ? ` – ${formatDate(e.examEndsOn, l)}` : ""}
+                      {e.examEndsOn && e.examEndsOn !== e.examStartsOn ? `${l === "de" ? " bis " : " to "}${formatDate(e.examEndsOn, l)}` : ""}
                     </p>
                     {e.registrationOn && (
                       <p className="text-sm text-stone">
@@ -202,10 +202,10 @@ export default async function ExamsPage() {
                     {exams.past.map((e) => (
                       <tr key={e.id} className="border-t border-ink/10">
                         <td className="py-2.5 pr-4 font-semibold text-forest">{e.levels.join(" & ")}</td>
-                        <td className="py-2.5 pr-4 text-stone">{e.registrationOn ? formatDate(e.registrationOn, l) : "—"}</td>
+                        <td className="py-2.5 pr-4 text-stone">{e.registrationOn ? formatDate(e.registrationOn, l) : "·"}</td>
                         <td className="py-2.5 text-stone">
                           {formatDate(e.examStartsOn, l, { year: undefined })}
-                          {e.examEndsOn ? ` – ${formatDate(e.examEndsOn, l)}` : ""}
+                          {e.examEndsOn ? `${l === "de" ? " bis " : " to "}${formatDate(e.examEndsOn, l)}` : ""}
                         </td>
                       </tr>
                     ))}

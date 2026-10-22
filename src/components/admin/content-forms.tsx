@@ -83,7 +83,7 @@ export function ExamDateDialog({ action, exam }: { action: Action; exam?: ExamDa
                 <TextField label="Exam starts" name="examStartsOn" type="date" defaultValue={exam?.examStartsOn ?? ""} state={state} required />
                 <TextField label="Exam ends" name="examEndsOn" type="date" defaultValue={exam?.examEndsOn ?? ""} state={state} />
               </div>
-              <BilingualField label="Note" name="note" values={{ en: exam?.noteEn, de: exam?.noteDe }} state={state} hint="E.g. “Modular — all four modules”." />
+              <BilingualField label="Note" name="note" values={{ en: exam?.noteEn, de: exam?.noteDe }} state={state} hint="E.g. “Modular, all four modules”." />
               <SwitchField label="Show on the website" name="published" defaultChecked={exam?.published ?? true} />
               <DialogFooter>
                 <Button type="button" variant="ghost" onClick={() => setOpen(false)}>
@@ -121,7 +121,7 @@ export function PostForm({ action, post, images, publishedAt }: { action: Action
                 state={state}
                 required
               />
-              <TextField label="Headline (German)" name="titleDe" defaultValue={post?.titleDe} state={state} hint="Optional — English is shown if empty." />
+              <TextField label="Headline (German)" name="titleDe" defaultValue={post?.titleDe} state={state} hint="Optional: English is shown if empty." />
             </div>
             <TextField label="URL slug" name="slug" value={slug} onChange={(e) => setSlug(e.target.value)} state={state} required hint={`Page address: /en/news/${slug || "…"}`} />
             <SelectField

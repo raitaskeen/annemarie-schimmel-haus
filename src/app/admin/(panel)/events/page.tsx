@@ -93,10 +93,10 @@ export default async function EventsAdminPage(props: PageProps<"/admin/events">)
                         {waitlisted > 0 && <div className="text-xs text-muted-foreground">+{waitlisted} waitlisted</div>}
                       </>
                     ) : (
-                      <span className="text-muted-foreground">—</span>
+                      <span className="text-muted-foreground">·</span>
                     )}
                   </td>
-                  <td className="tabular">{e.registrationMode === "internal" ? attended : "—"}</td>
+                  <td className="tabular">{e.registrationMode === "internal" ? attended : "·"}</td>
                   <td>
                     <StatusBadge status={e.status} />
                   </td>

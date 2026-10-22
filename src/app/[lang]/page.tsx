@@ -44,7 +44,7 @@ async function locale(): Promise<Locale> {
 
 export async function generateMetadata(): Promise<Metadata> {
   const l = await locale();
-  return { title: { absolute: `Annemarie-Schimmel-Haus Lahore — ${homeCopy(l).metaTitle}` }, alternates: { canonical: `/${l}`, languages: { en: "/en", de: "/de" } } };
+  return { title: { absolute: `Annemarie-Schimmel-Haus Lahore: ${homeCopy(l).metaTitle}` }, alternates: { canonical: `/${l}`, languages: { en: "/en", de: "/de" } } };
 }
 
 export default async function HomePage() {
@@ -72,7 +72,7 @@ export default async function HomePage() {
   const curated = HOME_GALLERY.map((c) => ({ ...c, item: gallery.find((g) => g.imagePath === `/images/gallery/${c.file}`) })).filter((c) => c.item);
   const mosaic =
     curated.length >= 7
-      ? curated.slice(0, 7).map((c) => ({ ...c.item!, position: c.position }))
+      ? curated.slice(0, 7).map((c) => ({ ...c.item!, imagePath: `/images/polished/${c.file}`, position: c.position }))
       : [...gallery.filter((g) => g.featured), ...gallery.filter((g) => !g.featured && g.width > g.height)].slice(0, 7).map((g) => ({ ...g, position: "50% 50%" }));
   const heroAlt =
     l === "de"
@@ -136,13 +136,13 @@ export default async function HomePage() {
             </div>
           </div>
 
-          {/* Visual: the German–Pakistani meeting photograph in full 3:2, with live floating cards */}
+          {/* Visual: the German-Pakistani meeting photograph in full 3:2, with live floating cards */}
           <div className="relative mx-auto w-full max-w-[680px] lg:mr-0">
             <div className="absolute inset-x-0 top-0 aspect-[3/2] translate-x-4 translate-y-4 rounded-[2.25rem] bg-mint sm:translate-x-6 sm:translate-y-6" aria-hidden />
             <figure className="relative animate-rise overflow-hidden rounded-[2.25rem] bg-mint shadow-[0_50px_100px_-50px_rgb(16_36_28/0.75)] ring-1 ring-ink/10 [animation-delay:150ms]">
               <div className="relative aspect-[3/2]">
                 <Image
-                  src="/images/hero/meeting.png"
+                  src="/images/hero/meeting.webp"
                   alt={heroAlt}
                   fill
                   priority
@@ -155,7 +155,7 @@ export default async function HomePage() {
               </div>
               <figcaption className="absolute top-4 right-4 inline-flex items-center gap-2 rounded-full bg-forest/80 px-3 py-1.5 text-[11px] font-semibold tracking-wide text-white backdrop-blur">
                 <span aria-hidden>🇩🇪</span>
-                {l === "de" ? "Deutsch-pakistanischer Dialog" : "German–Pakistani dialogue"}
+                {l === "de" ? "Deutsch-pakistanischer Dialog" : "German-Pakistani dialogue"}
                 <span aria-hidden>🇵🇰</span>
               </figcaption>
             </figure>
@@ -299,7 +299,7 @@ export default async function HomePage() {
                   <DateBadge {...dateParts(nextPlacement.startsAt, l)} tone="lime" />
                   <div className="grid gap-1 text-sm">
                     <span className="font-semibold">
-                      {formatClock(nextPlacement.startsAt, l)} – {formatClock(nextPlacement.endsAt, l)} · {nextPlacement.levels.join(", ")}
+                      {formatClock(nextPlacement.startsAt, l)}{l === "de" ? " bis " : " to "}{formatClock(nextPlacement.endsAt, l)} · {nextPlacement.levels.join(", ")}
                     </span>
                     <span className="text-white/70">
                       {d.common.fee}: {formatPKR(nextPlacement.feePkr, l)} · {d.common.deadline}: {formatDate(nextPlacement.registrationDeadline, l, { month: "short", year: undefined })}
@@ -420,7 +420,7 @@ export default async function HomePage() {
           <Reveal className="relative mx-auto w-full max-w-md">
             <div className="arch relative aspect-[4/5] overflow-hidden bg-forest-2">
               <Image
-                src="/images/gallery/ash-dslr-1358.webp"
+                src="/images/polished/ash-dslr-1358.webp"
                 alt={l === "de" ? "Das Gebäude des Annemarie-Schimmel-Hauses mit Garten an der Upper Mall, Lahore" : "The Annemarie-Schimmel-Haus building and garden on Upper Mall, Lahore"}
                 fill
                 sizes="(min-width: 1024px) 35vw, 90vw"

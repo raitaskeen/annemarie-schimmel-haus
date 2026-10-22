@@ -114,10 +114,10 @@ const T = {
     hello: "Dear",
     regards: "Warm regards,",
     team: "Your team at Annemarie-Schimmel-Haus",
-    hours: "Mon–Fri 09:00–16:30",
+    hours: "Mon-Fri 09:00 to 16:30",
     track: "Track your application",
     reference: "Application number",
-    keep: "Keep this number — you need it for every enquiry.",
+    keep: "Keep this number, you need it for every enquiry.",
   },
   de: {
     tagline: "Deutsches Kulturzentrum · Lahore",
@@ -125,7 +125,7 @@ const T = {
     hello: "Guten Tag",
     regards: "Herzliche Grüße",
     team: "Ihr Team des Annemarie-Schimmel-Hauses",
-    hours: "Mo–Fr 09:00–16:30",
+    hours: "Mo-Fr 09:00 bis 16:30",
     track: "Antrag verfolgen",
     reference: "Antragsnummer",
     keep: "Bitte bewahren Sie diese Nummer für alle Rückfragen auf.",
@@ -244,7 +244,7 @@ ${l.outro ? `<p class="ash-muted" style="margin:0 0 20px;font-size:14px;line-hei
     l.cta ? `${l.cta.label}: ${l.cta.url}` : "",
     l.outro ?? "",
     "",
-    "—",
+    "·",
     t.regards,
     t.team,
     `${CONTACT.phone} · WhatsApp ${CONTACT.whatsapp} · ${CONTACT.email}`,
@@ -279,8 +279,8 @@ export function renderEmail<K extends TemplateKey>(key: K, p: TemplatePayloads[K
               ? `Der Kurs ${d.course} ist derzeit ausgebucht. Wir haben Sie auf die Warteliste gesetzt und melden uns, sobald ein Platz frei wird.`
               : `${d.course} is currently fully booked. We've added you to the waitlist and will contact you as soon as a seat becomes available.`
             : de
-              ? `wir haben Ihre Anmeldung für ${d.course} erhalten und einen Platz für Sie reserviert. Bitte bewahren Sie Ihre Antragsnummer auf — damit können Sie den Status jederzeit verfolgen.`
-              : `we have received your application for ${d.course} and reserved a seat for you. Please keep your application number — you can use it to track your status at any time.`,
+              ? `wir haben Ihre Anmeldung für ${d.course} erhalten und einen Platz für Sie reserviert. Bitte bewahren Sie Ihre Antragsnummer auf, damit können Sie den Status jederzeit verfolgen.`
+              : `we have received your application for ${d.course} and reserved a seat for you. Please keep your application number, you can use it to track your status at any time.`,
           reference: { label: t.reference, value: d.reference },
           rows: [
             [de ? "Kurs" : "Course", d.course],
@@ -350,7 +350,7 @@ export function renderEmail<K extends TemplateKey>(key: K, p: TemplatePayloads[K
         ...layout({
           locale,
           preheader: de ? "Wir prüfen Ihre Zahlung und bestätigen dann Ihren Platz." : "We are checking your payment and will then confirm your seat.",
-          title: de ? "Danke — wir prüfen Ihre Zahlung" : "Thank you — we are checking your payment",
+          title: de ? "Danke, wir prüfen Ihre Zahlung" : "Thank you, we are checking your payment",
           greeting: d.name,
           intro: de
             ? `wir haben Ihre Zahlungsmeldung für ${d.course} erhalten. Unser Kursbüro gleicht sie mit dem Kontoauszug ab (in der Regel innerhalb eines Werktags) und bestätigt dann Ihren Platz per E-Mail und WhatsApp.`
@@ -388,8 +388,8 @@ export function renderEmail<K extends TemplateKey>(key: K, p: TemplatePayloads[K
           ],
           callout: d.requiresCnic
             ? de
-              ? "Bitte bringen Sie Ihre Original-CNIC mit — ohne sie ist kein Einlass möglich."
-              : "Please bring your original CNIC — entry is not possible without it."
+              ? "Bitte bringen Sie Ihre Original-CNIC mit, ohne sie ist kein Einlass möglich."
+              : "Please bring your original CNIC, entry is not possible without it."
             : undefined,
           cta: { label: t.track, url: d.trackUrl },
         }),
@@ -408,8 +408,8 @@ export function renderEmail<K extends TemplateKey>(key: K, p: TemplatePayloads[K
           intro:
             d.status === "registered"
               ? de
-                ? `gute Nachrichten — für „${d.event}" ist ein Platz für Sie frei geworden. Ihre Anmeldung ist bestätigt.`
-                : `good news — a seat has opened up for "${d.event}". Your registration is now confirmed.`
+                ? `gute Nachrichten, für „${d.event}" ist ein Platz für Sie frei geworden. Ihre Anmeldung ist bestätigt.`
+                : `good news, a seat has opened up for "${d.event}". Your registration is now confirmed.`
               : de
                 ? `der Status Ihrer Anmeldung für „${d.event}" lautet jetzt: ${d.statusLabel}.`
                 : `the status of your registration for "${d.event}" is now: ${d.statusLabel}.`,
@@ -439,8 +439,8 @@ export function renderEmail<K extends TemplateKey>(key: K, p: TemplatePayloads[K
             [de ? "Testgebühr" : "Test fee", d.fee],
           ],
           callout: de
-            ? "Bitte bringen Sie Ihre Original-CNIC mit — ohne sie ist keine Teilnahme möglich. Die Testgebühr wird nicht erstattet."
-            : "Please bring your original CNIC — you will not be admitted without it. The test fee is non-refundable.",
+            ? "Bitte bringen Sie Ihre Original-CNIC mit, ohne sie ist keine Teilnahme möglich. Die Testgebühr wird nicht erstattet."
+            : "Please bring your original CNIC, you will not be admitted without it. The test fee is non-refundable.",
           cta: { label: t.track, url: d.trackUrl },
         }),
         attachments: d.ics ? [{ filename: "placement-test.ics", contentType: "text/calendar; charset=UTF-8; method=PUBLISH", content: d.ics }] : undefined,
@@ -552,7 +552,7 @@ export function renderEmail<K extends TemplateKey>(key: K, p: TemplatePayloads[K
     case "staff.digest": {
       const d = p as TemplatePayloads["staff.digest"];
       return {
-        subject: `[ASH] Today at the Haus — ${d.date}`,
+        subject: `[ASH] Today at the Haus: ${d.date}`,
         ...layout({
           locale: "en",
           preheader: d.highlights[0] ?? "Your daily overview",
@@ -595,7 +595,7 @@ export function renderEmail<K extends TemplateKey>(key: K, p: TemplatePayloads[K
     case "staff.submission": {
       const d = p as TemplatePayloads["staff.submission"];
       return {
-        subject: `[ASH] ${d.kind}: ${d.reference} — ${d.name}`,
+        subject: `[ASH] ${d.kind}: ${d.reference}: ${d.name}`,
         ...layout({
           locale: "en",
           preheader: d.summary,
@@ -615,7 +615,7 @@ export function renderEmail<K extends TemplateKey>(key: K, p: TemplatePayloads[K
           preheader: `This link expires in ${d.minutes} minutes.`,
           title: "Reset your password",
           greeting: d.name,
-          intro: `use the button below to choose a new password. The link works once and expires in ${d.minutes} minutes. If you did not request this, you can ignore this email — your password stays unchanged.`,
+          intro: `use the button below to choose a new password. The link works once and expires in ${d.minutes} minutes. If you did not request this, you can ignore this email, your password stays unchanged.`,
           cta: { label: "Choose a new password", url: d.url },
         }),
       };

@@ -17,8 +17,8 @@ async function locale(): Promise<Locale> {
 }
 
 const COPY = {
-  en: { meta: "News & updates", title: "News from the Haus.", lead: "Announcements, scholarships, job openings and updates on exams — straight from Annemarie-Schimmel-Haus.", empty: "No news yet." },
-  de: { meta: "Aktuelles", title: "Neues aus dem Haus.", lead: "Ankündigungen, Stipendien, Stellenangebote und Neuigkeiten zu Prüfungen — direkt aus dem Annemarie-Schimmel-Haus.", empty: "Noch keine Neuigkeiten." },
+  en: { meta: "News & updates", title: "News from the Haus.", lead: "Announcements, scholarships, job openings and updates on exams, straight from Annemarie-Schimmel-Haus.", empty: "No news yet." },
+  de: { meta: "Aktuelles", title: "Neues aus dem Haus.", lead: "Ankündigungen, Stipendien, Stellenangebote und Neuigkeiten zu Prüfungen, direkt aus dem Annemarie-Schimmel-Haus.", empty: "Noch keine Neuigkeiten." },
 };
 
 export async function generateMetadata(): Promise<Metadata> {

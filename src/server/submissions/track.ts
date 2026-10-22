@@ -83,10 +83,10 @@ const L = {
       enrollmentWaitlisted: "We'll contact you by email and WhatsApp as soon as a seat becomes available.",
       enrollmentClosed: "If you have questions about this decision, please contact our course office.",
       eventRegistered: "Show this ticket (or your application number) at the entrance.",
-      eventCnic: "Bring your original CNIC — entry is not possible without it.",
+      eventCnic: "Bring your original CNIC, entry is not possible without it.",
       eventWaitlisted: "You're on the waitlist. We'll notify you if a seat opens up.",
       placementSubmitted: "Pay the test fee at reception on the test day. Bring your original CNIC.",
-      placementResult: "Your recommended level is shown below — you can now apply for a matching course.",
+      placementResult: "Your recommended level is shown below, you can now apply for a matching course.",
       contact: "Questions? Write to",
     },
   },
@@ -126,10 +126,10 @@ const L = {
       enrollmentWaitlisted: "Wir melden uns per E-Mail und WhatsApp, sobald ein Platz frei wird.",
       enrollmentClosed: "Bei Fragen zu dieser Entscheidung wenden Sie sich bitte an unser Kursbüro.",
       eventRegistered: "Zeigen Sie dieses Ticket (oder Ihre Antragsnummer) am Eingang vor.",
-      eventCnic: "Bitte bringen Sie Ihre Original-CNIC mit — ohne sie ist kein Einlass möglich.",
+      eventCnic: "Bitte bringen Sie Ihre Original-CNIC mit, ohne sie ist kein Einlass möglich.",
       eventWaitlisted: "Sie stehen auf der Warteliste. Wir informieren Sie, sobald ein Platz frei wird.",
       placementSubmitted: "Die Testgebühr zahlen Sie am Testtag am Empfang. Bitte bringen Sie Ihre Original-CNIC mit.",
-      placementResult: "Ihr empfohlenes Niveau sehen Sie unten — Sie können sich jetzt für einen passenden Kurs anmelden.",
+      placementResult: "Ihr empfohlenes Niveau sehen Sie unten. Sie können sich jetzt für einen passenden Kurs anmelden.",
       contact: "Fragen? Schreiben Sie an",
     },
   },
@@ -342,7 +342,7 @@ async function trackPlacement(reference: string, phone: string | null, locale: L
   const dict = commonDictionary(locale);
   const settings = await getSettings();
   const s = r.app.status;
-  const when = `${formatDate(r.ses.startsAt, locale, { weekday: "long" })}, ${formatClock(r.ses.startsAt, locale)} – ${formatClock(r.ses.endsAt, locale)}${locale === "de" ? " Uhr" : ""}`;
+  const when = `${formatDate(r.ses.startsAt, locale, { weekday: "long" })}, ${formatClock(r.ses.startsAt, locale)}${locale === "de" ? " bis " : " to "}${formatClock(r.ses.endsAt, locale)}${locale === "de" ? " Uhr" : ""}`;
   const order = ["submitted", "confirmed", "attended", "completed"];
   const idx = order.indexOf(s);
   const mk = (key: string, label: string, i: number, at?: Date | null): TimelineStep => ({

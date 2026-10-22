@@ -5,7 +5,7 @@ import { createJSONStorage, persist } from "zustand/middleware";
 
 /**
  * Enrollment wizard draft, kept in this browser (localStorage) so a reload, a closed
- * tab or a lost connection never loses typed answers — visitors continue where they
+ * tab or a lost connection never loses typed answers, visitors continue where they
  * left off for 14 days. Cleared on submit. Identity numbers and documents are never stored.
  */
 export type DraftValues = Record<string, string | boolean | undefined>;

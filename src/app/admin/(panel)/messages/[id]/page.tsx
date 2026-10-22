@@ -93,7 +93,7 @@ export default async function MessagePage(props: PageProps<"/admin/messages/[id]
               </ol>
             </Panel>
           )}
-          <Panel title="Reply" description={`Sent to ${m.email}${m.locale === "de" ? " — the visitor wrote in German" : ""}`}>
+          <Panel title="Reply" description={`Sent to ${m.email}${m.locale === "de" ? ", the visitor wrote in German" : ""}`}>
             <ReplyForm action={replyToMessageAction.bind(null, m.id)} name={m.name.split(" ")[0]} locale={m.locale} />
           </Panel>
         </div>
@@ -104,7 +104,7 @@ export default async function MessagePage(props: PageProps<"/admin/messages/[id]
               items={[
                 { label: "Name", value: m.name },
                 { label: "Email", value: <a href={`mailto:${m.email}`} className="text-primary hover:underline">{m.email}</a> },
-                { label: "Phone", value: m.phone ?? "—" },
+                { label: "Phone", value: m.phone ?? "·" },
               ]}
             />
           </Panel>

@@ -284,8 +284,8 @@ export function EnrollmentWizard({ locale, offering, t, form, common, forms, lin
               locale={locale}
               note={
                 locale === "de"
-                  ? "Bitte geben Sie Ihre CNIC-Nummer erneut ein und laden Sie die Dokumente noch einmal hoch — beides speichern wir aus Datenschutzgründen nie auf Ihrem Gerät."
-                  : "Please enter your CNIC number again and re-attach your documents — for your privacy we never store either on your device."
+                  ? "Bitte geben Sie Ihre CNIC-Nummer erneut ein und laden Sie die Dokumente noch einmal hoch, beides speichern wir aus Datenschutzgründen nie auf Ihrem Gerät."
+                  : "Please enter your CNIC number again and re-attach your documents, for your privacy we never store either on your device."
               }
               onDiscard={() => {
                 draft.clear(offering.id);
@@ -388,7 +388,7 @@ export function EnrollmentWizard({ locale, offering, t, form, common, forms, lin
                     {(a) => (
                       <SelectInput id={a.id} aria-describedby={a.describedBy} aria-invalid={a.invalid} defaultValue="" {...register("education")}>
                         <option value="" disabled>
-                          —
+                          , 
                         </option>
                         {educationOptions.map(([v, label]) => (
                           <option key={v} value={v}>
@@ -482,7 +482,7 @@ export function EnrollmentWizard({ locale, offering, t, form, common, forms, lin
                 </ReviewSection>
                 <ReviewSection title={t.review.sections.documents} onEdit={() => go(3)} editLabel={t.review.edit}>
                   {(Object.keys(DOCUMENTS) as DocumentKind[]).map((k) => (
-                    <ReviewItem key={k} label={t.docs[k].label} value={docs[k] ? `✓ ${t.review.attached}` : DOCUMENTS[k].required ? `✕ ${t.review.missing}` : "—"} />
+                    <ReviewItem key={k} label={t.docs[k].label} value={docs[k] ? `✓ ${t.review.attached}` : DOCUMENTS[k].required ? `✕ ${t.review.missing}` : "·"} />
                   ))}
                 </ReviewSection>
 
@@ -559,7 +559,7 @@ function ReviewItem({ label, value, mono, wide }: { label: string; value?: strin
   return (
     <div className={cn("min-w-0", wide && "sm:col-span-2")}>
       <dt className="text-xs text-stone">{label}</dt>
-      <dd className={cn("mt-0.5 text-sm font-medium break-words text-ink", mono && "font-mono tracking-wide")}>{value?.trim() || "—"}</dd>
+      <dd className={cn("mt-0.5 text-sm font-medium break-words text-ink", mono && "font-mono tracking-wide")}>{value?.trim() || "·"}</dd>
     </div>
   );
 }

@@ -331,7 +331,7 @@ function TrackResultView({ r, locale, t, links, onChange }: { r: TrackResult; lo
   );
 }
 
-/** Self-service: report a payment or cancel — authorised by the signed token from the lookup. */
+/** Self-service: report a payment or cancel, authorised by the signed token from the lookup. */
 function ManagePanel({ r, locale, t, onChange }: { r: TrackResult; locale: Locale; t: TrackCopy; onChange: (r: TrackResult) => void }) {
   const c = t.manage;
   const [mode, setMode] = useState<"idle" | "pay" | "cancel">("idle");

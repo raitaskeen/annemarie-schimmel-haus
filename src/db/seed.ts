@@ -5,7 +5,7 @@
  *
  * Idempotent: content is only seeded when the courses table is empty. The
  * first administrator is created from SEED_ADMIN_* when no admin exists.
- * Never run with `force` against production — it truncates content tables.
+ * Never run with `force` against production, it truncates content tables.
  */
 import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { readFileSync } from "node:fs";
@@ -83,7 +83,7 @@ export async function seed({ force = false }: { force?: boolean } = {}) {
 
     const [{ value: existing }] = await db.select({ value: count() }).from(s.courses);
     if (existing > 0) {
-      log("Content already present — skipping catalogue seed.");
+      log("Content already present, skipping catalogue seed.");
       return;
     }
 
@@ -275,9 +275,9 @@ export async function seed({ force = false }: { force?: boolean } = {}) {
             registrationDeadline: new Date(p.deadline),
             status: p.status,
             notesEn:
-              "For external learners who have not studied at ASH before and do not hold a Goethe-Institut certificate of that level. Bring your original CNIC — you will not be admitted without it. The test fee is non-refundable.",
+              "For external learners who have not studied at ASH before and do not hold a Goethe-Institut certificate of that level. Bring your original CNIC, you will not be admitted without it. The test fee is non-refundable.",
             notesDe:
-              "Für externe Lernende, die noch nicht bei ASH gelernt haben und kein Goethe-Zertifikat des Niveaus besitzen. Bitte bringen Sie Ihre Original-CNIC mit — ohne sie ist keine Teilnahme möglich. Die Testgebühr wird nicht erstattet.",
+              "Für externe Lernende, die noch nicht bei ASH gelernt haben und kein Goethe-Zertifikat des Niveaus besitzen. Bitte bringen Sie Ihre Original-CNIC mit, ohne sie ist keine Teilnahme möglich. Die Testgebühr wird nicht erstattet.",
           })
           .returning();
         const apps: (typeof s.placementApplications.$inferInsert)[] = [];
@@ -412,7 +412,7 @@ async function ensureAdmin(db: NodePgDatabase<typeof s>) {
   const [{ value: admins }] = await db.select({ value: count() }).from(s.users).where(eq(s.users.role, "admin"));
   if (admins > 0) return;
   if (process.env.NODE_ENV === "production") {
-    log('No administrator yet — create one by invitation: bun scripts/create-admin.ts "Name" email@…');
+    log('No administrator yet, create one by invitation: bun scripts/create-admin.ts "Name" email@…');
     return;
   }
 

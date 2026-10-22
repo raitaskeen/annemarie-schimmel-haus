@@ -101,7 +101,7 @@ export async function retryNotificationAction(id: string, _prev: ActionState, _f
   return adminAction("notifications:manage", async (user) => {
     await requeue(uuid.parse(id));
     await audit(user, { action: "notification.retry", entityType: "notification", entityId: id, summary: "Retried a notification" });
-    return { ok: true, message: "Queued again — check back in a moment." };
+    return { ok: true, message: "Queued again, check back in a moment." };
   });
 }
 

@@ -13,7 +13,7 @@ export function AuthShell({ title, lead, children }: { title: string; lead?: str
         <Image src="/brand/ash-wordmark.png" alt="Annemarie-Schimmel-Haus" width={1513} height={674} className="relative h-12 w-auto brightness-0 invert" priority />
         <div className="relative max-w-md">
           <p className="eyebrow text-lime">Staff workspace</p>
-          <p className="mt-4 font-display text-5xl leading-[1.05]">Courses, events and people — in one calm place.</p>
+          <p className="mt-4 font-display text-5xl leading-[1.05]">Courses, events and people, in one calm place.</p>
           <p className="mt-6 flex items-center gap-2 text-sm text-white/60">
             <ShieldCheck className="size-4 text-lime" /> Protected by rate limiting, account lockout and optional two-factor authentication.
           </p>

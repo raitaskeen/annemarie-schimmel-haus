@@ -340,7 +340,7 @@
     text-transform: uppercase;
   }
 
-  /* Mughal arch — the signature frame of the ASH visual language. */
+  /* Mughal arch, the signature frame of the ASH visual language. */
   .arch {
     border-radius: 999px 999px 1.5rem 1.5rem / 40% 40% 1.5rem 1.5rem;
   }
@@ -505,7 +505,7 @@
   }
 }
 
-/* Scroll reveal (progressive enhancement — see components/motion.tsx). */
+/* Scroll reveal (progressive enhancement, see components/motion.tsx). */
 .reveal,
 .reveal-group > .reveal-item {
   transition:

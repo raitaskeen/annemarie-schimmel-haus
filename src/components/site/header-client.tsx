@@ -86,7 +86,7 @@ export function HeaderClient({ locale, nav, brand, app, logo, featured }: Header
       )}
     >
       <div className={cn("container-site flex items-center justify-between gap-4 transition-[height] duration-300", scrolled ? "h-16" : "h-20")}>
-        <Link href={href(locale)} className="shrink-0 rounded-md" aria-label={`${brand.name} — ${nav.home}`}>
+        <Link href={href(locale)} className="shrink-0 rounded-md" aria-label={`${brand.name}: ${nav.home}`}>
           {logo}
         </Link>
 

@@ -21,7 +21,7 @@ const COPY = {
   en: {
     meta: "Contact",
     title: "Let's begin a conversation.",
-    lead: "Questions about courses, the placement test, events or partnerships? Write to us — or visit the Haus on Upper Mall.",
+    lead: "Questions about courses, the placement test, events or partnerships? Write to us, or visit the Haus on Upper Mall.",
     formTitle: "Send us a message",
     formLead: "We usually reply within two working days.",
     departments: "Write directly",
@@ -37,7 +37,7 @@ const COPY = {
   de: {
     meta: "Kontakt",
     title: "Beginnen wir ein Gespräch.",
-    lead: "Fragen zu Kursen, Einstufungstest, Veranstaltungen oder Partnerschaften? Schreiben Sie uns — oder besuchen Sie das Haus an der Upper Mall.",
+    lead: "Fragen zu Kursen, Einstufungstest, Veranstaltungen oder Partnerschaften? Schreiben Sie uns, oder besuchen Sie das Haus an der Upper Mall.",
     formTitle: "Nachricht senden",
     formLead: "Wir antworten in der Regel innerhalb von zwei Werktagen.",
     departments: "Direkt schreiben",
@@ -63,7 +63,7 @@ export default async function ContactPage() {
   const d = commonDictionary(l);
   const s = await getSettings();
   const c = s.contact;
-  const hours = `${formatTimeOfDay(s.hours.opens, l)} – ${formatTimeOfDay(s.hours.closes, l)}${l === "de" ? " Uhr" : ""}`;
+  const hours = `${formatTimeOfDay(s.hours.opens, l)}${l === "de" ? " bis " : " to "}${formatTimeOfDay(s.hours.closes, l)}${l === "de" ? " Uhr" : ""}`;
   const departments = [
     { icon: Mail, label: t.general, email: c.generalEmail },
     { icon: GraduationCap, label: t.courses, email: c.coursesEmail },

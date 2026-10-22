@@ -157,7 +157,7 @@ export function SelectField({ label, name, defaultValue, options, state, hint, c
           aria-invalid={!!error || undefined}
           className="h-9 w-full rounded-lg border border-input bg-background px-3 text-sm shadow-xs focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:outline-none aria-invalid:border-destructive"
         >
-          {!required && <option value="">—</option>}
+          {!required && <option value="">·</option>}
           {options.map((o) => (
             <option key={o.value} value={o.value}>
               {o.label}
@@ -186,7 +186,7 @@ export function SwitchField({ label, name, defaultChecked, hint }: { label: stri
   );
 }
 
-/** English + German side by side (German optional — falls back to English on the site). */
+/** English + German side by side (German optional, falls back to English on the site). */
 export function BilingualField({
   label,
   name,

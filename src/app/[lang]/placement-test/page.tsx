@@ -128,7 +128,7 @@ export default async function PlacementPage() {
                       <DateBadge {...dateParts(s.startsAt, l)} tone="lime" />
                       <div className="text-sm">
                         <p className="font-semibold">
-                          {formatClock(s.startsAt, l)} – {formatClock(s.endsAt, l)} · {s.levels.join(", ")}
+                          {formatClock(s.startsAt, l)}{l === "de" ? " bis " : " to "}{formatClock(s.endsAt, l)} · {s.levels.join(", ")}
                         </p>
                         <p className="text-white/70">
                           {t.deadline}: {formatDate(s.registrationDeadline, l, { weekday: "short", year: undefined })}
@@ -155,7 +155,7 @@ export default async function PlacementPage() {
               sessions={sessions.map((s) => ({
                 id: s.id,
                 label: formatDate(s.startsAt, l, { weekday: "long" }),
-                meta: `${formatClock(s.startsAt, l)} – ${formatClock(s.endsAt, l)} · ${s.levels.join(", ")} · ${t.deadline}: ${formatDate(s.registrationDeadline, l, { month: "short", year: undefined })}`,
+                meta: `${formatClock(s.startsAt, l)}${l === "de" ? " bis " : " to "}${formatClock(s.endsAt, l)} · ${s.levels.join(", ")} · ${t.deadline}: ${formatDate(s.registrationDeadline, l, { month: "short", year: undefined })}`,
                 levels: s.levels,
                 disabled: s.state !== "open",
                 badge: s.state === "open" ? seatsLabel(d, s.seatsLeft) : s.state === "full" ? d.common.full : d.common.registrationClosed,

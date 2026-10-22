@@ -4,7 +4,7 @@ import sharp from "sharp";
 
 export type SniffedType = "image/jpeg" | "image/png" | "image/webp" | "image/avif" | "application/pdf";
 
-/** Real file type from magic bytes — never trust the browser-declared type. */
+/** Real file type from magic bytes, never trust the browser-declared type. */
 export function sniff(buf: Uint8Array): SniffedType | null {
   if (buf.length < 12) return null;
   const ascii = (s: number, e: number) => String.fromCharCode(...buf.subarray(s, e));

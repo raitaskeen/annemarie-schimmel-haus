@@ -1,6 +1,6 @@
 import { createHmac, randomBytes, timingSafeEqual } from "node:crypto";
 
-/** RFC 6238 time-based one-time passwords (SHA-1, 30 s, 6 digits) — compatible with all authenticator apps. */
+/** RFC 6238 time-based one-time passwords (SHA-1, 30 s, 6 digits), compatible with all authenticator apps. */
 const STEP_SECONDS = 30;
 const DIGITS = 6;
 const B32 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";

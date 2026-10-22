@@ -21,12 +21,12 @@ export function generateStaticParams() {
 
 const META = {
   en: {
-    title: "Annemarie-Schimmel-Haus — German Cultural Centre Lahore",
+    title: "Annemarie-Schimmel-Haus: German Cultural Centre Lahore",
     description:
       "Learn German from A1 to C1 on campus or online, take the placement test, prepare for Goethe-Institut exams and join cultural events at the German cultural centre in Lahore.",
   },
   de: {
-    title: "Annemarie-Schimmel-Haus — Deutsches Kulturzentrum Lahore",
+    title: "Annemarie-Schimmel-Haus: Deutsches Kulturzentrum Lahore",
     description:
       "Deutsch lernen von A1 bis C1 vor Ort oder online, Einstufungstest, Vorbereitung auf Goethe-Prüfungen und Kulturveranstaltungen im deutschen Kulturzentrum in Lahore.",
   },

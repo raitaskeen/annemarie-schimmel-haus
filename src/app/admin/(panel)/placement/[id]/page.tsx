@@ -31,7 +31,7 @@ export default async function PlacementSessionPage(props: PageProps<"/admin/plac
         <ArrowLeft className="size-4" /> All sessions
       </Link>
       <PageHeader
-        eyebrow={`${formatDate(s.startsAt, "en", { weekday: "long" })} · ${formatClock(s.startsAt, "en")}–${formatClock(s.endsAt, "en")}`}
+        eyebrow={`${formatDate(s.startsAt, "en", { weekday: "long" })} · ${formatClock(s.startsAt, "en")}-${formatClock(s.endsAt, "en")}`}
         title={`Placement test ${s.code}`}
         description={
           <span className="flex flex-wrap items-center gap-2">
@@ -115,7 +115,7 @@ export default async function PlacementSessionPage(props: PageProps<"/admin/plac
                         {a.resultScore !== null && <span className="ml-1 text-xs font-normal text-muted-foreground">{a.resultScore}%</span>}
                       </span>
                     ) : (
-                      <span className="text-muted-foreground">—</span>
+                      <span className="text-muted-foreground">·</span>
                     )}
                   </td>
                   <td>

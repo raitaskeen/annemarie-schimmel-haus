@@ -51,7 +51,7 @@ export async function saveEventAction(id: string | null, _prev: ActionState, for
 export async function deleteEventAction(id: string, _prev: ActionState, _formData: FormData): Promise<ActionState> {
   const result = await adminAction("content:write", async (user) => {
     const [{ n }] = await db().select({ n: count() }).from(eventRegistrations).where(eq(eventRegistrations.eventId, id));
-    if (n > 0) throw new ActionError(`This event has ${n} registration(s). Set it to “cancelled” instead — registrants can then be informed.`);
+    if (n > 0) throw new ActionError(`This event has ${n} registration(s). Set it to “cancelled” instead, registrants can then be informed.`);
     const [row] = await db().delete(events).where(eq(events.id, id)).returning({ titleEn: events.titleEn, slug: events.slug });
     if (!row) throw new ActionError("Event not found.");
     await audit(user, { action: "event.delete", entityType: "event", entityId: id, summary: `Deleted event “${row.titleEn}”` });
@@ -133,7 +133,7 @@ const appInput = z.object({
     .string()
     .trim()
     .transform((v) => (v === "" ? null : Number(v)))
-    .refine((v) => v === null || (Number.isInteger(v) && v >= 0 && v <= 100), "Score 0–100."),
+    .refine((v) => v === null || (Number.isInteger(v) && v >= 0 && v <= 100), "Score 0 to 100."),
   resultNotes: z
     .string()
     .trim()

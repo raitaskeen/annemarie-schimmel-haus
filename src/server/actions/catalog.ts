@@ -43,7 +43,7 @@ export async function saveCourseAction(id: string | null, _prev: ActionState, fo
 export async function deleteCourseAction(id: string, _prev: ActionState, _formData: FormData): Promise<ActionState> {
   const result = await adminAction("content:write", async (user) => {
     const [{ n }] = await db().select({ n: count() }).from(courseOfferings).where(eq(courseOfferings.courseId, id));
-    if (n > 0) throw new ActionError("This course still has batches. Delete or move them first — or simply unpublish the course.");
+    if (n > 0) throw new ActionError("This course still has batches. Delete or move them first, or simply unpublish the course.");
     const [row] = await db().delete(courses).where(eq(courses.id, id)).returning({ code: courses.code });
     if (!row) throw new ActionError("Course not found.");
     await audit(user, { action: "course.delete", entityType: "course", entityId: id, summary: `Deleted course ${row.code}` });
