@@ -1,0 +1,34 @@
+# Single-server deployment: PostgreSQL 17 + the website. Put a TLS reverse proxy
+# (Caddy, nginx, Cloudflare Tunnel …) in front of port 3000.
+# Secrets come from .env.production (never commit it) — see .env.example.
+services:
+  db:
+    image: postgres:17-bookworm
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ash
+      POSTGRES_USER: ash
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ash -d ash"]
+      interval: 10s
+      retries: 6
+    # Not published to the host: only the web container can reach it.
+
+  web:
+    build: .
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file: .env.production
+    environment:
+      DATABASE_URL: postgres://ash:${POSTGRES_PASSWORD}@db:5432/ash
+    ports:
+      - "127.0.0.1:3000:3000"
+
+volumes:
+  pgdata:

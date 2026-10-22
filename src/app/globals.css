@@ -1,0 +1,606 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Annemarie-Schimmel-Haus design tokens.
+ * Palette: the institute's locked brand palette (ASH Green, Pine, Lime on warm
+ * paper) with a brass accent taken from the ASH logo system. Lime is decorative
+ * or used on dark surfaces only; body text always meets WCAG AA.
+ */
+/* Brand palette as real CSS variables, so dark mode can remap it (see .dark below). */
+@theme {
+  --color-ink: #25302b;
+  --color-forest: #10241c;
+  --color-forest-2: #173a2a;
+  --color-pine: #1f5f39;
+  --color-ash: #477748;
+  --color-sage: #7d9a73;
+  --color-mint: #dde8d5;
+  --color-mist: #eef2e8;
+  --color-lime: #92c83e;
+  --color-lime-soft: #e4f1cc;
+  --color-paper: #f7f3e9;
+  --color-cream: #fbf9f2;
+  --color-sand: #efe7d6;
+  --color-brass: #a8844e;
+  --color-stone: #5b655d;
+  --color-focus: #1c70b5;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-heading: var(--font-display);
+
+
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-rise: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+
+  @keyframes marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+  @keyframes draw {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+:root {
+  --radius: 0.875rem;
+  --background: #f7f3e9;
+  --foreground: #25302b;
+  --card: #fbf9f2;
+  --card-foreground: #25302b;
+  --popover: #fffdf8;
+  --popover-foreground: #25302b;
+  --primary: #477748;
+  --primary-foreground: #ffffff;
+  --secondary: #eef2e8;
+  --secondary-foreground: #1f5f39;
+  --muted: #efebe0;
+  --muted-foreground: #5b655d;
+  --accent: #dde8d5;
+  --accent-foreground: #173a2a;
+  --destructive: #b42318;
+  --success: #1f7a45;
+  --warning: #9a5b00;
+  --border: #dadacf;
+  --input: #cfcec1;
+  --ring: #1c70b5;
+  --chart-1: #477748;
+  --chart-2: #92c83e;
+  --chart-3: #1f5f39;
+  --chart-4: #a8844e;
+  --chart-5: #7d9a73;
+  --sidebar: #10241c;
+  --sidebar-foreground: #d9e4d3;
+  --sidebar-primary: #92c83e;
+  --sidebar-primary-foreground: #10241c;
+  --sidebar-accent: #1b3628;
+  --sidebar-accent-foreground: #f3f8ef;
+  --sidebar-border: #22402f;
+  --sidebar-ring: #92c83e;
+}
+
+/* The admin works on a slightly cooler canvas with white cards for dense data. */
+.admin-theme {
+  --background: #f4f3ee;
+  --card: #ffffff;
+  --popover: #ffffff;
+}
+/* body.admin-theme sits inside html.dark: restate the dark surfaces so they win. */
+.dark .admin-theme {
+  --background: #0b1410;
+  --card: #111d17;
+  --popover: #13211a;
+}
+
+/* Dark mode: the brand palette flips to deep forest surfaces with light text. */
+.dark {
+  color-scheme: dark;
+  --color-ink: #e3eae1;
+  --color-stone: #a9b5ac;
+  --color-paper: #0c1611;
+  --color-cream: #122019;
+  --color-sand: #15241c;
+  --color-mist: #172820;
+  --color-mint: #1f3529;
+  --color-lime-soft: #24361c;
+  --color-sage: #8fb184;
+  --color-forest: #16301f;
+  --color-forest-2: #1b3a28;
+  --color-pine: #2b7148;
+  --background: #0b1410;
+  --foreground: #e5ece3;
+  --card: #111d17;
+  --card-foreground: #e5ece3;
+  --popover: #13211a;
+  --popover-foreground: #e5ece3;
+  --primary: #92c83e;
+  --primary-foreground: #10241c;
+  --secondary: #182820;
+  --secondary-foreground: #dfe8da;
+  --muted: #16231c;
+  --muted-foreground: #9aa89e;
+  --accent: #1e3328;
+  --accent-foreground: #eef4ea;
+  --destructive: #f97066;
+  --success: #6cc38b;
+  --warning: #f2b45b;
+  --border: #233429;
+  --input: #2c3e33;
+  --ring: #6aa9e6;
+  --chart-1: #92c83e;
+  --chart-2: #6fa56d;
+  --chart-3: #c9e39f;
+  --chart-4: #d2ae74;
+  --chart-5: #4f7a55;
+  --sidebar: #08100c;
+  --sidebar-foreground: #cfdcc9;
+  --sidebar-primary: #92c83e;
+  --sidebar-primary-foreground: #10241c;
+  --sidebar-accent: #15261d;
+  --sidebar-accent-foreground: #f3f8ef;
+  --sidebar-border: #1a2c22;
+  --sidebar-ring: #92c83e;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    scroll-padding-top: 6.5rem;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    /* Safety net for phones: never allow sideways scrolling (clip keeps the sticky header working). */
+    overflow-x: clip;
+    font-feature-settings: "ss01", "cv11";
+  }
+  /*
+   * Grid items may shrink below their content width. Without this a single
+   * non-wrapping line (a truncated title, a long URL) widens the whole grid
+   * track and pushes the section past the screen edge on phones.
+   */
+  .grid > * {
+    min-width: 0;
+  }
+  /*
+   * Browser autofill repaints fields light blue/yellow, which breaks dark fields
+   * (newsletter) and tinted ones. Keep every field's own colours; rings stay intact.
+   */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  select:-webkit-autofill {
+    -webkit-text-fill-color: var(--autofill-fg, currentColor);
+    caret-color: var(--autofill-fg, currentColor);
+    transition:
+      background-color 0s 600000s,
+      color 0s 600000s;
+  }
+  input:autofill,
+  textarea:autofill,
+  select:autofill {
+    filter: none;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  /* Long words (emails, URLs, German compounds) wrap instead of overflowing narrow screens. */
+  h1,
+  h2,
+  h3,
+  h4,
+  p,
+  li,
+  dd,
+  td {
+    overflow-wrap: break-word;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  ::selection {
+    background: color-mix(in oklab, var(--color-lime) 55%, transparent);
+    color: var(--color-forest);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 3px;
+  }
+  .dark :focus-visible {
+    outline-color: #6aa9e6;
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .container-site {
+    width: 100%;
+    max-width: 82rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+  @media (min-width: 640px) {
+    .container-site {
+      padding-inline: 1.5rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .container-site {
+      padding-inline: 2.5rem;
+    }
+  }
+
+  /* Display type: Fraunces with a softer, literary voice. */
+  .font-display {
+    font-family: var(--font-display);
+    font-variation-settings:
+      "SOFT" 60,
+      "WONK" 0;
+    letter-spacing: -0.02em;
+  }
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  /* Mughal arch — the signature frame of the ASH visual language. */
+  .arch {
+    border-radius: 999px 999px 1.5rem 1.5rem / 40% 40% 1.5rem 1.5rem;
+  }
+  .arch-sm {
+    border-radius: 999px 999px 0.875rem 0.875rem / 45% 45% 0.875rem 0.875rem;
+  }
+
+  /* Hairline grid inspired by Bauhaus paper. */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--color-ink) 7%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--color-ink) 7%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+  }
+
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  .marquee-mask {
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  /* Rendered Markdown (descriptions, posts, events). */
+  .prose-ash {
+    color: var(--color-ink);
+    line-height: 1.75;
+    font-size: 1.02rem;
+  }
+  .prose-ash > * + * {
+    margin-top: 1em;
+  }
+  .prose-ash strong {
+    font-weight: 600;
+    color: var(--color-forest);
+  }
+  .prose-ash em {
+    font-style: italic;
+  }
+  .prose-ash a {
+    color: var(--color-pine);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose-ash ul,
+  .prose-ash ol {
+    padding-left: 1.25rem;
+  }
+  .prose-ash ul {
+    list-style: none;
+  }
+  .prose-ash ul > li {
+    position: relative;
+    padding-left: 0.4rem;
+  }
+  .prose-ash ul > li::before {
+    content: "";
+    position: absolute;
+    left: -1rem;
+    top: 0.72em;
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: var(--color-lime);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--color-lime) 25%, transparent);
+  }
+  .prose-ash ol {
+    list-style: decimal;
+  }
+  .prose-ash li + li {
+    margin-top: 0.35em;
+  }
+  .prose-ash h2,
+  .prose-ash h3 {
+    font-family: var(--font-display);
+    color: var(--color-forest);
+    margin-top: 1.6em;
+    font-size: 1.35rem;
+  }
+  .dark .prose-ash {
+    color: var(--foreground);
+  }
+  .dark .prose-ash strong,
+  .dark .prose-ash h2,
+  .dark .prose-ash h3 {
+    color: #f3f8ef;
+  }
+}
+
+/* Admin tables become stacked cards on phones (labels added by components/admin/table-cards.tsx). */
+@media (max-width: 639.98px) {
+  .data-cards > table {
+    min-width: 0 !important;
+  }
+  .data-cards > table > thead {
+    display: none;
+  }
+  .data-cards > table > tbody > tr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 6px 12px;
+    padding: 14px 16px;
+  }
+  .data-cards > table > tbody > tr > td {
+    padding: 0 !important;
+    min-width: 0;
+  }
+  /* Label on the left, value kept together on the right (floats keep inline pieces in one run). */
+  .data-cards td[data-role="field"] {
+    flex: 1 1 100%;
+    display: block;
+    text-align: right;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .data-cards td[data-role="field"]::before {
+    content: attr(data-label);
+    float: left;
+    margin-right: 16px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.9;
+    color: var(--muted-foreground);
+  }
+  /* Cells with several lines (title + subtitle, email + phone) stack under their label. */
+  .data-cards td[data-role="field"]:has(> div, > p, > ul, > a + div, > span + div) {
+    text-align: left;
+  }
+  .data-cards td[data-role="field"]:has(> div, > p, > ul, > a + div, > span + div)::before {
+    float: none;
+    display: block;
+    line-height: 1.6;
+  }
+  .data-cards td[data-role="field"]:empty,
+  .data-cards td[data-role="field"]:has(> :only-child:empty) {
+    display: none;
+  }
+  .data-cards td[data-role="select"] {
+    order: -3;
+    flex: none;
+    padding-top: 3px !important;
+  }
+  .data-cards td[data-role="primary"] {
+    order: -2;
+    flex: 1 1 0;
+    padding-bottom: 4px !important;
+    font-size: 15px;
+  }
+  .data-cards td[data-role="action"] {
+    order: -1;
+    flex: none;
+  }
+}
+
+/* Scroll reveal (progressive enhancement — see components/motion.tsx). */
+.reveal,
+.reveal-group > .reveal-item {
+  transition:
+    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s);
+}
+.reveal[data-reveal="hidden"],
+.reveal-group[data-reveal="hidden"] > .reveal-item {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+}
+
+@layer utilities {
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/*
+ * Dark mode for brand utilities that mean "dark text on a light surface" in light
+ * mode. Forest stays a deep surface colour (footer, buttons), so its text uses flip here.
+ */
+.dark .text-forest {
+  color: #eef3ea;
+}
+.dark .text-pine {
+  color: #b7dc83;
+}
+.dark .text-ash {
+  color: #a3d07f;
+}
+.dark .bg-white {
+  background-color: var(--color-cream);
+}
+.dark [class~="ring-ink/10"],
+.dark [class~="ring-ink/15"] {
+  --tw-ring-color: rgb(255 255 255 / 0.1);
+}
+/* Dark artwork (wordmark, partner logos) turns white on dark surfaces. */
+.dark .logo-adapt {
+  filter: brightness(0) invert(1);
+}
+.dark .logo-adapt-soft {
+  filter: brightness(0) invert(1);
+  opacity: 0.8;
+}
+/* Status tints used on public pages. */
+.dark [class~="bg-[#fff8e8]"],
+.dark [class~="bg-[#fff4dc]"] {
+  background-color: #2e2510;
+}
+.dark [class~="text-[#7a4a00]"] {
+  color: #f2c870;
+}
+.dark [class~="ring-[#f3d79c]"] {
+  --tw-ring-color: #5a4818;
+}
+.dark [class~="bg-[#e3f3e7]"] {
+  background-color: #123220;
+}
+.dark [class~="text-[#13623a]"] {
+  color: #8fdcaa;
+}
+.dark [class~="bg-[#fdecea]"] {
+  background-color: #3d1512;
+}
+.dark [class~="text-[#8a1c12]"] {
+  color: #f5a69c;
+}
+/* Semi-opaque white panels and form fields (light-surface glass) become subtle tints in dark mode. */
+.dark [class~="bg-white/40"],
+.dark [class~="bg-white/50"],
+.dark [class~="bg-white/60"],
+.dark [class~="bg-white/70"],
+.dark [class~="bg-white/80"] {
+  background-color: rgb(255 255 255 / 0.05);
+}
+.dark [class~="focus:bg-white"]:focus {
+  background-color: rgb(255 255 255 / 0.08);
+}
+.dark [class~="hover:bg-white"]:not(.bg-lime):hover {
+  background-color: rgb(255 255 255 / 0.08);
+}
+.dark [class~="border-ink/25"] {
+  border-color: rgb(255 255 255 / 0.3);
+}
+/* Lime surfaces keep dark forest text in both themes. */
+.dark .bg-lime.text-forest,
+.dark .bg-lime .text-forest,
+.dark [class~="hover:bg-lime"].text-forest:hover {
+  color: #10241c;
+}

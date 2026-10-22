@@ -1,0 +1,60 @@
+# Checks every push and pull request: lint, types, unit tests, migrations on a real
+# PostgreSQL 17 and a production build (public pages are prerendered from the database).
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      postgres:
+        image: postgres:17-bookworm
+        env:
+          POSTGRES_DB: ash
+          POSTGRES_USER: ash
+          POSTGRES_PASSWORD: ci-only-password
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U ash -d ash"
+          --health-interval 5s --health-timeout 5s --health-retries 10
+    env:
+      DATABASE_URL: postgres://ash:ci-only-password@127.0.0.1:5432/ash
+      # Throwaway values for CI only — real secrets never live in the repository.
+      AUTH_SECRET: ci-only-auth-secret-that-is-long-enough-0123456789
+      SEED_ADMIN_PASSWORD: Ci-only-Passw0rd-not-a-secret
+      APP_URL: http://localhost:3000
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install
+        run: bun install --frozen-lockfile
+      - name: Lint
+        run: bun run lint
+      - name: Type check
+        run: bun run typecheck
+      - name: Unit tests
+        run: bun run test
+      - name: Migrate and seed (catalogue only)
+        run: |
+          bun scripts/migrate.ts
+          SEED_SAMPLES=false bun scripts/seed.ts
+      - name: Production build
+        run: bun run build
