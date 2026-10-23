@@ -5,7 +5,6 @@ import { lang } from "next/root-params";
 import "../globals.css";
 import { fontVariables } from "../fonts";
 import { MotionProvider } from "@/components/motion";
-import { SiteThemeProvider } from "@/components/site/theme-provider";
 import { InstallBanner } from "@/components/pwa/install-ui";
 import { ServiceWorker } from "@/components/pwa/service-worker";
 import { captureInstallPromptScript } from "@/components/pwa/capture-script";
@@ -59,11 +58,8 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f7f3e9" },
-    { media: "(prefers-color-scheme: dark)", color: "#0c1611" },
-  ],
-  colorScheme: "light dark",
+  themeColor: "#f7f3e9",
+  colorScheme: "light",
   // Lets the install banner and bottom bars respect the iPhone home indicator.
   viewportFit: "cover",
 };
@@ -72,12 +68,11 @@ export default async function PublicLayout({ children }: LayoutProps<"/[lang]">)
   const value = await lang();
   if (!hasLocale(value)) notFound();
   return (
-    <html lang={value} className={fontVariables} suppressHydrationWarning>
+    <html lang={value} className={fontVariables}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: captureInstallPromptScript }} />
       </head>
       <body className="flex min-h-dvh flex-col">
-        <SiteThemeProvider>
         <MotionProvider>
           <SiteHeader locale={value} />
           <main id="main" className="flex-1">
@@ -90,7 +85,6 @@ export default async function PublicLayout({ children }: LayoutProps<"/[lang]">)
           </Suspense>
           <ServiceWorker />
         </MotionProvider>
-        </SiteThemeProvider>
       </body>
     </html>
   );

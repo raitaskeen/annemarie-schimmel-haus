@@ -35,7 +35,6 @@ import type { CommonDictionary } from "@/i18n/common";
 import { href, type Locale } from "@/i18n/config";
 import { cn } from "@/lib/utils";
 import { InstallButton } from "@/components/pwa/install-ui";
-import { SiteThemeToggle } from "./theme-toggle";
 import { LanguageSwitcher, LanguageSwitcherFallback } from "./language-switcher";
 import { Girih } from "./girih";
 
@@ -122,8 +121,6 @@ export function HeaderClient({ locale, nav, brand, app, logo, featured }: Header
               <ArrowRight className="transition-transform group-hover/button:translate-x-0.5" />
             </Link>
           </Button>
-
-          <SiteThemeToggle labels={{ dark: locale === "de" ? "Dunkles Design" : "Dark mode", light: locale === "de" ? "Helles Design" : "Light mode" }} />
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon-lg" className="rounded-full lg:hidden" aria-label={nav.menu}>

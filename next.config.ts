@@ -71,6 +71,9 @@ const nextConfig: NextConfig = {
     // NEXT_DEV_CACHE=off skips Turbopack's on-disk dev cache (saves RAM on small machines
     // and recovers from a corrupted cache after a crash).
     turbopackFileSystemCacheForDev: process.env.NEXT_DEV_CACHE !== "off",
+    // NEXT_BUILD_CPUS=2 limits parallel page generation during `next build` (small servers and
+    // busy laptops otherwise run out of memory); unset uses Next.js' default.
+    ...(process.env.NEXT_BUILD_CPUS ? { cpus: Number(process.env.NEXT_BUILD_CPUS) } : {}),
   },
   async headers() {
     return [
