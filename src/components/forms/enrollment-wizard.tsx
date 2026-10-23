@@ -20,6 +20,7 @@ import { CheckRow, ChoiceCards, DraftNotice, FormAlert, FormRow, Honeypot, Selec
 import { DocumentDrop } from "./document-drop";
 import { HumanCheck } from "./human-check";
 import { SuccessPanel } from "./success-panel";
+import { useHydrated } from "@/hooks/use-hydrated";
 
 type Props = {
   locale: Locale;
@@ -40,6 +41,7 @@ const STEP_FIELDS: FieldPath<EnrollmentInput>[][] = [
 ];
 
 export function EnrollmentWizard({ locale, offering, t, form, common, forms, links }: Props) {
+  const hydrated = useHydrated();
   const [step, setStep] = useState(0);
   const [direction, setDirection] = useState(1);
   const [docs, setDocs] = useState<Record<DocumentKind, File | null>>({ photo: null, cnicFront: null, cnicBack: null, degree: null });
@@ -260,7 +262,7 @@ export function EnrollmentWizard({ locale, offering, t, form, common, forms, lin
         </ol>
       </div>
 
-      <form
+      <form method="post" data-ready={hydrated || undefined}
         noValidate
         onSubmit={(ev) => {
           ev.preventDefault();

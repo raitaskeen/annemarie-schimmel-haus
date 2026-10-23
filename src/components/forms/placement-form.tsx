@@ -16,6 +16,7 @@ import { CheckRow, ChoiceCards, DraftNotice, FormAlert, FormRow, Honeypot, revea
 import { useFormDraft } from "./use-form-draft";
 import { HumanCheck } from "./human-check";
 import { SuccessPanel } from "./success-panel";
+import { useHydrated } from "@/hooks/use-hydrated";
 
 export type PlacementOption = { id: string; label: string; meta: string; levels: string[]; disabled: boolean; badge?: string };
 
@@ -30,6 +31,7 @@ type Props = {
 };
 
 export function PlacementForm({ locale, sessions, form, common, forms, links, labels }: Props) {
+  const hydrated = useHydrated();
   const firstOpen = sessions.find((s) => !s.disabled);
   const [result, setResult] = useState<{ reference: string; email: string } | null>(null);
   const [serverError, setServerError] = useState<string | null>(null);
@@ -104,7 +106,7 @@ export function PlacementForm({ locale, sessions, form, common, forms, links, la
   );
 
   return (
-    <form ref={formRef} noValidate onSubmit={onSubmit} className="relative grid gap-6">
+    <form method="post" data-ready={hydrated || undefined} ref={formRef} noValidate onSubmit={onSubmit} className="relative grid gap-6">
       <Honeypot register={register("website")} />
       {draft.restoredAt && <DraftNotice savedAt={draft.restoredAt} locale={locale} onDiscard={() => { draft.discard(); reset(); }} />}
       {serverError && <FormAlert>{serverError}</FormAlert>}

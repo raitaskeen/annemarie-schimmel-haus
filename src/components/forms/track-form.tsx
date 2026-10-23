@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
 import { AnimatePresence, m } from "motion/react";
+import { useHydrated } from "@/hooks/use-hydrated";
 import {
   AlertTriangle,
   ArrowRight,
@@ -333,6 +334,7 @@ function TrackResultView({ r, locale, t, links, onChange }: { r: TrackResult; lo
 
 /** Self-service: report a payment or cancel, authorised by the signed token from the lookup. */
 function ManagePanel({ r, locale, t, onChange }: { r: TrackResult; locale: Locale; t: TrackCopy; onChange: (r: TrackResult) => void }) {
+  const hydrated = useHydrated();
   const c = t.manage;
   const [mode, setMode] = useState<"idle" | "pay" | "cancel">("idle");
   const [paymentRef, setPaymentRef] = useState("");
@@ -375,7 +377,7 @@ function ManagePanel({ r, locale, t, onChange }: { r: TrackResult; locale: Local
       )}
 
       {r.manage.canReportPayment && mode === "pay" && (
-        <form
+        <form method="post" data-ready={hydrated || undefined}
           className="grid gap-3"
           onSubmit={(e) => {
             e.preventDefault();

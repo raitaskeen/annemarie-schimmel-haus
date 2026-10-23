@@ -143,7 +143,9 @@ describe("tracker self-service token", async () => {
     const [body, mac] = token.split(".");
     const forged = Buffer.from(JSON.stringify({ r: "ASH-E-ZZZZZZ", exp: Date.now() + 60_000 })).toString("base64url");
     expect(verifyManageToken(`${forged}.${mac}`)).toBeNull();
-    expect(verifyManageToken(`${body}.x${mac.slice(1)}`)).toBeNull();
+    // Change the signature's first character to a different one (replacing it with a fixed letter
+    // would leave the token unchanged whenever the signature already starts with that letter).
+    expect(verifyManageToken(`${body}.${mac[0] === "A" ? "B" : "A"}${mac.slice(1)}`)).toBeNull();
     expect(verifyManageToken("nonsense")).toBeNull();
     expect(verifyManageToken(42)).toBeNull();
   });

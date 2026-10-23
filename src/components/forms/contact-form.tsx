@@ -16,8 +16,10 @@ import { rememberApplication } from "@/lib/client/device-memory";
 import { CheckRow, DraftNotice, FormAlert, FormRow, Honeypot, revealFirstError, SelectInput, TextArea, TextInput } from "./form-kit";
 import { useFormDraft } from "./use-form-draft";
 import { HumanCheck } from "./human-check";
+import { useHydrated } from "@/hooks/use-hydrated";
 
 export function ContactForm({ locale, form, common, forms, privacyHref }: { locale: Locale; form: CommonDictionary["form"]; common: CommonDictionary["common"]; forms: FormsCopy; privacyHref: string }) {
+  const hydrated = useHydrated();
   const [sent, setSent] = useState<string | null>(null);
   const [serverError, setServerError] = useState<string | null>(null);
   const [refresh, setRefresh] = useState(0);
@@ -53,7 +55,7 @@ export function ContactForm({ locale, form, common, forms, privacyHref }: { loca
   }
 
   return (
-    <form
+    <form method="post" data-ready={hydrated || undefined}
       ref={formRef}
       noValidate
       onSubmit={handleSubmit(

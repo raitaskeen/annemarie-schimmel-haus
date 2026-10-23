@@ -5,6 +5,7 @@ import { ArrowRight, CircleCheck, Loader2 } from "lucide-react";
 import { Checkbox } from "@/components/ui/checkbox";
 import { newsletterAction } from "@/server/actions/public";
 import type { Locale } from "@/i18n/config";
+import { useHydrated } from "@/hooks/use-hydrated";
 
 type Copy = {
   placeholder: string;
@@ -17,6 +18,7 @@ type Copy = {
 };
 
 export function NewsletterForm({ locale, copy }: { locale: Locale; copy: Copy }) {
+  const hydrated = useHydrated();
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
   const [message, setMessage] = useState<{ tone: "ok" | "error"; text: string } | null>(null);
@@ -32,7 +34,7 @@ export function NewsletterForm({ locale, copy }: { locale: Locale; copy: Copy })
   }
 
   return (
-    <form
+    <form method="post" data-ready={hydrated || undefined}
       noValidate
       onSubmit={(e) => {
         e.preventDefault();
