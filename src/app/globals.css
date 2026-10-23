@@ -626,3 +626,9 @@
     transition: none;
   }
 }
+
+/* Until a form's JavaScript has loaded, its submit button cannot be pressed (no native fallback submit). */
+form[method="post"]:not([data-ready]) [type="submit"] {
+  pointer-events: none;
+  opacity: 0.6;
+}

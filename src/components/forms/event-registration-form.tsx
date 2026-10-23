@@ -16,6 +16,7 @@ import { CheckRow, DraftNotice, FormAlert, FormRow, Honeypot, revealFirstError, 
 import { useFormDraft } from "./use-form-draft";
 import { HumanCheck } from "./human-check";
 import { SuccessPanel } from "./success-panel";
+import { useHydrated } from "@/hooks/use-hydrated";
 
 type Props = {
   locale: Locale;
@@ -28,6 +29,7 @@ type Props = {
 };
 
 export function EventRegistrationForm({ locale, event, form, common, forms, links, labels }: Props) {
+  const hydrated = useHydrated();
   const [result, setResult] = useState<{ reference: string; status: string; email: string } | null>(null);
   const [serverError, setServerError] = useState<string | null>(null);
   const [refresh, setRefresh] = useState(0);
@@ -98,7 +100,7 @@ export function EventRegistrationForm({ locale, event, form, common, forms, link
   );
 
   return (
-    <form ref={formRef} noValidate onSubmit={onSubmit} className="relative grid gap-5">
+    <form method="post" data-ready={hydrated || undefined} ref={formRef} noValidate onSubmit={onSubmit} className="relative grid gap-5">
       <Honeypot register={register("website")} />
       {draft.restoredAt && <DraftNotice savedAt={draft.restoredAt} locale={locale} onDiscard={() => { draft.discard(); reset(); }} />}
       {serverError && <FormAlert>{serverError}</FormAlert>}
