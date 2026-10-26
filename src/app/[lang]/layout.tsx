@@ -7,6 +7,7 @@ import { fontVariables } from "../fonts";
 import { MotionProvider } from "@/components/motion";
 import { InstallBanner } from "@/components/pwa/install-ui";
 import { ServiceWorker } from "@/components/pwa/service-worker";
+import { ShowcaseIntro } from "@/components/showcase/showcase-intro";
 import { captureInstallPromptScript } from "@/components/pwa/capture-script";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
@@ -84,6 +85,7 @@ export default async function PublicLayout({ children }: LayoutProps<"/[lang]">)
             <InstallBanner labels={commonDictionary(value).app} />
           </Suspense>
           <ServiceWorker />
+          {process.env.NEXT_PUBLIC_SHOWCASE === "1" && <ShowcaseIntro />}
         </MotionProvider>
       </body>
     </html>

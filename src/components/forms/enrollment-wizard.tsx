@@ -262,7 +262,7 @@ export function EnrollmentWizard({ locale, offering, t, form, common, forms, lin
         </ol>
       </div>
 
-      <form method="post" data-ready={hydrated || undefined}
+      <form method="post" data-guard data-ready={hydrated || undefined}
         noValidate
         onSubmit={(ev) => {
           ev.preventDefault();

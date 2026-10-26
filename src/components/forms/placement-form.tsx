@@ -106,7 +106,7 @@ export function PlacementForm({ locale, sessions, form, common, forms, links, la
   );
 
   return (
-    <form method="post" data-ready={hydrated || undefined} ref={formRef} noValidate onSubmit={onSubmit} className="relative grid gap-6">
+    <form method="post" data-guard data-ready={hydrated || undefined} ref={formRef} noValidate onSubmit={onSubmit} className="relative grid gap-6">
       <Honeypot register={register("website")} />
       {draft.restoredAt && <DraftNotice savedAt={draft.restoredAt} locale={locale} onDiscard={() => { draft.discard(); reset(); }} />}
       {serverError && <FormAlert>{serverError}</FormAlert>}

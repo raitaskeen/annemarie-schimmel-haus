@@ -100,7 +100,7 @@ export function EventRegistrationForm({ locale, event, form, common, forms, link
   );
 
   return (
-    <form method="post" data-ready={hydrated || undefined} ref={formRef} noValidate onSubmit={onSubmit} className="relative grid gap-5">
+    <form method="post" data-guard data-ready={hydrated || undefined} ref={formRef} noValidate onSubmit={onSubmit} className="relative grid gap-5">
       <Honeypot register={register("website")} />
       {draft.restoredAt && <DraftNotice savedAt={draft.restoredAt} locale={locale} onDiscard={() => { draft.discard(); reset(); }} />}
       {serverError && <FormAlert>{serverError}</FormAlert>}

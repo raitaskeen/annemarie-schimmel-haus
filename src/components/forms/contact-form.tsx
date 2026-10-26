@@ -55,7 +55,7 @@ export function ContactForm({ locale, form, common, forms, privacyHref }: { loca
   }
 
   return (
-    <form method="post" data-ready={hydrated || undefined}
+    <form method="post" data-guard data-ready={hydrated || undefined}
       ref={formRef}
       noValidate
       onSubmit={handleSubmit(
