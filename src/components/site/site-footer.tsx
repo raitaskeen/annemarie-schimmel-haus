@@ -206,9 +206,11 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
             <Link href={href(locale, "/terms")} className="hover:text-white">
               {f.terms}
             </Link>
-            <Link href="/admin" className="inline-flex items-center gap-1 hover:text-white">
+            {process.env.NEXT_PUBLIC_SHOWCASE !== "1" && (
+              <Link href="/admin" className="inline-flex items-center gap-1 hover:text-white">
               Staff <ArrowUpRight className="size-3" />
             </Link>
+            )}
           </div>
         </div>
       </div>

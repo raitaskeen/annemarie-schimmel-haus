@@ -1,0 +1,6 @@
+/ /en 302
+/courses /en/courses 302
+/events /en/events 302
+/contact /en/contact 302
+/admin /en 302
+/admin/* /en 302

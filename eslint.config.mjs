@@ -18,6 +18,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated static showcase (scripts/build-showcase.ts).
+    ".next-showcase/**",
+    "showcase-site/**",
+    ".wrangler/**",
   ]),
 ]);
 

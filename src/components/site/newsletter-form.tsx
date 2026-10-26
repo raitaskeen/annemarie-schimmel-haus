@@ -34,7 +34,7 @@ export function NewsletterForm({ locale, copy }: { locale: Locale; copy: Copy })
   }
 
   return (
-    <form method="post" data-ready={hydrated || undefined}
+    <form method="post" data-guard data-ready={hydrated || undefined}
       noValidate
       onSubmit={(e) => {
         e.preventDefault();

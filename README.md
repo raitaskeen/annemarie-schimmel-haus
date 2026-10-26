@@ -60,6 +60,18 @@ tests/               unit tests
 docs/                deployment, Gmail and WhatsApp set-up
 ```
 
+## Showcase on Cloudflare Workers (free plan)
+
+`showcase-site/` is a static copy of the public website for an independent, **unofficial** showcase of this project: every page in English and German, forms in demo mode (nothing is stored or sent), a welcome dialog that explains the project, previews the admin and lists the stack. It needs no server and no database and runs on the Cloudflare Workers free plan as static assets.
+
+| Step | Command |
+|---|---|
+| Rebuild after content or code changes (local database running) | `bun run showcase` |
+| Preview locally in the Workers runtime | `npx wrangler dev` → <http://localhost:8787> |
+| Deploy to `*.workers.dev` | `npx wrangler deploy` |
+
+With **Workers Builds** (Cloudflare dashboard → Workers & Pages → Create → Import a repository), leave the build command empty and use `npx wrangler deploy` as the deploy command; `wrangler.jsonc` points to `showcase-site/`. The showcase sends `X-Robots-Tag: noindex` so it never competes with the official site in search results.
+
 ## Going live
 
 **Step-by-step launch on Cloudflare: [docs/GO_LIVE_CLOUDFLARE.md](docs/GO_LIVE_CLOUDFLARE.md).** Background and alternatives: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) (Docker Compose, free-tier blueprint with Cloudflare, Cloudflare Workers notes, GitHub, backups, security model), [docs/GMAIL_SETUP.md](docs/GMAIL_SETUP.md) and [docs/WHATSAPP_TEMPLATES.md](docs/WHATSAPP_TEMPLATES.md). CI runs on every push (`.github/workflows/ci.yml`).

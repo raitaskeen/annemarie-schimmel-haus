@@ -12,6 +12,12 @@ const SPOKEN = {
 } as const;
 
 async function fetchChallenge(): Promise<Challenge | null> {
+  if (process.env.NEXT_PUBLIC_SHOWCASE === "1") {
+    // Static showcase: no server to sign a question, so a local one keeps the form usable.
+    const a = 2 + Math.floor(Math.random() * 8);
+    const b = 1 + Math.floor(Math.random() * 8);
+    return { a, b, op: "+", token: "showcase-local-question" } as Challenge;
+  }
   try {
     const res = await fetch("/api/challenge", { cache: "no-store" });
     return res.ok ? ((await res.json()) as Challenge) : null;

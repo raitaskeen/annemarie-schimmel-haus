@@ -377,7 +377,7 @@ function ManagePanel({ r, locale, t, onChange }: { r: TrackResult; locale: Local
       )}
 
       {r.manage.canReportPayment && mode === "pay" && (
-        <form method="post" data-ready={hydrated || undefined}
+        <form method="post" data-guard data-ready={hydrated || undefined}
           className="grid gap-3"
           onSubmit={(e) => {
             e.preventDefault();
