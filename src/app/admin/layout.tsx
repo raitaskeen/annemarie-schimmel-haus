@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Script from "next/script";
 import "../globals.css";
 import { fontVariables } from "../fonts";
 import { AdminProviders } from "@/components/admin/providers";
@@ -21,10 +22,8 @@ export const viewport: Viewport = { themeColor: "#10241c", viewportFit: "cover" 
 export default function AdminRootLayout({ children }: LayoutProps<"/admin">) {
   return (
     <html lang="en" className={fontVariables} suppressHydrationWarning>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: captureInstallPromptScript }} />
-      </head>
       <body className="admin-theme min-h-dvh bg-background text-foreground antialiased">
+        <Script id="capture-install-prompt" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: captureInstallPromptScript }} />
         <AdminProviders>{children}</AdminProviders>
         <ServiceWorker />
       </body>

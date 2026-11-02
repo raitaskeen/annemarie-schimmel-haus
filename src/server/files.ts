@@ -1,6 +1,7 @@
 import "server-only";
 import { createHash } from "node:crypto";
-import sharp from "sharp";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
+import { onCloudflareWorkers } from "@/lib/runtime";
 
 export type SniffedType = "image/jpeg" | "image/png" | "image/webp" | "image/avif" | "application/pdf";
 
@@ -42,7 +43,11 @@ export async function processUpload(
     return { data: input, contentType: type, size: input.length, width: 0, height: 0, sha256: hash(input), extension: "pdf" };
   }
 
+  if (onCloudflareWorkers) return reencodeWithCloudflareImages(input, maxDimension, quality);
+
   try {
+    // Loaded on demand: the native module exists on the Node server only, never in the Workers bundle.
+    const { default: sharp } = await import("sharp");
     const pipeline = sharp(input, { limitInputPixels: 40_000_000, failOn: "error" })
       .rotate()
       .resize({ width: maxDimension, height: maxDimension, fit: "inside", withoutEnlargement: true })
@@ -55,3 +60,49 @@ export async function processUpload(
 }
 
 const hash = (b: Buffer) => createHash("sha256").update(b).digest("hex");
+
+type ImagesBinding = {
+  input(stream: ReadableStream<Uint8Array>): {
+    transform(t: { width: number; height: number; fit: "scale-down" }): { output(o: { format: "image/webp"; quality: number }): Promise<{ response(): Response }> };
+  };
+  info(stream: ReadableStream<Uint8Array>): Promise<{ width?: number; height?: number }>;
+};
+
+/**
+ * Workers: pixel size of a file under /public. There is no disk on Workers; static files
+ * come from the assets binding and the Images binding reads their dimensions.
+ */
+export async function publicImageSizeOnWorkers(pathname: string): Promise<{ width: number; height: number } | null> {
+  const { env: bindings } = getCloudflareContext();
+  const { ASSETS, IMAGES } = bindings as { ASSETS?: { fetch(input: string): Promise<Response> }; IMAGES?: ImagesBinding };
+  if (!ASSETS || !IMAGES) return null;
+  try {
+    const res = await ASSETS.fetch(new URL(pathname, "https://assets.invalid").toString());
+    if (!res.ok || !res.body) return null;
+    const info = await IMAGES.info(res.body);
+    return info.width && info.height ? { width: info.width, height: info.height } : null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Cloudflare Workers have no native image library, so uploads go through the Images
+ * binding instead: decoded, re-encoded to WebP (metadata such as GPS is dropped) and capped
+ * in size, the same guarantees sharp gives on the Node server.
+ */
+async function reencodeWithCloudflareImages(input: Buffer, maxDimension: number, quality: number): Promise<ProcessedFile> {
+  const images = (getCloudflareContext().env as { IMAGES?: ImagesBinding }).IMAGES;
+  if (!images) throw new FileRejectedError("type");
+  try {
+    const result = await images
+      .input(new Blob([new Uint8Array(input)]).stream())
+      .transform({ width: maxDimension, height: maxDimension, fit: "scale-down" })
+      .output({ format: "image/webp", quality });
+    const data = Buffer.from(await result.response().arrayBuffer());
+    const info = await images.info(new Blob([new Uint8Array(data)]).stream());
+    return { data, contentType: "image/webp", size: data.length, width: info.width ?? 0, height: info.height ?? 0, sha256: hash(data), extension: "webp" };
+  } catch {
+    throw new FileRejectedError("type");
+  }
+}

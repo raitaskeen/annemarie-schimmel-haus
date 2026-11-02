@@ -9,7 +9,6 @@ export function AuthShell({ title, lead, children }: { title: string; lead?: str
     <main className="grid min-h-dvh bg-paper lg:grid-cols-[1.05fr_1fr]">
       <section className="relative hidden overflow-hidden bg-forest text-white lg:flex lg:flex-col lg:justify-between lg:p-12">
         <Girih className="text-white/[0.05]" size={72} />
-        <div className="absolute -right-40 -bottom-40 size-[520px] rounded-full bg-lime/15 blur-3xl" aria-hidden />
         <Image src="/brand/ash-wordmark.png" alt="Annemarie-Schimmel-Haus" width={1513} height={674} className="relative h-12 w-auto brightness-0 invert" priority />
         <div className="relative max-w-md">
           <p className="eyebrow text-lime">Staff workspace</p>

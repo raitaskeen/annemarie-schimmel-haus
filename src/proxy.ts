@@ -18,6 +18,14 @@ const PUBLIC_ADMIN = /^\/admin\/(login|forgot-password|reset-password|invite)(\/
 const SCANNER =
   /\.(php\d?|aspx?|jsp|cgi|env|ini|bak|sql|sqlite|old|swp|log|ya?ml|toml)$|(^|\/)(\.git|\.svn|\.hg|\.env|\.aws|\.ssh|\.DS_Store|wp-admin|wp-content|wp-includes|wp-json|xmlrpc|phpmyadmin|cgi-bin|vendor\/phpunit)(\/|$)/i;
 const SEARCH_BOT = /googlebot|bingbot|duckduckbot|yandexbot|baiduspider|applebot|slurp|petalbot/i;
+/**
+ * Files that really exist at the site root (public/ and app/ metadata routes). Any other
+ * single-segment path with an extension (/foo.txt, /manifest.json …) gets a cheap 404 here
+ * instead of falling through to the locale layout, which is slow and, on Workers, unreliable.
+ */
+const ROOT_FILES = new Set(["/offline.html", "/sw.js", "/favicon.ico", "/icon.svg", "/apple-icon.png", "/site.webmanifest", "/robots.txt", "/sitemap.xml"]);
+const ROOT_FILE_LIKE = /^\/[^/]+\.[a-z0-9]+$/i;
+const notFoundText = () => new NextResponse("Not found", { status: 404, headers: { "content-type": "text/plain", "cache-control": "public, max-age=3600" } });
 
 function preferredLocale(header: string | null): Locale {
   if (!header) return "en";
@@ -35,9 +43,8 @@ function preferredLocale(header: string | null): Locale {
 export function proxy(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
 
-  if (SCANNER.test(pathname)) {
-    return new NextResponse("Not found", { status: 404, headers: { "content-type": "text/plain", "cache-control": "public, max-age=3600" } });
-  }
+  if (SCANNER.test(pathname)) return notFoundText();
+  if (ROOT_FILE_LIKE.test(pathname)) return ROOT_FILES.has(pathname) ? NextResponse.next() : notFoundText();
 
   if (pathname === "/admin" || pathname.startsWith("/admin/")) {
     const hasSession = request.cookies.has("__Host-ash_session") || request.cookies.has("ash_session");
@@ -79,5 +86,7 @@ export const config = {
     "/((?!_next/|api/|media/|files/|images/|brand/|favicon.ico|robots.txt|sitemap.xml|manifest.webmanifest|icon|apple-icon|.*\\.[a-z0-9]+$).*)",
     // Scanner probes that the rule above skips because they end in a file extension.
     "/(.*\\.(?:php\\d?|aspx?|jsp|cgi|env|ini|bak|sql|sqlite|old|swp|log|ya?ml|toml))",
+    // File-like paths at the site root (see ROOT_FILES).
+    "/([^/]+\\.[a-zA-Z0-9]+)",
   ],
 };

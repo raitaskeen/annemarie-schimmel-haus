@@ -1,12 +1,13 @@
 import "server-only";
 import path from "node:path";
 import { and, asc, count, desc, eq, getTableColumns, ilike, inArray, or, sql, type SQL } from "drizzle-orm";
-import sharp from "sharp";
 import { db } from "@/db";
 import { examDates, galleryItems, mediaAssets, partners, posts } from "@/db/schema";
 import { GALLERY_CATEGORIES } from "@/lib/gallery";
+import { onCloudflareWorkers } from "@/lib/runtime";
 import { isSafeImagePath } from "@/lib/schemas/admin";
 import { ActionError } from "@/server/admin/action-utils";
+import { publicImageSizeOnWorkers } from "@/server/files";
 
 /** Pixel size of a library image (uploaded asset or file under /public). */
 export async function imageSize(imagePath: string): Promise<{ width: number; height: number }> {
@@ -17,10 +18,16 @@ export async function imageSize(imagePath: string): Promise<{ width: number; hei
     if (!row) throw new ActionError("That uploaded image no longer exists.");
     return row;
   }
+  if (onCloudflareWorkers) {
+    const size = await publicImageSizeOnWorkers(imagePath);
+    if (!size) throw new ActionError("That image could not be read.");
+    return size;
+  }
   const root = path.join(process.cwd(), "public");
   const file = path.normalize(path.join(root, imagePath));
   if (!file.startsWith(root + path.sep)) throw new ActionError("Choose an image from the library.");
   try {
+    const { default: sharp } = await import("sharp");
     const meta = await sharp(file).metadata();
     if (!meta.width || !meta.height) throw new Error("no size");
     return { width: meta.width, height: meta.height };

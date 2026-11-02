@@ -9,8 +9,8 @@ import { useEffect } from "react";
 export function ServiceWorker() {
   useEffect(() => {
     if (!("serviceWorker" in navigator)) return;
-    // Development and the static showcase: no offline worker (it would serve stale copies).
-    if (process.env.NODE_ENV !== "production" || process.env.NEXT_PUBLIC_SHOWCASE === "1") {
+    // Development: no offline worker (it would serve stale copies).
+    if (process.env.NODE_ENV !== "production") {
       void navigator.serviceWorker.getRegistrations().then((regs) => regs.forEach((r) => void r.unregister()));
       return;
     }

@@ -78,9 +78,11 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
 
+  --animate-rise: rise 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
   --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
   --animate-float: float 7s ease-in-out infinite;
-  --animate-rise: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-spin-slow: spin 28s linear infinite;
+  --animate-spin-slow-reverse: spin 40s linear infinite reverse;
 
   @keyframes marquee {
     from {
@@ -93,10 +95,10 @@
   @keyframes float {
     0%,
     100% {
-      transform: translateY(0);
+      transform: translate3d(0, 0, 0);
     }
     50% {
-      transform: translateY(-10px);
+      transform: translate3d(0, -8px, 0);
     }
   }
   @keyframes draw {
@@ -107,7 +109,7 @@
   @keyframes rise {
     from {
       opacity: 0;
-      transform: translateY(18px);
+      transform: translateY(12px);
     }
     to {
       opacity: 1;
@@ -333,11 +335,8 @@
     letter-spacing: -0.02em;
   }
   .eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
+    font-size: 0.875rem;
     font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
   }
 
   /* Mughal arch, the signature frame of the ASH visual language. */
@@ -368,9 +367,58 @@
     background-size: 100% 1px;
   }
 
+  /* Soft fade at both ends of the partner strips. */
   .marquee-mask {
-    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
   }
+
+  /* Live border: a lime light that travels around the card edge. Always on with
+     [data-live], otherwise on hover and keyboard focus. */
+  .live-border {
+    position: relative;
+    isolation: isolate;
+  }
+  .live-border::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    border-radius: inherit;
+    padding: 1.5px;
+    background: conic-gradient(
+      from var(--live-angle),
+      transparent 0deg 200deg,
+      color-mix(in oklab, var(--color-lime) 40%, transparent) 250deg,
+      var(--color-lime) 320deg,
+      transparent 360deg
+    );
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    animation: live-spin 4s linear infinite;
+  }
+  .live-border[data-live]::after,
+  .live-border:hover::after,
+  .live-border:focus-visible::after {
+    opacity: 1;
+  }
+
+  /* Thin lime reading-progress line under the header (browsers with scroll timelines). */
+  .scroll-progress {
+    transform-origin: 0 50%;
+    transform: scaleX(0);
+  }
+  @supports (animation-timeline: scroll()) {
+    .scroll-progress {
+      animation: scroll-progress linear both;
+      animation-timeline: scroll(root);
+    }
+  }
+
 
   /* Rendered Markdown (descriptions, posts, events). */
   .prose-ash {
@@ -631,4 +679,144 @@
 form[data-guard]:not([data-ready]) [type="submit"] {
   pointer-events: none;
   opacity: 0.6;
+}
+
+/* Animatable angle for .live-border (falls back to a static light where unsupported). */
+@property --live-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+@keyframes live-spin {
+  to {
+    --live-angle: 360deg;
+  }
+}
+@keyframes scroll-progress {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* "Your path" scroll story (see LevelJourney): a tall track with a sticky stage. Only where
+   there is room for the stage and motion is welcome; elsewhere the levels are plain tabs. */
+@media (min-width: 1024px) and (min-height: 700px) and (prefers-reduced-motion: no-preference), (min-width: 768px) and (min-height: 960px) and (prefers-reduced-motion: no-preference) {
+  .journey-track {
+    height: calc(var(--steps, 6) * 55vh + 45vh);
+  }
+  .journey-stage {
+    position: sticky;
+    top: 4rem;
+    display: flex;
+    min-height: calc(100dvh - 4rem);
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
+/* Schimmel, the website assistant (components/chat): blinking eyes, a curious glance and a
+   spinning antenna star while she thinks. Reduced motion stills them via the base layer. */
+.bot-eye {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: bot-blink 5.5s infinite;
+}
+.bot-rosette {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+[data-thinking] .bot-eyes {
+  animation: bot-look 1.8s ease-in-out infinite;
+}
+[data-thinking] .bot-rosette {
+  animation: bot-spin 6s linear infinite;
+}
+@keyframes bot-blink {
+  0%,
+  93%,
+  100% {
+    transform: scaleY(1);
+  }
+  96% {
+    transform: scaleY(0.12);
+  }
+}
+@keyframes bot-look {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  30% {
+    transform: translate(-1.6px, -0.8px);
+  }
+  65% {
+    transform: translate(1.6px, -0.8px);
+  }
+}
+@keyframes bot-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes bot-dot {
+  0%,
+  80%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+  40% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+/* Schimmel's replies: compact Markdown, lime-underlined links and a live caret while she types. */
+.chat-md > * + * {
+  margin-top: 0.5rem;
+}
+.chat-md ul {
+  list-style: disc;
+  padding-left: 1.1rem;
+}
+.chat-md ol {
+  list-style: decimal;
+  padding-left: 1.2rem;
+}
+.chat-md li + li {
+  margin-top: 0.25rem;
+}
+.chat-md li::marker {
+  color: var(--color-ash);
+}
+.chat-md a {
+  color: var(--color-pine);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--color-lime);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+.chat-md a:hover {
+  color: var(--color-forest);
+}
+.chat-md strong {
+  color: var(--color-forest);
+  font-weight: 600;
+}
+.chat-typing > :last-child::after {
+  content: "";
+  display: inline-block;
+  width: 0.45ch;
+  height: 1em;
+  margin-left: 3px;
+  vertical-align: -0.15em;
+  border-radius: 1px;
+  background: var(--color-lime);
+  animation: bot-caret 1s steps(2) infinite;
+}
+@keyframes bot-caret {
+  50% {
+    opacity: 0;
+  }
 }

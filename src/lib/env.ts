@@ -41,6 +41,12 @@ const schema = z.object({
   WHATSAPP_VERIFY_TOKEN: optional,
   WHATSAPP_API_VERSION: z.string().default("v23.0"),
 
+  /* Website assistant "Schimmel" (src/server/chat). Without a key it answers from the site's own data. */
+  GROQ_API_KEY: optional,
+  /** Hugging Face access token (used when no Groq key is set). */
+  HF_TOKEN: optional,
+  /** Overrides the provider's default model, e.g. llama-3.3-70b-versatile. */
+  CHAT_MODEL: optional,
 });
 
 export type Env = z.infer<typeof schema>;

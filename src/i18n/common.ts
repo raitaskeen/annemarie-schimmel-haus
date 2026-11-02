@@ -196,6 +196,7 @@ const en = {
     emergencyName: "Emergency contact name",
     emergencyPhone: "Emergency contact number",
     education: "Highest education",
+    choose: "Please choose",
     educationOptions: {
       matric: "Matric / O-Levels",
       intermediate: "Intermediate / A-Levels",
@@ -223,6 +224,7 @@ const en = {
     subject: "Subject",
     message: "Message",
     topic: "Topic",
+    topicPlaceholder: "Choose a topic",
     topics: {
       courses: "German courses",
       placement: "Placement test",
@@ -488,6 +490,7 @@ const de: CommonDictionary = {
     emergencyName: "Notfallkontakt (Name)",
     emergencyPhone: "Notfallkontakt (Nummer)",
     education: "Höchster Bildungsabschluss",
+    choose: "Bitte wählen",
     educationOptions: {
       matric: "Matric / O-Levels",
       intermediate: "Intermediate / A-Levels",
@@ -515,6 +518,7 @@ const de: CommonDictionary = {
     subject: "Betreff",
     message: "Nachricht",
     topic: "Thema",
+    topicPlaceholder: "Thema wählen",
     topics: {
       courses: "Deutschkurse",
       placement: "Einstufungstest",

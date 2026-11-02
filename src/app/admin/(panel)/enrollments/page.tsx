@@ -40,7 +40,7 @@ export default async function EnrollmentsPage(props: PageProps<"/admin/enrollmen
         }
       />
 
-      <div className="mb-4 -mx-1 flex gap-2 overflow-x-auto px-1 pb-1 no-scrollbar">
+      <div className="mb-4 -mx-1 flex gap-2 overflow-x-auto px-1 pr-10 pb-1 no-scrollbar [mask-image:linear-gradient(to_right,black_80%,transparent)] sm:pr-1 sm:[mask-image:none]">
         {[{ key: "all", label: "All", n: total }, ...(data.reported ? [{ key: "reported", label: "Payment reported", n: data.reported }] : []), ...ENROLLMENT_STATUSES.map((s) => ({ key: s, label: s.replace("_", " "), n: data.statusCounts[s] ?? 0 }))].map((s) => {
           const active = (filters.status ?? "all") === s.key;
           return (

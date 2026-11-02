@@ -7,7 +7,6 @@ const en = {
   trackLabel: "Track this application",
   keepIt: "Keep this number, together with your phone number it lets you track your application at any time.",
   errors: {
-    showcase: "This is a showcase without a database, so the tracker cannot look up applications. On the live system it shows the full status timeline.",
     human: "Please answer the quick check again, the question has been refreshed.",
     rate_limited: "Too many attempts from your connection. Please wait a few minutes and try again.",
     closed: "Registration for this date has just closed. Please choose another date.",
@@ -69,7 +68,6 @@ const de: FormsCopy = {
   trackLabel: "Antrag verfolgen",
   keepIt: "Bewahren Sie diese Nummer auf, zusammen mit Ihrer Telefonnummer können Sie Ihren Antrag jederzeit verfolgen.",
   errors: {
-    showcase: "Dies ist eine Vorschau ohne Datenbank, daher kann der Tracker keine Anträge abrufen. Im Live-System zeigt er den vollständigen Statusverlauf.",
     human: "Bitte beantworten Sie die Prüfung erneut, die Frage wurde aktualisiert.",
     rate_limited: "Zu viele Versuche von Ihrer Verbindung. Bitte warten Sie einige Minuten.",
     closed: "Die Anmeldung für diesen Termin ist gerade geschlossen worden. Bitte wählen Sie einen anderen Termin.",

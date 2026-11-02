@@ -5,6 +5,8 @@
 FROM oven/bun:1.4.2 AS deps
 WORKDIR /app
 COPY package.json bun.lock ./
+# Local patches (patches/*.patch) are applied by bun install.
+COPY patches ./patches
 RUN bun install --frozen-lockfile
 
 FROM node:24-slim AS build

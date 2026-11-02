@@ -60,17 +60,17 @@ tests/               unit tests
 docs/                deployment, Gmail and WhatsApp set-up
 ```
 
-## Showcase on Cloudflare Workers (free plan)
+## Serverless on Cloudflare Workers
 
-`showcase-site/` is a static copy of the public website for an independent, **unofficial** showcase of this project: every page in English and German, forms in demo mode (nothing is stored or sent), a welcome dialog that explains the project, previews the admin and lists the stack. It needs no server and no database and runs on the Cloudflare Workers free plan as static assets.
+The full app (website, admin, forms, uploads, the assistant) also runs as a Cloudflare Worker with
+Postgres through Hyperdrive, no server to maintain. Set-up, costs, which database to use and why the
+free plan alone is not enough: **[docs/CLOUDFLARE.md](docs/CLOUDFLARE.md)**.
 
 | Step | Command |
 |---|---|
-| Rebuild after content or code changes (local database running) | `bun run showcase` |
-| Preview locally in the Workers runtime | `npx wrangler dev` → <http://localhost:8787> |
-| Deploy to `*.workers.dev` | `npx wrangler deploy` |
-
-With **Workers Builds** (Cloudflare dashboard → Workers & Pages → Create → Import a repository), leave the build command empty and use `npx wrangler deploy` as the deploy command; `wrangler.jsonc` points to `showcase-site/`. The showcase sends `X-Robots-Tag: noindex` so it never competes with the official site in search results.
+| Build for Workers | `bun run cf:build` |
+| Preview locally in the Workers runtime | `bun run cf:preview` → <http://localhost:8787> |
+| Deploy | `bun run cf:deploy` |
 
 ## Going live
 
