@@ -248,6 +248,10 @@ export async function seed({ force = false }: { force?: boolean } = {}) {
             cnic: e.requiresCnic ? fakeCnic() : null,
             organization: random() > 0.6 ? pick(["University of the Punjab", "LUMS", "FCCU", "Kinnaird College", "UET Lahore"]) : null,
             guests,
+            guestDetails: Array.from({ length: guests }, (_, g) => {
+              const [gf, gl] = samplePeople[(i * 7 + e.slug.length + 3 + g * 5) % samplePeople.length];
+              return { name: `${gf} ${gl}`, phone: null, cnic: e.requiresCnic ? fakeCnic() : null };
+            }),
             whatsappOptIn: random() > 0.4,
             privacyConsentAt: created,
             checkedInAt: status === "attended" ? new Date(e.startsAt) : null,

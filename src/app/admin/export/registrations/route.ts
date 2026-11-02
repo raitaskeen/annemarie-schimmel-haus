@@ -21,6 +21,7 @@ export async function GET(request: Request) {
     phone: r.phone,
     organization: r.organization ?? "",
     guests: r.guests,
+    guest_details: r.guestDetails.map((g) => [g.name, g.phone, event.requiresCnic ? g.cnic : null].filter(Boolean).join(" / ")).join("; "),
     cnic: event.requiresCnic ? (r.cnic ?? "") : "",
     whatsapp: r.whatsappOptIn ? "yes" : "no",
     registered_at: formatDateTime(r.createdAt, "en"),

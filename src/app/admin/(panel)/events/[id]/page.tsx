@@ -138,7 +138,16 @@ export default async function EventRegistrationsPage(props: PageProps<"/admin/ev
                           {r.whatsappOptIn && " · WhatsApp"}
                         </div>
                       </td>
-                      <td className="tabular">{r.guests ? `1 + ${r.guests}` : "1"}</td>
+                      <td>
+                        <div className="tabular">{r.guests ? `1 + ${r.guests}` : "1"}</div>
+                        {r.guestDetails.map((g, i) => (
+                          <div key={i} className="text-xs whitespace-nowrap text-muted-foreground">
+                            {g.name}
+                            {g.phone && ` · ${g.phone}`}
+                            {g.cnic && ` · ${g.cnic}`}
+                          </div>
+                        ))}
+                      </td>
                       <td className="text-xs whitespace-nowrap text-muted-foreground">{formatDateTime(r.createdAt, "en")}</td>
                       <td>
                         <StatusBadge status={r.status} label={r.status === "attended" ? "checked in" : undefined} />

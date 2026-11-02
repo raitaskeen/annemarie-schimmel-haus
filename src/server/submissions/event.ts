@@ -49,7 +49,12 @@ export async function submitEventRegistration(input: unknown, locale: Locale): P
       if (event.requiresCnic && !data.cnic) {
         return { invalid: { cnic: "required" } } as const;
       }
-      const guests = Math.min(data.guests, event.maxGuests);
+      const guestDetails = data.guestDetails.slice(0, event.maxGuests);
+      const missingCnic = event.requiresCnic ? guestDetails.findIndex((g) => !g.cnic) : -1;
+      if (missingCnic >= 0) {
+        return { invalid: { [`guestDetails.${missingCnic}.cnic`]: "required" } } as const;
+      }
+      const guests = guestDetails.length;
       const seats = 1 + guests;
 
       const reserved = await tx
@@ -73,6 +78,7 @@ export async function submitEventRegistration(input: unknown, locale: Locale): P
           cnic: data.cnic,
           organization: data.organization || null,
           guests,
+          guestDetails,
           whatsappOptIn: data.whatsappOptIn,
           privacyConsentAt: new Date(),
           idempotencyKey: data.idempotencyKey,

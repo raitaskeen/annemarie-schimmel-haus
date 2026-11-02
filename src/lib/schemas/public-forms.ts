@@ -135,6 +135,35 @@ export const MAX_DOCUMENT_BYTES = 5 * 1024 * 1024;
 
 /* ------------------------------------------------------ event registration */
 
+/** An accompanying guest: a name, and optionally a phone; the CNIC is checked against the event on the server. */
+const eventGuestSchema = z.object({
+  name: text(3, 120),
+  phone: z
+    .string()
+    .optional()
+    .transform((v, ctx) => {
+      if (!v?.trim()) return null;
+      const n = normalizePhone(v);
+      if (!n) {
+        ctx.addIssue({ code: "custom", message: "phone" });
+        return z.NEVER;
+      }
+      return n;
+    }),
+  cnic: z
+    .string()
+    .optional()
+    .transform((v, ctx) => {
+      if (!v) return null;
+      const n = normalizeCnic(v);
+      if (!n) {
+        ctx.addIssue({ code: "custom", message: "cnic" });
+        return z.NEVER;
+      }
+      return n;
+    }),
+});
+
 export const eventRegistrationSchema = z.object({
   eventId: z.string().uuid(),
   name: text(3, 120),
@@ -153,7 +182,7 @@ export const eventRegistrationSchema = z.object({
       return n;
     }),
   organization: optionalText(120),
-  guests: z.coerce.number().int().min(0).max(5).default(0),
+  guestDetails: z.array(eventGuestSchema).max(5).default([]),
   whatsappOptIn: bool,
   privacyConsent: consent,
   ...guardFields,

@@ -34,9 +34,6 @@ export type SeedEvent = {
   sampleRegistrations: number;
 };
 
-const ROOH_KA_SAUDA_VENUE =
-  "Annemarie-Schimmel-Haus (German Cultural Centre Lahore), 155 Scotch Corner, Street 3, Upper Mall, Lahore";
-
 const ROOH_KA_SAUDA_EN = `Annemarie-Schimmel-Haus, MAAS Foundation and the German Embassy Islamabad present **Rooh Ka Sauda**, an Urdu-language theatre production inspired by Goethe's *Faust*, directed by Aamir Nawaz.
 
 **Performances**
@@ -139,10 +136,10 @@ export const seedEvents: SeedEvent[] = [
     bodyDe: ROOH_KA_SAUDA_DE,
     category: "cultural",
     startsAt: "2026-11-06T19:30:00+05:00",
-    venue: ROOH_KA_SAUDA_VENUE,
     imagePath: "/images/polished/ash-dslr-1358.webp",
     imageAlt: "The Annemarie-Schimmel-Haus on Upper Mall, Lahore, venue of Rooh Ka Sauda.",
     capacity: 150,
+    maxGuests: 3,
     collaborators: ["MAAS Foundation", "German Embassy Islamabad"],
     featured: true,
     sampleRegistrations: 0,
@@ -159,10 +156,10 @@ export const seedEvents: SeedEvent[] = [
     bodyDe: ROOH_KA_SAUDA_DE,
     category: "cultural",
     startsAt: "2026-11-07T19:30:00+05:00",
-    venue: ROOH_KA_SAUDA_VENUE,
     imagePath: "/images/polished/ash-dslr-1358.webp",
     imageAlt: "The Annemarie-Schimmel-Haus on Upper Mall, Lahore, venue of Rooh Ka Sauda.",
     capacity: 150,
+    maxGuests: 3,
     collaborators: ["MAAS Foundation", "German Embassy Islamabad"],
     sampleRegistrations: 0,
   },
