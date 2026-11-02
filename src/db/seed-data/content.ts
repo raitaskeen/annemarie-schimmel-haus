@@ -34,9 +34,32 @@ export type SeedEvent = {
   sampleRegistrations: number;
 };
 
+const ROOH_KA_SAUDA_VENUE =
+  "Annemarie-Schimmel-Haus (German Cultural Centre Lahore), 155 Scotch Corner, Street 3, Upper Mall, Lahore";
+
+const ROOH_KA_SAUDA_EN = `Annemarie-Schimmel-Haus, MAAS Foundation and the German Embassy Islamabad present **Rooh Ka Sauda**, an Urdu-language theatre production inspired by Goethe's *Faust*, directed by Aamir Nawaz.
+
+**Performances**
+- 1st performance: Friday, 6 November 2026, 7:30 pm
+- 2nd performance: Saturday, 7 November 2026, 7:30 pm
+
+**Important information**
+- Admission is free with prior registration.
+- Seats are limited; entry is first come, first served, even after registration.`;
+
+const ROOH_KA_SAUDA_DE = `Das Annemarie-Schimmel-Haus, die MAAS Foundation und die Deutsche Botschaft Islamabad präsentieren **Rooh Ka Sauda**, eine Theaterproduktion in Urdu nach Goethes *Faust*, inszeniert von Aamir Nawaz.
+
+**Aufführungen**
+- 1. Aufführung: Freitag, 6. November 2026, 19:30 Uhr
+- 2. Aufführung: Samstag, 7. November 2026, 19:30 Uhr
+
+**Wichtige Hinweise**
+- Eintritt frei mit vorheriger Anmeldung.
+- Die Plätze sind begrenzt; der Einlass erfolgt in der Reihenfolge der Ankunft, auch nach Anmeldung.`;
+
 /**
- * Open Day 2026 and European Day of Languages 2026 are the institute's published
- * events. The later events are editable samples for the upcoming season.
+ * Open Day 2026, European Day of Languages 2026 and Rooh Ka Sauda are the institute's
+ * published events. The other events are editable samples for the upcoming season.
  */
 export const seedEvents: SeedEvent[] = [
   {
@@ -105,6 +128,45 @@ export const seedEvents: SeedEvent[] = [
     sampleRegistrations: 0,
   },
   {
+    slug: "rooh-ka-sauda-2026-friday",
+    titleEn: "Rooh Ka Sauda: Friday performance",
+    titleDe: "Rooh Ka Sauda: Aufführung am Freitag",
+    summaryEn:
+      "An Urdu-language theatre production inspired by Goethe's Faust, directed by Aamir Nawaz (MAAS Foundation). Free entry with prior registration.",
+    summaryDe:
+      "Eine Theaterproduktion in Urdu nach Goethes Faust, inszeniert von Aamir Nawaz (MAAS Foundation). Eintritt frei mit vorheriger Anmeldung.",
+    bodyEn: ROOH_KA_SAUDA_EN,
+    bodyDe: ROOH_KA_SAUDA_DE,
+    category: "cultural",
+    startsAt: "2026-11-06T19:30:00+05:00",
+    venue: ROOH_KA_SAUDA_VENUE,
+    imagePath: "/images/polished/ash-dslr-1358.webp",
+    imageAlt: "The Annemarie-Schimmel-Haus on Upper Mall, Lahore, venue of Rooh Ka Sauda.",
+    capacity: 150,
+    collaborators: ["MAAS Foundation", "German Embassy Islamabad"],
+    featured: true,
+    sampleRegistrations: 0,
+  },
+  {
+    slug: "rooh-ka-sauda-2026-saturday",
+    titleEn: "Rooh Ka Sauda: Saturday performance",
+    titleDe: "Rooh Ka Sauda: Aufführung am Samstag",
+    summaryEn:
+      "An Urdu-language theatre production inspired by Goethe's Faust, directed by Aamir Nawaz (MAAS Foundation). Free entry with prior registration.",
+    summaryDe:
+      "Eine Theaterproduktion in Urdu nach Goethes Faust, inszeniert von Aamir Nawaz (MAAS Foundation). Eintritt frei mit vorheriger Anmeldung.",
+    bodyEn: ROOH_KA_SAUDA_EN,
+    bodyDe: ROOH_KA_SAUDA_DE,
+    category: "cultural",
+    startsAt: "2026-11-07T19:30:00+05:00",
+    venue: ROOH_KA_SAUDA_VENUE,
+    imagePath: "/images/polished/ash-dslr-1358.webp",
+    imageAlt: "The Annemarie-Schimmel-Haus on Upper Mall, Lahore, venue of Rooh Ka Sauda.",
+    capacity: 150,
+    collaborators: ["MAAS Foundation", "German Embassy Islamabad"],
+    sampleRegistrations: 0,
+  },
+  {
     slug: "kinotag-german-cinema-evening",
     titleEn: "KinoTag: German Cinema Evening",
     titleDe: "KinoTag: Deutscher Filmabend",
@@ -117,13 +179,12 @@ export const seedEvents: SeedEvent[] = [
     bodyDe:
       "Unsere KinoTag-Reihe bringt preisgekröntes deutsches Kino nach Lahore. Einlass 30 Minuten vor Beginn. Eintritt frei, die Anmeldung hilft uns bei der Platzplanung.",
     category: "film",
-    startsAt: "2026-11-06T17:00:00+05:00",
-    endsAt: "2026-11-06T19:30:00+05:00",
+    startsAt: "2026-11-13T17:00:00+05:00",
+    endsAt: "2026-11-13T19:30:00+05:00",
     imagePath: "/images/polished/ash-fb-0032.webp",
     imageAlt: "KinoTag im Schimmel-Haus: contemporary German cinema series.",
     capacity: 80,
     maxGuests: 1,
-    featured: true,
     sampleRegistrations: 31,
   },
   {
