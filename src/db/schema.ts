@@ -346,6 +346,7 @@ export const privateFiles = pgTable(
 /* ---------------------------------------------------------------- events */
 
 export type AgendaItem = { time: string; titleEn: string; titleDe?: string; location?: string };
+export type GuestDetail = { name: string; phone?: string | null; cnic?: string | null };
 
 export const events = pgTable(
   "events",
@@ -403,6 +404,8 @@ export const eventRegistrations = pgTable(
     cnic: text(),
     organization: text(),
     guests: integer().notNull().default(0),
+    /** Who the accompanying guests are; `guests` is always its length for new registrations. */
+    guestDetails: jsonb().$type<GuestDetail[]>().notNull().default([]),
     whatsappOptIn: boolean().notNull().default(false),
     privacyConsentAt: tstz().notNull(),
     checkedInAt: tstz(),
