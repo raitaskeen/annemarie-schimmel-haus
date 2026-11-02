@@ -99,15 +99,9 @@ Behind Cloudflare set `IP_SOURCE=cf-connecting-ip` so rate limits see the real v
 
 ## Cloudflare Workers
 
-Running the app *on* Workers is a separate porting project, not a configuration change:
-
-- `sharp` (image re-encoding) is native code → replace with Cloudflare Images or a WebAssembly codec.
-- Application documents are stored in Postgres → move them to R2.
-- Postgres over Workers needs Hyperdrive (connection pooling) and the `nodejs_compat` flag.
-- scrypt password hashing needs ~50–100 ms CPU → exceeds the Free plan's 10 ms CPU limit; requires Workers Paid ($5/month).
-- Next.js runs through the OpenNext Cloudflare adapter; check its support for Cache Components / partial prerendering before switching.
-
-Recommendation: keep the Node server and put Cloudflare in front (free CDN, TLS, WAF, DDoS protection). Revisit Workers if traffic grows beyond one server.
+The app runs on Workers too (OpenNext adapter, Postgres through Hyperdrive, uploads re-encoded by the
+Cloudflare Images binding, maintenance by Cron Trigger). Everything is in [CLOUDFLARE.md](CLOUDFLARE.md),
+including why it needs Workers Paid ($5/month) rather than the free plan.
 
 ## GitHub
 

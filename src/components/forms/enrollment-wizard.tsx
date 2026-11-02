@@ -390,7 +390,7 @@ export function EnrollmentWizard({ locale, offering, t, form, common, forms, lin
                     {(a) => (
                       <SelectInput id={a.id} aria-describedby={a.describedBy} aria-invalid={a.invalid} defaultValue="" {...register("education")}>
                         <option value="" disabled>
-                          , 
+                          {form.choose}
                         </option>
                         {educationOptions.map(([v, label]) => (
                           <option key={v} value={v}>

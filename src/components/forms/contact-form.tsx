@@ -99,7 +99,7 @@ export function ContactForm({ locale, form, common, forms, privacyHref }: { loca
           {(a) => (
             <SelectInput id={a.id} aria-describedby={a.describedBy} aria-invalid={a.invalid} defaultValue="" {...register("topic")}>
               <option value="" disabled>
-                , 
+                {form.topicPlaceholder}
               </option>
               {Object.entries(form.topics).map(([value, label]) => (
                 <option key={value} value={value}>

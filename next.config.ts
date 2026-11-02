@@ -48,22 +48,16 @@ const privateHeaders = [
   { key: "X-Robots-Tag", value: "noindex, nofollow, noarchive" },
 ];
 
-/**
- * Showcase build (NEXT_PUBLIC_SHOWCASE=1, see scripts/build-showcase.ts): a static copy of the public
- * site for Cloudflare Workers. Forms use browser-side stand-ins, images are served as files, and the
- * build goes to its own folder so it never replaces the regular build.
- */
-const SHOWCASE = process.env.NEXT_PUBLIC_SHOWCASE === "1";
-
 const nextConfig: NextConfig = {
-  ...(SHOWCASE ? { distDir: ".next-showcase" } : {}),
   cacheComponents: true,
   partialPrefetching: true,
   poweredByHeader: false,
   reactStrictMode: true,
   serverExternalPackages: ["pg", "sharp", "embedded-postgres"],
+  // pg switches to its Cloudflare socket driver inside Workers; tracing on Node never sees that
+  // import, so the Workers build (docs/CLOUDFLARE.md) would miss it without this.
+  outputFileTracingIncludes: { "/*": ["./node_modules/pg-cloudflare/**/*"] },
   images: {
-    unoptimized: SHOWCASE,
     formats: ["image/avif", "image/webp"],
     qualities: [60, 75, 85],
     minimumCacheTTL: 2_678_400,
@@ -104,7 +98,6 @@ const nextConfig: NextConfig = {
     ];
   },
   turbopack: {
-    ...(SHOWCASE ? { resolveAlias: { "@/server/actions/public": "./src/lib/showcase/actions.ts" } } : {}),
     rules: {
       "*.css": {
         loaders: ["@tailwindcss/turbopack"],

@@ -53,7 +53,6 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
   return (
     <footer className="relative mt-auto overflow-hidden bg-forest text-white">
       <Girih className="text-white/[0.035]" size={84} />
-      <div className="absolute -top-40 -right-40 size-[520px] rounded-full bg-lime/10 blur-3xl" aria-hidden />
 
       <div className="container-site relative">
         {/* Call to action band */}
@@ -102,7 +101,7 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={s.label}
-                    className="grid size-10 place-items-center rounded-full bg-white/[0.07] text-white/80 ring-1 ring-white/10 transition-all hover:-translate-y-0.5 hover:bg-lime hover:text-forest"
+                    className="grid size-10 place-items-center rounded-full bg-white/[0.07] text-white/80 ring-1 ring-white/10 transition-colors hover:bg-lime hover:text-forest"
                   >
                     <SocialIcon network={s.icon} />
                   </a>
@@ -206,11 +205,9 @@ export async function SiteFooter({ locale }: { locale: Locale }) {
             <Link href={href(locale, "/terms")} className="hover:text-white">
               {f.terms}
             </Link>
-            {process.env.NEXT_PUBLIC_SHOWCASE !== "1" && (
-              <Link href="/admin" className="inline-flex items-center gap-1 hover:text-white">
+            <Link href="/admin" className="inline-flex items-center gap-1 hover:text-white">
               Staff <ArrowUpRight className="size-3" />
             </Link>
-            )}
           </div>
         </div>
       </div>

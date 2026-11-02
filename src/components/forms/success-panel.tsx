@@ -62,7 +62,6 @@ export function SuccessPanel({
       role="status"
       aria-live="polite"
     >
-      <div className="absolute -top-20 -right-20 size-64 rounded-full bg-lime/25 blur-3xl" aria-hidden />
       <div className="relative">
         <m.span
           initial={{ scale: 0.4, rotate: -20 }}

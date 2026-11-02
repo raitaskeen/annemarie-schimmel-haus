@@ -27,7 +27,7 @@ export function OfferingCard({ o, locale, className }: { o: OfferingData; locale
   return (
     <article
       className={cn(
-        "group relative flex h-full flex-col overflow-hidden rounded-3xl bg-cream ring-1 ring-ink/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-35px_rgb(16_36_28/0.55)] hover:ring-ash/40",
+        "group relative flex h-full flex-col overflow-hidden rounded-3xl bg-cream ring-1 ring-ink/10 transition-shadow duration-200 hover:shadow-[0_30px_60px_-35px_rgb(16_36_28/0.55)] hover:ring-ash/40",
         className,
       )}
     >
@@ -71,13 +71,13 @@ export function OfferingCard({ o, locale, className }: { o: OfferingData; locale
         <div className="flex items-center justify-between gap-3">
           <p className="font-display text-2xl text-forest tabular">
             {formatPKR(o.feePkr, locale)}
-            <span className="block font-sans text-[11px] font-medium tracking-wide text-stone uppercase">{d.common.perCourse}</span>
+            <span className="block font-sans text-xs text-stone">{d.common.perCourse}</span>
           </p>
           <Link
             href={cta.href}
             aria-disabled={cta.disabled || undefined}
             className={cn(
-              "relative z-10 inline-flex h-11 items-center gap-1.5 rounded-full px-5 text-sm font-semibold transition-all",
+              "relative z-10 inline-flex h-11 items-center gap-1.5 rounded-full px-5 text-sm font-semibold transition-colors",
               cta.disabled ? "bg-ink/5 text-stone" : o.state === "full" ? "bg-sand text-forest hover:bg-forest hover:text-white" : "bg-forest text-white hover:bg-pine",
             )}
           >
@@ -124,7 +124,7 @@ export function EventCard({ e, locale, variant = "card", className }: { e: Event
             {time} · {e.venue}
           </p>
         </div>
-        <ArrowUpRight className="size-5 shrink-0 text-ash opacity-0 transition-all group-hover:opacity-100" />
+        <ArrowUpRight className="size-5 shrink-0 text-ash opacity-0 transition-opacity group-hover:opacity-100" />
       </article>
     );
   }
@@ -133,7 +133,7 @@ export function EventCard({ e, locale, variant = "card", className }: { e: Event
   return (
     <article
       className={cn(
-        "group relative flex h-full flex-col overflow-hidden rounded-3xl bg-cream ring-1 ring-ink/10 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_30px_60px_-35px_rgb(16_36_28/0.55)]",
+        "group relative flex h-full flex-col overflow-hidden rounded-3xl bg-cream ring-1 ring-ink/10 transition-shadow duration-200 hover:shadow-[0_30px_60px_-35px_rgb(16_36_28/0.55)]",
         feature && "lg:grid lg:grid-cols-[1.25fr_1fr]",
         className,
       )}
@@ -145,7 +145,7 @@ export function EventCard({ e, locale, variant = "card", className }: { e: Event
             alt={e.imageAlt ?? ""}
             fill
             sizes={feature ? "(min-width: 1024px) 45vw, 100vw" : "(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"}
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className="object-cover"
           />
         )}
         <div className="absolute top-4 left-4 flex gap-2">

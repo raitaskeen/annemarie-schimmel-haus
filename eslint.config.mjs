@@ -15,12 +15,11 @@ const eslintConfig = defineConfig([
   globalIgnores([
     // Default ignores of eslint-config-next:
     ".next/**",
+    // Cloudflare Workers build output (bun run cf:build).
+    ".open-next/**",
     "out/**",
     "build/**",
     "next-env.d.ts",
-    // Generated static showcase (scripts/build-showcase.ts).
-    ".next-showcase/**",
-    "showcase-site/**",
     ".wrangler/**",
   ]),
 ]);

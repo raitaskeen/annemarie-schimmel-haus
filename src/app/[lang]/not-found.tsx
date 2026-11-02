@@ -5,6 +5,8 @@ import { Girih } from "@/components/site/girih";
 export default function NotFound() {
   return (
     <section className="relative overflow-hidden">
+      {/* Hoisted into <head> by React. Streamed not-found pages (e.g. on Workers) may miss Next's own tag. */}
+      <meta name="robots" content="noindex, nofollow" />
       <div className="absolute inset-0 text-ash/10">
         <Girih size={56} />
       </div>

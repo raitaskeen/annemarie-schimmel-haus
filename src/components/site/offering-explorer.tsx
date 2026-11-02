@@ -35,7 +35,7 @@ export function OfferingExplorer({
             aria-pressed={active === f.value}
             onClick={() => setActive(f.value)}
             className={cn(
-              "h-10 shrink-0 rounded-full px-4 text-sm font-semibold transition-all",
+              "h-10 shrink-0 rounded-full px-4 text-sm font-semibold transition-colors",
               active === f.value ? "bg-forest text-white shadow-[0_8px_20px_-12px_rgb(16_36_28/0.9)]" : "bg-cream text-forest ring-1 ring-ink/10 hover:ring-ash",
             )}
           >

@@ -63,9 +63,9 @@ export function DateBadge({ day, month, weekday, className, tone = "light" }: { 
         className,
       )}
     >
-      {weekday && <span className="text-[10px] font-semibold tracking-widest uppercase opacity-70">{weekday}</span>}
+      {weekday && <span className="text-[11px] font-medium opacity-70">{weekday}</span>}
       <span className="font-display text-3xl tabular">{day}</span>
-      <span className="text-[11px] font-semibold tracking-wider uppercase">{month}</span>
+      <span className="text-xs font-medium">{month}</span>
     </div>
   );
 }

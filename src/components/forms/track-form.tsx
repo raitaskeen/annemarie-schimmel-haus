@@ -180,7 +180,6 @@ function TrackResultView({ r, locale, t, links, onChange }: { r: TrackResult; lo
   return (
     <article className="@container overflow-hidden rounded-[2rem] bg-cream ring-1 ring-ink/10" aria-live="polite">
       <header className="relative overflow-hidden bg-forest p-6 text-white sm:p-8">
-        <div className="absolute -top-16 -right-10 size-56 rounded-full bg-lime/15 blur-2xl" aria-hidden />
         <div className="relative flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="eyebrow text-lime">{t.kinds[r.kind]}</p>

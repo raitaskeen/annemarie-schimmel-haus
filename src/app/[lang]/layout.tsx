@@ -1,13 +1,14 @@
 import { Suspense } from "react";
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { lang } from "next/root-params";
 import "../globals.css";
 import { fontVariables } from "../fonts";
 import { MotionProvider } from "@/components/motion";
+import { ChatWidget } from "@/components/chat/chat-widget";
 import { InstallBanner } from "@/components/pwa/install-ui";
 import { ServiceWorker } from "@/components/pwa/service-worker";
-import { ShowcaseIntro } from "@/components/showcase/showcase-intro";
 import { captureInstallPromptScript } from "@/components/pwa/capture-script";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
@@ -70,22 +71,21 @@ export default async function PublicLayout({ children }: LayoutProps<"/[lang]">)
   if (!hasLocale(value)) notFound();
   return (
     <html lang={value} className={fontVariables}>
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: captureInstallPromptScript }} />
-      </head>
       <body className="flex min-h-dvh flex-col">
+        <Script id="capture-install-prompt" strategy="beforeInteractive" dangerouslySetInnerHTML={{ __html: captureInstallPromptScript }} />
+        <div aria-hidden className="scroll-progress pointer-events-none fixed inset-x-0 top-0 z-[60] h-[3px] bg-lime" />
         <MotionProvider>
           <SiteHeader locale={value} />
           <main id="main" className="flex-1">
             {children}
           </main>
           <SiteFooter locale={value} />
+          <ChatWidget locale={value} />
           <Toaster position="top-center" richColors />
           <Suspense fallback={null}>
             <InstallBanner labels={commonDictionary(value).app} />
           </Suspense>
           <ServiceWorker />
-          {process.env.NEXT_PUBLIC_SHOWCASE === "1" && <ShowcaseIntro />}
         </MotionProvider>
       </body>
     </html>

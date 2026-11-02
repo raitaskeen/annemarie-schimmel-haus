@@ -15,7 +15,6 @@
 
 # next.js
 /.next/
-/.next-showcase/
 /out/
 
 # production
@@ -49,3 +48,8 @@ next-env.d.ts
 
 # Cloudflare Wrangler local state
 /.wrangler/
+
+# Cloudflare Workers build output and local secrets
+/.open-next/
+.dev.vars
+.dev.vars.*

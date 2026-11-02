@@ -1,0 +1,30 @@
+diff --git a/dist/esm/server/use-cache/use-cache-wrapper.js b/dist/esm/server/use-cache/use-cache-wrapper.js
+index bf5157c95b04f80c11e0e52fca95bd68bfcf1842..70cc0c88f037860b52144cf804fdbf271d8fc8bd 100644
+--- a/dist/esm/server/use-cache/use-cache-wrapper.js	
++++ b/dist/esm/server/use-cache/use-cache-wrapper.js
+@@ -1980,7 +1980,9 @@ export async function cache(kind, id, boundArgsLength, originalFn, args) {
+         // not be registered for other requests to join. And a draft mode request
+         // must not join a pending public fill, because it would be served the
+         // published content instead of the draft.
+-        const skipCrossRequestDedupe = isPrivate && !process.env.__NEXT_DEV_SERVER || workStore.isDraftMode;
++        // Cloudflare Workers: a joiner can wait forever on a leader whose cache write never settles
++        // (opennextjs/opennextjs-cloudflare#1464), so every request fills its own entry there.
++        const skipCrossRequestDedupe = isPrivate && !process.env.__NEXT_DEV_SERVER || workStore.isDraftMode || globalThis.navigator?.userAgent === "Cloudflare-Workers";
+         try {
+             // The loop handles cross-request root param mismatches: when a
+             // cross-request joiner discovers that the leader's root params differ
+diff --git a/dist/server/use-cache/use-cache-wrapper.js b/dist/server/use-cache/use-cache-wrapper.js
+index dc16d38df80cafe00dd8289f88b353340e9ccb18..1e50ab4a81ec0bee8424560cecac435481e5192a 100644
+--- a/dist/server/use-cache/use-cache-wrapper.js	
++++ b/dist/server/use-cache/use-cache-wrapper.js
+@@ -2036,7 +2036,9 @@ async function cache(kind, id, boundArgsLength, originalFn, args) {
+         // not be registered for other requests to join. And a draft mode request
+         // must not join a pending public fill, because it would be served the
+         // published content instead of the draft.
+-        const skipCrossRequestDedupe = isPrivate && !process.env.__NEXT_DEV_SERVER || workStore.isDraftMode;
++        // Cloudflare Workers: a joiner can wait forever on a leader whose cache write never settles
++        // (opennextjs/opennextjs-cloudflare#1464), so every request fills its own entry there.
++        const skipCrossRequestDedupe = isPrivate && !process.env.__NEXT_DEV_SERVER || workStore.isDraftMode || globalThis.navigator?.userAgent === "Cloudflare-Workers";
+         try {
+             // The loop handles cross-request root param mismatches: when a
+             // cross-request joiner discovers that the leader's root params differ

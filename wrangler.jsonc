@@ -1,14 +1,49 @@
-// Cloudflare Workers (free plan): serves the static showcase in showcase-site/.
-// Rebuild it with `bun scripts/build-showcase.ts`, deploy with `npx wrangler deploy`.
+// Cloudflare Workers deployment of the full app (website + admin), built by OpenNext.
+// One-time setup and every command: docs/CLOUDFLARE.md. Secrets are never stored here:
+// set them with `bunx wrangler secret put NAME` (AUTH_SECRET, CRON_SECRET, DATABASE_URL, …).
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "annemarie-schimmel-haus-showcase",
+  "name": "annemarie-schimmel-haus",
+  "main": "cloudflare/worker.ts",
   "compatibility_date": "2026-10-01",
-  "assets": {
-    "directory": "./showcase-site",
-    "not_found_handling": "404-page",
-    "html_handling": "drop-trailing-slash"
-  },
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
   "workers_dev": true,
-  "preview_urls": false
+  "preview_urls": false,
+
+  // Static files (/_next/static, /images, /brand …) are served by Cloudflare directly, free and unmetered.
+  // html_handling "none": /offline.html (the installed app's offline page) must be served as is, not redirected.
+  "assets": { "directory": ".open-next/assets", "binding": "ASSETS", "html_handling": "none" },
+
+  // The worker calls itself for background revalidation (see https://opennext.js.org/cloudflare/caching).
+  "services": [{ "binding": "WORKER_SELF_REFERENCE", "service": "annemarie-schimmel-haus" }],
+
+  // Postgres (e.g. Neon) through Hyperdrive's pooled, cached connections.
+  // `bunx wrangler hyperdrive create ash-db --connection-string="postgres://…"` prints the id.
+  // Local preview reads CLOUDFLARE_HYPERDRIVE_LOCAL_CONNECTION_STRING_HYPERDRIVE instead.
+  "hyperdrive": [{ "binding": "HYPERDRIVE", "id": "00000000000000000000000000000000" }],
+
+  // Page / "use cache" entries (`bunx wrangler r2 bucket create annemarie-schimmel-haus-cache`).
+  "r2_buckets": [{ "binding": "NEXT_INC_CACHE_R2_BUCKET", "bucket_name": "annemarie-schimmel-haus-cache" }],
+
+  // Cache tags, so admin edits refresh public pages at once (`bunx wrangler d1 create annemarie-schimmel-haus-tags`).
+  "d1_databases": [{ "binding": "NEXT_TAG_CACHE_D1", "database_name": "annemarie-schimmel-haus-tags", "database_id": "00000000-0000-0000-0000-000000000000" }],
+
+  // Background revalidation queue.
+  "durable_objects": { "bindings": [{ "name": "NEXT_CACHE_DO_QUEUE", "class_name": "DOQueueHandler" }] },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["DOQueueHandler"] }],
+
+  // next/image optimisation and upload re-encoding (src/server/files.ts).
+  "images": { "binding": "IMAGES" },
+
+  // Maintenance job every ten minutes (cloudflare/worker.ts → /api/cron/maintenance).
+  "triggers": { "crons": ["*/10 * * * *"] },
+
+  "vars": {
+    "APP_URL": "https://www.schimmel.com.pk",
+    "IP_SOURCE": "cf-connecting-ip",
+    "STAFF_NOTIFY_EMAIL": "courses@schimmel.com.pk",
+    "GMAIL_SENDER": "info@schimmel.com.pk"
+  },
+
+  "observability": { "enabled": true }
 }

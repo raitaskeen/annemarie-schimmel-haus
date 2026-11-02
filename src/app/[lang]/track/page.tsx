@@ -35,7 +35,6 @@ export default async function TrackPage() {
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden bg-forest" aria-hidden>
         <Girih className="text-white/[0.045]" size={70} />
-        <div className="absolute -bottom-40 left-1/3 size-[480px] rounded-full bg-lime/10 blur-3xl" />
       </div>
       <div className="container-site relative grid gap-10 pt-10 pb-24 lg:grid-cols-[0.9fr_1.1fr] lg:gap-16">
         <div className="text-white lg:pt-6">
